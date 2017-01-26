@@ -1,0 +1,5 @@
+[user]
+	email = thomas.goldbrunner@tum.de
+	name = Thomas Goldbrunner
+[push]
+	default = simple

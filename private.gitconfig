@@ -1,0 +1,10 @@
+[user]
+	email = thomas.goldbrunner@posteo.de
+	name = Thomas Goldbrunner
+	signingkey = 640DA4FB
+[push]
+	default = simple
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg2
