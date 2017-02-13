@@ -73,3 +73,8 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# safety measure for gpg-agent, as recommended by gpg-agent manual
+GPG_TTY=$(tty)
+export GPG_TTY
+
