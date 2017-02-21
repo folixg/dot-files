@@ -1,5 +1,5 @@
 [user]
-	email = thomas.goldbrunner@tum.de
+	email = thomas.goldbrunner@posteo.de
 	name = Thomas Goldbrunner
 	signingkey = 640DA4FB
 [push]
@@ -8,3 +8,5 @@
 	gpgsign = true
 [gpg]
 	program = gpg2
+[core]
+	excludesfile = ~/.gitignore
