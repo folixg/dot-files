@@ -235,3 +235,4 @@ exec --no-startup-id i3-msg 'workspace $workspace6'
 exec --no-startup-id i3-msg 'workspace $workspace1'
 # background tasks
 exec --no-startup-id synology-cloud-station-drive
+exec --no-startup-id xautolock -time 10 -locker ~/.i3/lock/lock.sh
