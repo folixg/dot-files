@@ -31,7 +31,8 @@ floating_modifier $mod
 
 # lock
 #bindsym $mod+Shift+x exec i3lock --color 475263
-bindsym $mod+Shift+x exec ~/.i3/lock/lock.sh
+#bindsym $mod+Shift+x exec ~/.i3/lock/lock.sh
+bindsym $mod+Shift+x exec xautolock -locknow
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
