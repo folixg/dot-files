@@ -145,7 +145,7 @@ workspace $workspace9 output HDMI3
 workspace $workspace10 output HDMI3
 
 # force windows to workspaces
-assign [title="KeePassX"] $workspace3
+#assign [title="KeePassX"] $workspace3
 assign [class="Thunderbird"] $workspace6
 assign [class="Pidgin"] $workspace7
 assign [class="Clementine"] $workspace8
@@ -225,15 +225,6 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle # mute s
 bindsym XF86AudioPlay exec playerctl play-pause
 
 # Autostart
-# populate default workspaces
-exec clementine
-exec pidgin
-exec thunderbird
-exec --no-startup-id i3-msg 'workspace $workspace3; exec keepassx; exec sleep 1; workspace $workspace2'
-exec --no-startup-id i3-msg 'exec i3-sensible-terminal; workspace $workspace1'
-exec firefox
-exec --no-startup-id i3-msg 'workspace $workspace6'
-exec --no-startup-id i3-msg 'workspace $workspace1'
 # background tasks
 exec --no-startup-id synology-cloud-station-drive
 exec --no-startup-id xautolock -time 10 -locker ~/.i3/lock/lock.sh

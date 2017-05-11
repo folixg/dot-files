@@ -16,6 +16,7 @@ do
       sudo apt-get install $tool
     else
       echo "Please head over to https://github.com/acrisci/playerctl/releases/latest and install playerctl"
+      exit
     fi
   fi
 done
