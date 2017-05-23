@@ -13,7 +13,12 @@ if [ ! -f $HOME/.bash_aliases ]; then
 fi
 
 # link to minimal .bashrc to launch zsh as default if chsh failed
-if [ -f $HOME/.bashrc ]; then
-  mv $HOME/.bashrc $HOME/.bashrc_prezsh
+loginshell=$(getent passwd $LOGNAME | cut -d: -f7)
+if [ ${loginshell##*/} == 'zsh' ]; then
+  exit 0
+else
+  if [ -f $HOME/.bashrc ]; then
+    mv $HOME/.bashrc $HOME/.bashrc_prezsh
+  fi
+  ln -s $PWD/bashrc $HOME/.bashrc
 fi
-ln -s $PWD/bashrc $HOME/.bashrc
