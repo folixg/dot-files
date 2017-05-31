@@ -86,3 +86,6 @@ source $ZSH/oh-my-zsh.sh
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
+
+# alias for bash
+alias bash="bash --init-file ~/dot-files/bash/bashrc"
