@@ -89,3 +89,8 @@ fi
 
 # alias for bash
 alias bash="bash --init-file ~/dot-files/bash/bashrc"
+
+# Go
+export GOPATH="$HOME/go"
+export PATH="$PATH:/usr/local/go/bin:$GOPATH/bin"
+
