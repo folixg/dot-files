@@ -17,6 +17,13 @@ wget https://github.com/acrisci/playerctl/releases/download/v0.5.0/playerctl-0.5
 sudo dpkg -i playerctl-0.5.0_amd64.deb
 rm playerctl-0.5.0_amd64.deb
 
+#install Font Awesome in user home
+if [ ! -d ~/.fonts ]; then
+  mkdir ~/.fonts
+fi
+git clone https://github.com/FortAwesome/Font-Awesome.git ~/.fonts/fa
+fc-cache -f -v .fonts/fa
+
 # link config files
 if [ ! -d ~/.i3 ]; then
   mkdir ~/.i3
