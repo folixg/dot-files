@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # dependencies
-# - i3-wm : i3 itself
+# - i3 : metapackage (i3 window manager, screen locker, menu, statusbar) 
 # - i3blocks : used as i3bar status command
 # - feh : used to show custom background image
 # - xautolock: lock inactive session
@@ -9,7 +9,7 @@
 # - playerctl: mpris control for media players
 
 # install everything that's available through apt
-packets="i3-wm i3blocks feh xautolock scrot"
+packets="i3 i3blocks feh xautolock scrot"
 sudo apt-get install -y $packets
 
 # install playerctl
