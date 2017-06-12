@@ -1,29 +1,25 @@
 #!/usr/bin/env bash
 
 # dependencies
-# - i3blocks : used as irbar status command
+# - i3-wm : i3 itself
+# - i3blocks : used as i3bar status command
 # - feh : used to show custom background image
 # - xautolock: lock inactive session
 # - scrot: screenshot tool for fancy lock screen
 # - playerctl: mpris control for media players
-declare -a deps=("i3blocks" "feh" "xautolock" "scrot" "playerctl")
 
-for tool in "${deps[@]}"
-do
-  if ! [[ -x "$(command -v $tool)" ]]; then
-    echo "$tool not found, trying to install it."
-    if [ "$tool" != playerctl ]; then
-      sudo apt-get install $tool
-    else
-      echo "Please head over to https://github.com/acrisci/playerctl/releases/latest and install playerctl"
-      exit
-    fi
-  fi
-done
+# install everything that's available through apt
+packets="i3-wm i3blocks feh xautolock scrot"
+sudo apt-get install -y $packets
 
+# install playerctl
+wget https://github.com/acrisci/playerctl/releases/download/v0.5.0/playerctl-0.5.0_amd64.deb
+sudo dpkg -i playerctl-0.5.0_amd64.deb
+rm playerctl-0.5.0_amd64.deb
+
+# link config files
 if [ ! -d ~/.i3 ]; then
   mkdir ~/.i3
-  echo "Created new folder '~/.i3'."
 fi
 if [ -e ~/.i3/config ]; then
   mv ~/.i3/config ~/.i3/config_old
