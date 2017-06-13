@@ -20,4 +20,5 @@ alias gpg=gpg2
 alias jupyter=/home/$USER/docker/jupyter/run.sh
 alias stop_jupyter='docker stop notebook >/dev/null && docker rm notebook >/dev/null'
 
-
+# alias for ubuntu docker
+alias ubuntu='docker run --rm -it -v `pwd`:/mnt folixg/ubuntu'
