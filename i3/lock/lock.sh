@@ -15,13 +15,14 @@ do
   fi
 done
 
-#i3lock -i ~/Firefox_wallpaper.png -t -f
+# simple lock screen
+i3lock -c 2f343f -i ~/.i3/lock/locked.png -t
 
-# fancy lock screen https://git.fleshless.org/misc/tree/i3lock-extra
-# single screen
+## fancy lock screen https://git.fleshless.org/misc/tree/i3lock-extra
+## single screen
 #~/.i3/lock/i3lock-extra.sh -s -b -p -o ~/.i3/lock/locked.png
 ## dual screen
-~/.i3/lock/i3lock-extra.sh -s -b -p -o ~/.i3/lock/dualscreen_locked.png
+#~/.i3/lock/i3lock-extra.sh -s -b -p -o ~/.i3/lock/dualscreen_locked.png
 
 # resume play of the player we paused
 if [ "$paused_player" != "none" ] ; then
