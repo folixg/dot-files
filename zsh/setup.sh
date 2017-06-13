@@ -9,7 +9,7 @@ ln -s $PWD/zshrc $HOME/.zshrc
 
 # if there is no ~/.bash_aliases, link to the one from the repository
 if [ ! -f $HOME/.bash_aliases ]; then
-  ln -s ../bash/bash_aliases $HOME/.bash_aliases
+  ln -s $PWD/../bash/bash_aliases $HOME/.bash_aliases
 fi
 
 # link to minimal .bashrc to launch zsh as default if chsh failed
