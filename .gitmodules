@@ -1,0 +1,9 @@
+[submodule "vim/vim/bundle/syntastic"]
+	path = vim/vim/bundle/syntastic
+	url = https://github.com/vim-syntastic/syntastic.git
+[submodule "vim/vim/bundle/vim-sensible"]
+	path = vim/vim/bundle/vim-sensible
+	url = https://github.com/tpope/vim-sensible.git
+[submodule "vim/vim/bundle/vim-go"]
+	path = vim/vim/bundle/vim-go
+	url = https://github.com/fatih/vim-go.git
