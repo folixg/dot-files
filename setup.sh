@@ -5,9 +5,11 @@
 #
 # --noroot : skip all steps that use sudo
 # --headless : don't install/configure stuff that needs a X server
+# --atom : install and set up atom editor
 
 noroot="False"
 headless="False"
+atom="False"
 
 for i in "$@"
 do
@@ -18,10 +20,14 @@ do
     "--headless" )
       headless="True"
     ;;
+    "--atom" )
+      atom="True"
+    ;;
     * )
       echo "Possible options are:"
       echo " --noroot : skip all steps that use sudo"
       echo " --headless : don't install/configure stuff that needs a X server"
+      echo " --atom : install and setup atom (can not be mixed with other options)"
       exit
     ;;
   esac
@@ -31,10 +37,7 @@ done
 if [ "$noroot" == "False" ] ; then
   echo "### installing additional packages ###"
   # packages to install
-  packages="vim curl zsh golang atom python3-pip shellcheck"
-  # add atom ppa
-  sudo add-apt-repository -y ppa:webupd8team/atom
-  sudo apt-get update
+  packages="vim curl zsh golang python3-pip shellcheck"
   # install packets
   sudo apt-get install -y $packages
 fi
@@ -82,12 +85,6 @@ if [ "$headless" == "False" ] ; then
     mv ~/.Xresources ~/.Xresources.old
   fi
   ln -s "$PWD/Xresources" ~/.Xresources
-  # setup atom
-  echo "### setting up atom ###"
-  git clone https://github.com/folixg/setup-atom-sync.git atom-sync
-  cd atom-sync
-  ./setup_atom_sync.sh
-  cd ..
   # install Source Code Pro font
   echo "### installing Source Code Pro font ###"
   # ~/.fonts was already created by i3 setup
@@ -96,4 +93,22 @@ if [ "$headless" == "False" ] ; then
   tar xvf 1.050R-it.tar.gz
   rm 1.050R-it.tar.gz
   fc-cache -v -f .
+fi
+# install and set up atom
+if [ "$atom" == "True" ] ; then
+  if [ "$headless" == "True" ] || [ "$noroot" == "True" ] ; then
+    echo "### not installing atom because of --headless or --noroot switch ###"
+    exit
+  fi
+  # add atom ppa
+  echo "### adding atom ppa ###"
+  sudo add-apt-repository -y ppa:webupd8team/atom
+  sudo apt-get update
+  # install atom
+  echo "### installing atom ###"
+  sudo apt-get install -y atom
+  echo "### setting up atom-sync ###"
+  git clone https://github.com/folixg/setup-atom-sync.git ~/atom-sync
+  cd ~/atom-sync
+  ./setup_atom_sync.sh
 fi
