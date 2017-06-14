@@ -3,7 +3,7 @@
 # Turn a clean installation into my customized setup
 # Tested with xubuntu 16.04
 #
-# --noroot : skip all steps that use sudo
+# --noroot : skip all steps that use root privileges
 # --headless : don't install/configure stuff that needs a X server
 # --atom : install and set up atom editor
 
@@ -25,7 +25,7 @@ do
     ;;
     * )
       echo "Possible options are:"
-      echo " --noroot : skip all steps that use sudo"
+      echo " --noroot : skip all steps that use root privileges"
       echo " --headless : don't install/configure stuff that needs a X server"
       echo " --atom : install and setup atom (can not be mixed with other options)"
       exit
@@ -33,16 +33,22 @@ do
   esac
 done
 
-# if we have sudo rights, install some additional packets
+# if we have root privileges, install some additional packets
 if [ "$noroot" == "False" ] ; then
+  # check whether we are root, or we need to use sudo
+  if [ "$(id -u)" == "0" ] ; then
+    sudo_prefix=""
+  else
+    sudo_prefix="sudo"
+  fi
   echo "### installing additional packages ###"
   # packages to install
   packages="vim curl wget zsh gnupg2 python3-pip shellcheck"
   # install packets
-  sudo apt-get install -y $packages
+  "$sudo_prefix apt-get install -y $packages"
   # install golang manually to get 1.8 instead of apts 1.6
   wget https://storage.googleapis.com/golang/go1.8.3.linux-amd64.tar.gz
-  sudo tar -C /usr/local -xzf go1.8.3.linux-amd64.tar.gz
+  $sudo_prefix tar -C /usr/local -xzf go1.8.3.linux-amd64.tar.gz
   rm go1.8.3.linux-amd64.tar.gz
 fi
 # install python linter flake8
@@ -106,11 +112,11 @@ if [ "$atom" == "True" ] ; then
   fi
   # add atom ppa
   echo "### adding atom ppa ###"
-  sudo add-apt-repository -y ppa:webupd8team/atom
-  sudo apt-get update
+  $sudo_prefix add-apt-repository -y ppa:webupd8team/atom
+  $sudo_prefix apt-get update
   # install atom
   echo "### installing atom ###"
-  sudo apt-get install -y atom
+  $sudo_prefix apt-get install -y atom
   echo "### setting up atom-sync ###"
   git clone https://github.com/folixg/setup-atom-sync.git ~/atom-sync
   cd ~/atom-sync
