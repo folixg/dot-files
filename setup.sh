@@ -37,9 +37,13 @@ done
 if [ "$noroot" == "False" ] ; then
   echo "### installing additional packages ###"
   # packages to install
-  packages="vim curl zsh golang python3-pip shellcheck"
+  packages="vim curl zsh gnupg2 python3-pip shellcheck"
   # install packets
   sudo apt-get install -y $packages
+  # install golang manually to get 1.8 instead of apts 1.6
+  wget https://storage.googleapis.com/golang/go1.8.3.linux-amd64.tar.gz
+  sudo tar -C /usr/local -xzf go1.8.3.linux-amd64.tar.gz
+  rm go1.8.3.linux-amd64.tar.gz
 fi
 # install python linter flake8
 if [ "$(which pip3)" ]; then
@@ -79,7 +83,7 @@ if [ "$headless" == "False" ] ; then
     ./setup.sh
   fi
   # link Xresources
-  echo "### linkking ~./Xresources ###"
+  echo "### linking ~./Xresources ###"
   cd ..
   if [ -e ~/.Xresources ] ; then
     mv ~/.Xresources ~/.Xresources.old
