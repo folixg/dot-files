@@ -1,15 +1,26 @@
+" use pathogen
 execute pathogen#infect()
+
+" syntax highlighting
 syntax on
+" don't select line numbers when selecting with the mouse
 set mouse=a
+" show line numbers
 set number
+" show print area
 set colorcolumn=80
-
+" use color scheme from https://github.com/raphamorim/lucario
 colorscheme lucario
+" indenting
+set expandtab softtabstop=2 shiftwidth=2
+filetype plugin indent on
+au FileType python set expandtab softtabstop=4 shiftwidth=4
+au FileType go set noexpandtab tabstop=4 shiftwidth=4
 
+" syntastic settings
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
