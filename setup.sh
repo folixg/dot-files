@@ -45,7 +45,7 @@ if [ "$noroot" == "False" ] ; then
   # packages to install
   packages="vim curl wget zsh gnupg2 python3-pip shellcheck"
   # install packets
-  "$sudo_prefix apt-get install -y $packages"
+  $sudo_prefix apt-get install -y $packages
   # install golang manually to get 1.8 instead of apts 1.6
   wget https://storage.googleapis.com/golang/go1.8.3.linux-amd64.tar.gz
   $sudo_prefix tar -C /usr/local -xzf go1.8.3.linux-amd64.tar.gz
