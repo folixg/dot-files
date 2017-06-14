@@ -37,7 +37,7 @@ done
 if [ "$noroot" == "False" ] ; then
   echo "### installing additional packages ###"
   # packages to install
-  packages="vim curl zsh gnupg2 python3-pip shellcheck"
+  packages="vim curl wget zsh gnupg2 python3-pip shellcheck"
   # install packets
   sudo apt-get install -y $packages
   # install golang manually to get 1.8 instead of apts 1.6
