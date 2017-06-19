@@ -9,7 +9,6 @@
 
 noroot="False"
 headless="False"
-atom="False"
 
 for i in "$@"
 do
@@ -20,14 +19,10 @@ do
     "--headless" )
       headless="True"
     ;;
-    "--atom" )
-      atom="True"
-    ;;
     * )
       echo "Possible options are:"
       echo " --noroot : skip all steps that use root privileges"
       echo " --headless : don't install/configure stuff that needs a X server"
-      echo " --atom : install and setup atom (can not be mixed with other options)"
       exit
     ;;
   esac
@@ -97,28 +92,13 @@ if [ "$headless" == "False" ] ; then
   ln -s "$PWD/Xresources" ~/.Xresources
   # install Source Code Pro font
   echo "### installing Source Code Pro font ###"
-  # ~/.fonts was already created by i3 setup
+  # create ~/.fonts, if it does not exist
+  if ! [ -d ~/.fonts ] ; then
+    mkdir ~/.fonts
+  fi
   cd ~/.fonts
   wget https://github.com/adobe-fonts/source-code-pro/archive/2.030R-ro/1.050R-it.tar.gz
   tar xvf 1.050R-it.tar.gz
   rm 1.050R-it.tar.gz
   fc-cache -v -f .
-fi
-# install and set up atom
-if [ "$atom" == "True" ] ; then
-  if [ "$headless" == "True" ] || [ "$noroot" == "True" ] ; then
-    echo "### not installing atom because of --headless or --noroot switch ###"
-    exit
-  fi
-  # add atom ppa
-  echo "### adding atom ppa ###"
-  $sudo_prefix add-apt-repository -y ppa:webupd8team/atom
-  $sudo_prefix apt-get update
-  # install atom
-  echo "### installing atom ###"
-  $sudo_prefix apt-get install -y atom
-  echo "### setting up atom-sync ###"
-  git clone https://github.com/folixg/setup-atom-sync.git ~/atom-sync
-  cd ~/atom-sync
-  ./setup_atom_sync.sh
 fi
