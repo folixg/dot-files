@@ -30,7 +30,7 @@ font pango:Source Code Pro 11
 floating_modifier $mod
 
 # lock
-bindsym $mod+Shift+x exec xautolock -locknow
+bindsym $mod+Shift+x exec ~/.i3/lock/xautolock_wrapper.sh
 # start a terminal
 bindsym $mod+Return exec xterm
 
@@ -224,4 +224,4 @@ bindsym XF86AudioPlay exec playerctl play-pause
 exec_always --no-startup-id xrdb ~/.Xresources
 # background tasks
 exec --no-startup-id synology-cloud-station-drive
-exec --no-startup-id xautolock -secure -time 10 -locker ~/.i3/lock/lock.sh
+exec --no-startup-id xautolock -time 10 -locker ~/.i3/lock/lock.sh
