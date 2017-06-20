@@ -16,9 +16,11 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # use GPG2 by default
 alias gpg=gpg2
 
-# alias for docker jupyter notebook server
-alias jupyter=/home/$USER/docker/jupyter/run.sh
-alias stop_jupyter='docker stop notebook >/dev/null && docker rm notebook >/dev/null'
-
 # alias for ubuntu docker
 alias ubuntu='docker run --rm -it -v `pwd`:/mnt folixg/ubuntu'
+
+# alias for go (use manually installed version over apt version)
+if [ -e /usr/local/go/bin/go ] ; then
+  alias go='/usr/local/go/bin/go'
+fi
+
