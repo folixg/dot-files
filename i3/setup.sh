@@ -31,9 +31,11 @@ fi
 if [ -e ~/.i3/config ]; then
   mv ~/.i3/config ~/.i3/config_old
 fi
-ln -s $PWD/config ~/.i3/config
+ln -s "$PWD"/config ~/.i3/config
 if [ -e ~/.i3/i3blocks.conf ]; then
   mv ~/.i3/i3blocks.conf ~/.i3/i3blocks.conf_old
 fi
-ln -s $PWD/i3blocks.conf ~/.i3/i3blocks.conf
-ln -s $PWD/lock ~/.i3/
+ln -s "$PWD"/i3blocks.conf ~/.i3/i3blocks.conf
+ln -s "$PWD"/lock ~/.i3/
+# link custom blocklet folder
+ln -s "$PWD"/blocklets ~/.i3/blocklets
