@@ -32,8 +32,6 @@ if [ "$(fc-list | grep -c "FontAwesome")" == "0" ]; then
 else
   install_fa="0"
 fi
-echo $install_fa
-echo $install_scp
 if [[ $install_scp == "1" || $install_fa == "1" ]] ; then
   current_dir=$PWD
   # create user font dir, if it does not exist
