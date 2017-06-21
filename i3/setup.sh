@@ -35,6 +35,7 @@ fi
 echo $install_fa
 echo $install_scp
 if [[ $install_scp == "1" || $install_fa == "1" ]] ; then
+  current_dir=$PWD
   # create user font dir, if it does not exist
   if [ ! -d ~/.fonts ]; then
     mkdir ~/.fonts
@@ -44,14 +45,15 @@ if [[ $install_scp == "1" || $install_fa == "1" ]] ; then
   if [ $install_scp == "1" ] ; then
     wget https://github.com/adobe-fonts/source-code-pro/archive/2.030R-ro/1.050R-it.tar.gz
     tar xvf 1.050R-it.tar.gz
-    rm xvf 1.050R-it.tar.gz
+    rm 1.050R-it.tar.gz
   fi
   # install FontAwesome
   if [ $install_fa == "1" ] ; then
     git clone https://github.com/FortAwesome/Font-Awesome.git ~/.fonts/fa
   fi
   # update font cache
-  fc-cache -f -v .fonts/fa
+  fc-cache -f ~/.fonts
+  cd "$current_dir" || exit
 fi
 # link config files
 if [ ! -d ~/.i3 ]; then
