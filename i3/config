@@ -101,10 +101,10 @@ set $workspace3 "3 "
 set $workspace4 4
 set $workspace5 5
 set $workspace6 "6 "
-set $workspace7 "7 "
-set $workspace8 "8 "
+set $workspace7 "7 "
+set $workspace8 "8 "
 set $workspace9 "9 "
-set $workspace10 10
+set $workspace10 "10 "
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -184,6 +184,9 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3blocks -c ~/.i3/i3blocks.conf
         tray_output primary
+        separator_symbol 
+        strip_workspace_numbers yes
+        font pango:Source Code Pro, Font Awesome 11
 	colors {
 		background $bg-color
 	    	separator #757575
@@ -211,10 +214,10 @@ client.urgent $urgent-bg-color $urgent-bg-color $text-color #00ff00
 # wallpaper
 exec_always --no-startup-id feh --bg-scale ~/.i3/wallpaper.png
 
-# Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle # mute sound
+# change volume or toggle mute
+bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+11 i3blocks
+bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+11 i3blocks
+bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+11
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play-pause
