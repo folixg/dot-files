@@ -18,6 +18,9 @@ if [ "$(which playerctl)" ] ; then
   done
 fi
 
+# pause dunst notifications
+killall -SIGUSR1 dunst
+
 # if the tools for the fancy lock screen (scrot, convert) are not available
 # use a simple lock screen
 if [[ ! ($(which scrot) && $(which convert)) ]] ; then
@@ -39,3 +42,6 @@ if [[ $playerctl == "1" ]] ; then
     playerctl --player="$paused_player" play
   fi
 fi
+
+# resume dunst notifications
+killall -SIGUSR2 dunst

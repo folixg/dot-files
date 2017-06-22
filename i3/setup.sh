@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # dependencies
-# - i3 : metapackage (i3 window manager, screen locker, menu, statusbar)
+# - i3 : metapackage (includes i3-wm, i3lock, dmenu and dunst)
 # - i3blocks : used as i3bar status command
 # - feh : used to show custom background image
 # - xautolock: lock inactive session
@@ -82,3 +82,8 @@ if [ -e ~/.i3/blocklets ] ; then
   mv ~/.i3/blocklets ~/.i3/blocklets_old
 fi
 ln -s "$PWD"/blocklets ~/.i3/blocklets
+if [ -e ~/.i3/dunstrc ] ; then
+  mv ~/.i3/dunstrc ~/.i3/dunstrc_old
+fi
+ln -s "$PWD"/dunstrc ~/.i3/dunstrc
+

@@ -217,9 +217,6 @@ client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-col
 client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
 client.urgent $urgent-bg-color $urgent-bg-color $text-color #00ff00
 
-# wallpaper
-exec_always --no-startup-id feh --bg-scale ~/.i3/wallpaper.png
-
 # change volume or toggle mute
 bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+11 i3blocks
 bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+11 i3blocks
@@ -231,6 +228,10 @@ bindsym XF86AudioPlay exec playerctl play-pause
 # Autostart
 # load ~/.Xresources
 exec_always --no-startup-id xrdb ~/.Xresources
+# wallpaper
+exec_always --no-startup-id feh --bg-scale ~/.i3/wallpaper.png
+# dunst for notifications
+exec --no-startup-id dunst -config ~/.i3/dunstrc
 # background tasks
 exec --no-startup-id synology-cloud-station-drive
 exec --no-startup-id xautolock -time 10 -locker ~/.i3/lock/lock.sh
