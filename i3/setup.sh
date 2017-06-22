@@ -13,13 +13,21 @@
 # - FontAwesome
 
 # install everything that's available through apt
-packets="i3 i3blocks feh xautolock scrot"
-sudo apt-get install -y $packets
+dependencies=("i3" "i3blocks" "feh" "xautolock" "scrot")
+apt_packages=""
+for package in "${dependencies[@]}"; do
+  if ! [ "$(which $package)" ] ; then
+    apt_packages="$apt_packages$package "
+  fi
+done
+sudo apt-get install -y $apt_packages
 
 # install playerctl
-wget https://github.com/acrisci/playerctl/releases/download/v0.5.0/playerctl-0.5.0_amd64.deb
-sudo dpkg -i playerctl-0.5.0_amd64.deb
-rm playerctl-0.5.0_amd64.deb
+if ! [ "$(which playerctl)" ] ; then
+  wget https://github.com/acrisci/playerctl/releases/download/v0.5.0/playerctl-0.5.0_amd64.deb
+  sudo dpkg -i playerctl-0.5.0_amd64.deb
+  rm playerctl-0.5.0_amd64.deb
+fi
 
 #install fonts in user home
 if [ "$(fc-list | grep -c "Source Code Pro")" == "0" ]; then
