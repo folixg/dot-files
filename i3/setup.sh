@@ -7,7 +7,7 @@
 # - xautolock: lock inactive session
 # - scrot: screenshot tool for fancy lock screen
 # - playerctl: mpris control for media players
-# 
+#
 # fonts
 # - Source Code Pro
 # - FontAwesome
@@ -57,14 +57,20 @@ fi
 if [ ! -d ~/.i3 ]; then
   mkdir ~/.i3
 fi
-if [ -e ~/.i3/config ]; then
+if [ -e ~/.i3/config ] ; then
   mv ~/.i3/config ~/.i3/config_old
 fi
 ln -s "$PWD"/config ~/.i3/config
-if [ -e ~/.i3/i3blocks.conf ]; then
+if [ -e ~/.i3/i3blocks.conf ] ; then
   mv ~/.i3/i3blocks.conf ~/.i3/i3blocks.conf_old
 fi
 ln -s "$PWD"/i3blocks.conf ~/.i3/i3blocks.conf
+if [ -e ~/.i3/lock ] ; then
+  mv ~/.i3/lock ~/.i3/lock_old
+fi
 ln -s "$PWD"/lock ~/.i3/
 # link custom blocklet folder
+if [ -e ~/.i3/blocklets ] ; then
+  mv ~/.i3/blocklets ~/.i3/blocklets_old
+fi
 ln -s "$PWD"/blocklets ~/.i3/blocklets
