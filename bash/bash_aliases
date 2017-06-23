@@ -10,6 +10,11 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # use GPG2 by default
 alias gpg=gpg2
 
+# helpers for gpg
+alias lock-gpg-key=$DOTFILES/gpg/lock-gpg-key.sh
+alias unlock-gpg-key=$DOTFILES/gpg/unlock-gpg-key.sh
+alias gpg-focus='echo "UPDATESTARTUPTTY" | gpg-connect-agent > /dev/null 2>&1'
+
 # alias for ubuntu docker
 alias ubuntu='docker run --rm -it -v `pwd`:/mnt folixg/ubuntu'
 
@@ -17,4 +22,3 @@ alias ubuntu='docker run --rm -it -v `pwd`:/mnt folixg/ubuntu'
 if [ -e /usr/local/go/bin/go ] ; then
   alias go='/usr/local/go/bin/go'
 fi
-
