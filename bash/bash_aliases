@@ -13,7 +13,7 @@ alias gpg=gpg2
 # helpers for gpg
 alias lock-gpg-key=$DOTFILES/gpg/lock-gpg-key.sh
 alias unlock-gpg-key=$DOTFILES/gpg/unlock-gpg-key.sh
-alias gpg-focus='echo "UPDATESTARTUPTTY" | gpg-connect-agent > /dev/null 2>&1'
+alias gpg-focus=$DOTFILES/gpg/gpg-focus.sh
 
 # alias for ubuntu docker
 alias ubuntu='docker run --rm -it -v `pwd`:/mnt folixg/ubuntu'
