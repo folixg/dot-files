@@ -54,7 +54,11 @@ HYPHEN_INSENSITIVE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git sudo golang)
+if [[ $(gpg2 -K | grep "\[A\]") ]] ; then
+  plugins=(git sudo golang)
+else
+  plugins=(git sudo golang ssh-agent)
+fi
 
 source $ZSH/oh-my-zsh.sh
 
@@ -81,10 +85,12 @@ source $ZSH/oh-my-zsh.sh
 # safety measure for gpg-agent, as recommended by gpg-agent manual
 GPG_TTY=$(tty)
 export GPG_TTY
-# use gpg-agent instead of ssh-agent
-unset SSH_AGENT_PID
-if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-  export SSH_AUTH_SOCK="${HOME}/.gnupg/S.gpg-agent.ssh"
+# use gpg-agent instead of ssh-agent (if there is a private auth key available)
+if [[ $( gpg2 -K | grep "\[A\]" ) ]] ; then
+  unset SSH_AGENT_PID
+  if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+    export SSH_AUTH_SOCK="${HOME}/.gnupg/S.gpg-agent.ssh"
+  fi
 fi
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
