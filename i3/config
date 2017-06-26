@@ -204,11 +204,11 @@ bar {
 }
 
 # color scheme
-set $bg-color 	         #2f343f
-set $inactive-bg-color   #2f343f
-set $text-color          #f3f4f5
-set $inactive-text-color #676E7D
-set $urgent-bg-color     #E53935
+set $bg-color 	         #243443
+set $inactive-bg-color   #243443
+set $text-color          #f8f8f2
+set $inactive-text-color #888882
+set $urgent-bg-color     #e6db74
 
 # window colors
 #                       border              background         text                 indicator
