@@ -8,7 +8,7 @@ rm $HOME/.zshrc
 ln -s $PWD/zshrc $HOME/.zshrc
 
 # install custom gimme oh-my-zsh plugin
-git clone git@github.com:folixg/gimme-ohmyzsh-plugin.git $ZSH/custom/plugins/gimme
+git clone https://github.com/folixg/gimme-ohmyzsh-plugin.git $ZSH/custom/plugins/gimme
 
 # if there is no ~/.bash_aliases, link to the one from the repository
 if [ ! -f $HOME/.bash_aliases ]; then
