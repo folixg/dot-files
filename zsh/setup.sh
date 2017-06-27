@@ -7,6 +7,9 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 rm $HOME/.zshrc
 ln -s $PWD/zshrc $HOME/.zshrc
 
+# install custom gimme oh-my-zsh plugin
+git clone git@github.com:folixg/gimme-ohmyzsh-plugin.git $ZSH/custom/plugins/gimme
+
 # if there is no ~/.bash_aliases, link to the one from the repository
 if [ ! -f $HOME/.bash_aliases ]; then
   ln -s $PWD/../bash/bash_aliases $HOME/.bash_aliases
@@ -23,4 +26,3 @@ else
   ln -s $PWD/bashrc $HOME/.bashrc
 fi
 
-git clone git@github.com:folixg/gimme-ohmyzsh-plugin.git $ZSH/custom/plugins/gimme
