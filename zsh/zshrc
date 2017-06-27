@@ -106,4 +106,7 @@ alias bash="bash --init-file ~/dot-files/bash/bashrc"
 
 # Go
 export GOPATH="$HOME/go"
-export PATH="$PATH:/usr/local/go/bin:$GOPATH/bin"
+export PATH="$PATH:$GOPATH/bin"
+if [ -e ~/bin/gimme ] ; then
+  eval "$(gimme stable)" &>/dev/null
+fi
