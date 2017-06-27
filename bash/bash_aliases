@@ -18,5 +18,3 @@ alias gpg-focus=$DOTFILES/gpg/gpg-focus.sh
 # alias for ubuntu docker
 alias ubuntu='docker run --rm -it -v `pwd`:/mnt folixg/ubuntu'
 
-# load go stable gimme environment
-alias load-go='eval "$(gimme stable)"'

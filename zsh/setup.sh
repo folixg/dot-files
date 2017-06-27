@@ -22,3 +22,5 @@ else
   fi
   ln -s $PWD/bashrc $HOME/.bashrc
 fi
+
+git clone git@github.com:folixg/gimme-ohmyzsh-plugin.git $ZSH/custom/plugins/gimme
