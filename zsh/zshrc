@@ -54,11 +54,7 @@ HYPHEN_INSENSITIVE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-if [[ $(gpg2 -K | grep "\[A\]") ]] ; then
-  plugins=(git sudo golang)
-else
-  plugins=(git sudo golang ssh-agent)
-fi
+plugins=(git sudo golang)
 
 source $ZSH/oh-my-zsh.sh
 
