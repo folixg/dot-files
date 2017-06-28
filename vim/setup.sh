@@ -9,7 +9,7 @@ if [ -e ~/.vimrc ]; then
 fi
 echo "Installing pathogen plugins."
 git submodule init
-git submoduel update
+git submodule update
 echo "Replacing config files with links to repository."
 ln -s $PWD/vimrc ~/.vimrc
 ln -s $PWD/vim ~/.vim
