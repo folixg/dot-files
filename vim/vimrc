@@ -9,6 +9,8 @@ set mouse=a
 set number
 " show print area
 set colorcolumn=80
+" higlight all matches in search
+set hlsearch
 " use color scheme from https://github.com/raphamorim/lucario
 colorscheme lucario
 " indenting
