@@ -1,0 +1,10 @@
+---
+
+  - hosts: localhost
+    roles:
+      - common
+      - git_work
+      - go
+      - gpg      
+      - python
+      - zsh

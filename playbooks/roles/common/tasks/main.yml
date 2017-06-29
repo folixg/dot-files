@@ -1,0 +1,51 @@
+- name: Perform dist-upgrade
+  apt:
+    update-cache: yes
+    upgrade: dist
+
+- name: Install additional packages through apt
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - git
+    - vim
+    - curl
+    - wget
+    - shellcheck
+
+- name: create ~/bin
+  file:
+    path: ~/bin
+    state: directory
+
+- name: Setup vim
+  file:
+    src: ~/dot-files/vim/{{ item }}
+    dest: ~/.{{ item }}
+    state: link
+    force: yes
+  with_items:
+    - vim
+    - vimrc
+
+- name: Link ~/.bashrc
+  file:
+    src: ~/dot-files/bash/bashrc
+    dest: ~/.bashrc
+    state: link
+    force: yes
+      
+- name: Link ~/.bash_aliases
+  file:
+    src: ~/dot-files/bash/bash_aliases
+    dest: ~/.bash_aliases
+    state: link
+    force: yes
+
+- name: Link global .gitignore
+  file:
+    src: ~/dot-files/git/global.gitignore
+    dest: ~/.gitignore
+    state: link
+    force: yes
