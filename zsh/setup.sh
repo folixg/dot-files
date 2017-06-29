@@ -10,6 +10,12 @@ ln -s $PWD/zshrc $HOME/.zshrc
 # install custom gimme oh-my-zsh plugin
 git clone https://github.com/folixg/gimme-ohmyzsh-plugin.git ~/.oh-my-zsh/custom/plugins/gimme
 
+# link fasd to ~/bin
+if [ ! -d $HOME/bin ]; then
+  mkdir $HOME/bin || exit 1
+fi
+ln -s $PWD/fasd $HOME/bin/fasd
+
 # if there is no ~/.bash_aliases, link to the one from the repository
 if [ ! -f $HOME/.bash_aliases ]; then
   ln -s $PWD/../bash/bash_aliases $HOME/.bash_aliases
