@@ -3,4 +3,8 @@
   - hosts: localhost
     roles:
       - common
-      - private
+      - git_work
+      - go
+      - gpg      
+      - python
+      - zsh

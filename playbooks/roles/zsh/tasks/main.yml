@@ -1,0 +1,25 @@
+- name: Install zsh
+  apt:
+    name: zsh
+    state: present
+
+- name: Clone oh-my-zsh
+  git:
+    repo: https://github.com/robbyrussell/oh-my-zsh.git
+    dest: ~/.oh-my-zsh
+
+- name: Clone custom oh-my-zsh plugin
+  git:
+    repo: https://github.com/folixg/gimme-ohmyzsh-plugin
+    dest: ~/.oh-my-zsh/custom/plugins/gimme
+
+- name: Link ~/.zshrc
+  file:
+    src: ~/dot-files/zsh/zshrc
+    dest: ~/.zshrc
+    state: link
+    force: yes
+
+- name: Change shell to zsh
+  command: chsh -s /usr/bin/zsh
+

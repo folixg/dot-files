@@ -12,27 +12,12 @@
     - vim
     - curl
     - wget
-    - zsh
-    - gnupg2
-    - python3-pip
     - shellcheck
 
 - name: create ~/bin
   file:
     path: ~/bin
     state: directory
-
-- name: Fetch gimme
-  get_url:
-    url: https://raw.githubusercontent.com/travis-ci/gimme/master/gimme
-    dest: ~/bin/gimme
-    mode: 0755
-
-- name: Install go using gimme
-  command: ~/bin/gimme stable
-
-- name: Install flake8
-  command: pip3 install flake8
 
 - name: Clone dot-files
   git:
@@ -49,61 +34,19 @@
     - vim
     - vimrc
 
-- name: Clone oh-my-zsh
-  git:
-    repo: https://github.com/robbyrussell/oh-my-zsh.git
-    dest: ~/.oh-my-zsh
-
-- name: Clone custom oh-my-zsh plugin
-  git:
-    repo: https://github.com/folixg/gimme-ohmyzsh-plugin
-    dest: ~/.oh-my-zsh/custom/plugins/gimme
-
-- name: Link ~/.zshrc
+- name: Link ~/.bashrc
   file:
-    src: ~/dot-files/zsh/zshrc
-    dest: ~/.zshrc
+    src: ~/dot-files/bash/bashrc
+    dest: ~/.bashrc
     state: link
     force: yes
-
+      
 - name: Link ~/.bash_aliases
   file:
     src: ~/dot-files/bash/bash_aliases
     dest: ~/.bash_aliases
     state: link
     force: yes
-
-- name: Change shell to zsh
-  command: chsh -s /usr/bin/zsh
-
-- name: Create and set permissions for ~/.gnupg
-  file:
-    path: ~/.gnupg
-    state: directory
-    mode: 0700
-
-- name: Set permissions for gpg config files
-  file:
-    path: ~/dot-files/gpg/{{ item }}
-    mode: 0600
-  with_items:
-    - dirmngr.conf
-    - gpg.conf
-    - gpg-agent.conf
-
-- name: Link gpg config files
-  file:
-    src: ~/dot-files/gpg/{{ item }}
-    dest: ~/.gnupg/{{ item }}
-    state: link
-    force: yes
-  with_items:
-    - dirmngr.conf
-    - gpg.conf
-    - gpg-agent.conf
-
-- name: Fetch public gpg key
-  command: gpg2 --recv-key 0x1782EA931CF39ED8
 
 - name: Link global .gitignore
   file:

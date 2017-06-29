@@ -1,0 +1,9 @@
+- name: Fetch gimme
+  get_url:
+    url: https://raw.githubusercontent.com/travis-ci/gimme/master/gimme
+    dest: ~/bin/gimme
+    mode: 0755
+
+- name: Install go using gimme
+  command: ~/bin/gimme stable
+
