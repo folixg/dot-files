@@ -16,5 +16,5 @@ alias unlock-gpg-key=$DOTFILES/gpg/unlock-gpg-key.sh
 alias gpg-focus=$DOTFILES/gpg/gpg-focus.sh
 
 # alias for ubuntu docker
-alias ubuntu='docker run --rm -it -v `pwd`:/mnt folixg/ubuntu'
+alias ubuntu='docker run --rm -it -v `pwd`:/data folixg/ubuntu /usr/bin/zsh' 
 
