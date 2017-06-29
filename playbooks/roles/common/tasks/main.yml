@@ -19,11 +19,6 @@
     path: ~/bin
     state: directory
 
-- name: Clone dot-files
-  git:
-    repo: https://github.com/folixg/dot-files.git
-    dest: ~/dot-files
-
 - name: Setup vim
   file:
     src: ~/dot-files/vim/{{ item }}
