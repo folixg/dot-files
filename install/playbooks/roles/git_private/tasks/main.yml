@@ -1,6 +1,6 @@
 - name: Link gitconfig
   file:
-    src: ~/dot-files/git/private.gitconfig
+    src: ~/dot-files/private.gitconfig
     dest: ~/.gitconfig
     state: link
     force: yes

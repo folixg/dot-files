@@ -1,6 +1,6 @@
 - name: Link gitconfig
   file:
-    src: ~/dot-files/git/work.gitconfig
+    src: ~/dot-files/work.gitconfig
     dest: ~/.gitconfig
     state: link
     force: yes

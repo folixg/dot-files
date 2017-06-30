@@ -15,14 +15,14 @@
 
 - name: Link fasd into ~/bin
   file:
-    src: ~/dot-files/zsh/fasd
+    src: ~/dot-files/scripts/fasd
     dest: ~/bin/fasd
     state: link
     force: yes
   
 - name: Link ~/.zshrc
   file:
-    src: ~/dot-files/zsh/zshrc
+    src: ~/dot-files/zshrc
     dest: ~/.zshrc
     state: link
     force: yes

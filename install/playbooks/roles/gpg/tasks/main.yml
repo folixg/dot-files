@@ -11,16 +11,17 @@
 
 - name: Set permissions for gpg config files
   file:
-    path: ~/dot-files/gpg/{{ item }}
+    path: ~/dot-files/gnupg/{{ item }}
     mode: 0600
   with_items:
     - dirmngr.conf
     - gpg.conf
     - gpg-agent.conf
+    - sshcontrol  
 
 - name: Link gpg config files
   file:
-    src: ~/dot-files/gpg/{{ item }}
+    src: ~/dot-files/gnupg/{{ item }}
     dest: ~/.gnupg/{{ item }}
     state: link
     force: yes
@@ -28,6 +29,7 @@
     - dirmngr.conf
     - gpg.conf
     - gpg-agent.conf
+    - sshcontrol
 
 - name: Fetch public gpg key
   command: gpg2 --recv-key 0x1782EA931CF39ED8
