@@ -1,0 +1,21 @@
+- name: Install additional packages through apt
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - i3
+    - i3blocks
+    - feh
+    - xautolock
+    - scrot
+
+- name: Install playerctl
+  apt:
+    deb: https://github.com/acrisci/playerctl/releases/download/v0.5.0/playerctl-0.5.0_amd64.deb
+
+- name: Link i3 config
+  file:
+    src: ~/dot-files/i3
+    dest: ~/.i3
+    state: link
+    force: yes

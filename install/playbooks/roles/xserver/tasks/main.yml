@@ -1,0 +1,21 @@
+- name: Link Xresources
+  file:
+    src: ~/dot-files/Xresources
+    dest: ~/.Xresources
+    state: link
+    force: yes
+
+- name: Install Source Code Pro
+  unarchive:
+    src: https://github.com/adobe-fonts/source-code-pro/archive/2.030R-ro/1.050R-it.tar.gz
+    dest: ~/.local/share/fonts
+    remote_src: True
+
+- name: Install Font Awesome
+  git: 
+    repo: https://github.com/FortAwesome/Font-Awesome.git
+    dest: ~/.local/share/fonts/fa
+
+- name: Update font cache
+  shell: fc-cache -f ~/.local/share/fonts
+
