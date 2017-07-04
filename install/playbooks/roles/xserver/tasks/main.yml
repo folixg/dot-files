@@ -5,6 +5,12 @@
     state: link
     force: yes
 
+- name: Create user fonts dir
+  file:
+    path: ~/.local/share/fonts
+    state: directory
+    mode: 0755
+
 - name: Install Source Code Pro
   unarchive:
     src: https://github.com/adobe-fonts/source-code-pro/archive/2.030R-ro/1.050R-it.tar.gz

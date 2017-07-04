@@ -2,6 +2,7 @@
   apt:
     name: zsh
     state: present
+  become: true
 
 - name: Clone oh-my-zsh
   git:
@@ -26,7 +27,3 @@
     dest: ~/.zshrc
     state: link
     force: yes
-
-- name: Change shell to zsh
-  command: chsh -s /usr/bin/zsh
-
