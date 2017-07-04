@@ -10,11 +10,17 @@
     state: present
   become: true
   with_items:
-    - git
     - vim
     - curl
     - wget
     - shellcheck
+
+- name: Update dot-files repository (including submodules)
+  git:
+    repo: 'https://github.com/folixg/dot-files.git'
+    dest: ~/dot-files
+    update: yes
+    recursive: yes
 
 - name: create ~/bin
   file:
