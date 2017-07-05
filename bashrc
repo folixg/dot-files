@@ -74,6 +74,12 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# ls aliases
+alias ls='ls --color=auto'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
 # safety measure for gpg-agent, as recommended by gpg-agent manual
 GPG_TTY=$(tty)
 export GPG_TTY
