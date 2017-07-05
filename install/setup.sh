@@ -62,7 +62,7 @@ else
     if [ -f "$HOME"/.bashrc ] ; then
       mv "$HOME"/.bashrc "$HOME"/.bashrc_prezsh || exit 1
     fi
-    ln -sf "$DOTFILES"/bashrc "$HOME"/.bashrc || exit 1
+    ln -sf "$DOTFILES"/zsh.bashrc "$HOME"/.bashrc || exit 1
   fi
   echo "### zsh setup done ###"
 fi
