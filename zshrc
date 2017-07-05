@@ -82,6 +82,11 @@ if [[ $( gpg2 -K | grep "\[A\]" ) ]] ; then
   if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
     export SSH_AUTH_SOCK="${HOME}/.gnupg/S.gpg-agent.ssh"
   fi
+# otherwise start ssh-agent and add ssh key
+else
+  eval $(ssh-agent) 1>/dev/null
+  ssh-add 1>/dev/null
+
 fi
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
