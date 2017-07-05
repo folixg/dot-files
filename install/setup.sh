@@ -44,8 +44,8 @@ if ! [ "$(which zsh)" ] ; then
 else
   echo "### setting up zsh ###"
   # install oh-my-zsh
-  echo "### installing oh-my-zsh ###"
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" || exit 1
+  echo "### cloning oh-my-zsh ###"
+  git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh || exit 1
   # replace oh-my-zsh .zshrc with link to this repository
   echo "### linking zshrc ###"
   __link_dotfile "zshrc"
@@ -54,7 +54,7 @@ else
   git clone https://github.com/folixg/gimme-ohmyzsh-plugin.git ~/.oh-my-zsh/custom/plugins/gimme || exit 1
   # link fasd to ~/bin
   echo "### linking fasd to ~/bin ###"
-  ln -s "$DOTFILES"/scripts/fasd "$HOME"/bin/fasd || exit 1
+  ln -sf "$DOTFILES"/scripts/fasd "$HOME"/bin/fasd || exit 1
   # link to minimal .bashrc to launch zsh as default if chsh failed
   loginshell=$(getent passwd "$LOGNAME" | cut -d: -f7)
   if ! [ "${loginshell##*/}" == "zsh" ] ; then
@@ -90,10 +90,10 @@ fi
 echo "### setting permissions for '~/.gnupg' (0700) ###"
 chmod 0700 "$HOME"/.gnupg || exit 1
 echo "### setting persmissions for gpg config files (0600) ###"
-chmod 0600 "$DOTIFLES"/dirmngr.conf
-chmod 0600 "$DOTFILES"/gpg.conf
-chmod 0600 "$DOTFILES"/gpg-agent.conf
-chmod 0600 "$DOTFILES"/sshcontrol
+chmod 0600 "$DOTFILES"/gnupg/dirmngr.conf
+chmod 0600 "$DOTFILES"/gnupg/gpg.conf
+chmod 0600 "$DOTFILES"/gnupg/gpg-agent.conf
+chmod 0600 "$DOTFILES"/gnupg/sshcontrol
 echo "### linking ~/.gnupg/dirmng.conf ###"
 __link_dotfile "gnupg/dirmngr.conf"
 echo "### linking ~/.gnupg/gpg.conf ###"
