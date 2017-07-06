@@ -52,6 +52,9 @@ else
   # install custom gimme oh-my-zsh plugin
   echo "### installing custom ohmyzsh plugin gimme ###"
   git clone https://github.com/folixg/gimme-ohmyzsh-plugin.git ~/.oh-my-zsh/custom/plugins/gimme || exit 1
+  # install custom oh-my-zsh theme
+  echo "### installing custom ohmyzsh theme ###"
+  curl -sL -o ~/.oh-my-zsh/themes/kinda-fishy.zsh-theme https://raw.githubusercontent.com/folixg/kinda-fishy-theme/master/kinda-fishy.zsh-theme || exit 1
   # link fasd to ~/bin
   echo "### linking fasd to ~/bin ###"
   ln -sf "$DOTFILES"/scripts/fasd "$HOME"/bin/fasd || exit 1
