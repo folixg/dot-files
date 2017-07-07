@@ -38,5 +38,6 @@
     - vimrc
     - bashrc
     - bash_aliases
+    - profile
     - gitignore
 

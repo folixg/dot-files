@@ -36,12 +36,14 @@ eval "$(gimme stable)" || exit 1
 # link ~/.bash_aliases
 echo "### linking bash_aliases ###"
 __link_dotfile "bash_aliases"
-
+# link ~/.bashrc
+echo "### linking bashrc ###"
+__link_dotfile "bashrc"
+# link ~/.profile
+echo "### linking profile ###"
+__link_dotfile "profile"
 # configure zsh
 if ! [ "$(which zsh)" ] ; then
-  echo "### zsh not found, setting up bash ###"
-  __link_dotfile "bashrc"
-else
   echo "### setting up zsh ###"
   # install oh-my-zsh
   echo "### cloning oh-my-zsh ###"
@@ -58,15 +60,6 @@ else
   # link fasd to ~/bin
   echo "### linking fasd to ~/bin ###"
   ln -sf "$DOTFILES"/scripts/fasd "$HOME"/bin/fasd || exit 1
-  # link to minimal .bashrc to launch zsh as default if chsh failed
-  loginshell=$(getent passwd "$LOGNAME" | cut -d: -f7)
-  if ! [ "${loginshell##*/}" == "zsh" ] ; then
-    echo "### zsh is not default shell, linking to bashrc, that starts zsh ###"
-    if [ -f "$HOME"/.bashrc ] ; then
-      mv "$HOME"/.bashrc "$HOME"/.bashrc_prezsh || exit 1
-    fi
-    ln -sf "$DOTFILES"/zsh.bashrc "$HOME"/.bashrc || exit 1
-  fi
   echo "### zsh setup done ###"
 fi
 
