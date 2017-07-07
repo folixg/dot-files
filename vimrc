@@ -7,6 +7,8 @@ syntax on
 set mouse=a
 " show line numbers
 set number
+" higlight current line
+set cursorline
 " show print area
 set colorcolumn=80
 " higlight all matches in search
