@@ -17,8 +17,10 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 # set shell to zsh
-export SHELL="/usr/bin/zsh"
-# launch zsh, if interactive shell
-if [ -n "$PS1" ]; then
-  exec zsh -l
+if [ -e "/usr/bin/zsh" ] ; then
+  export SHELL="/usr/bin/zsh"
+  # launch zsh, if interactive shell
+  if [ -n "$PS1" ] ; then
+    exec zsh -l
+  fi
 fi
