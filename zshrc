@@ -101,9 +101,6 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# alias for bash
-alias bash="bash --init-file ~/dot-files/bashrc"
-
 # Go
 export GOPATH="$HOME/go"
 export PATH="$PATH:$GOPATH/bin"
