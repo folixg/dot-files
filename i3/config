@@ -37,7 +37,7 @@ floating_modifier $mod
 # lock
 bindsym $mod+Shift+x exec ~/.i3/lock/xautolock_wrapper.sh
 # suspend
-bindsym $mod+Shift+y exec ~/.i3/lock/xautolock_wrapper.sh && systemctl suspend
+bindsym $mod+Shift+y exec i3lock -c 243443 && systemctl suspend
 # start a terminal
 bindsym $mod+Return exec xterm
 
