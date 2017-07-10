@@ -35,9 +35,9 @@ font pango:$text-font $font-size
 floating_modifier $mod
 
 # lock
-bindsym $mod+Shift+x exec ~/.i3/lock/xautolock_wrapper.sh
+bindsym $mod+Shift+x exec ~/.i3/lock/lock.sh
 # suspend
-bindsym $mod+Shift+y exec i3lock -c 243443 && systemctl suspend
+bindsym $mod+Shift+y exec ~/.i3/lock/lock.sh --suspend
 # start a terminal
 bindsym $mod+Return exec xterm
 
@@ -159,7 +159,6 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 bindsym $mod+Shift+e exec "~/.i3/exit_dmenu.sh"
 
 # resize window (you can also use the mouse for that)
@@ -237,4 +236,4 @@ exec_always --no-startup-id feh --bg-scale ~/.i3/wallpaper.png
 exec --no-startup-id dunst -config ~/.i3/dunstrc
 # background tasks
 exec --no-startup-id synology-cloud-station-drive
-exec --no-startup-id xautolock -time 10 -locker ~/.i3/lock/lock.sh
+exec --no-startup-id xautolock -time 10 -detectsleep -locker ~/.i3/lock/lock.sh

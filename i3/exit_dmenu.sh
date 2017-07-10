@@ -2,7 +2,7 @@
 #
 # File Name:       exit_dmenu.sh
 # Created:         08-07-2017
-# Last modified:   Sat 08 Jul 2017 09:51:18 PM CEST
+# Last modified:   Mon 10 Jul 2017 03:16:52 PM CEST
 # Author:          Thomas Goldbrunner <thomas.goldbrunner@posteo.de>
 #
 #
@@ -34,13 +34,13 @@ command=$(echo -e "$options" | eval dmenu "$my_dmenu")
 
 case $command in
   "Lock" )
-    ~/.i3/lock/xautolock_wrapper.sh
+    ~/.i3/lock/lock.sh
     ;;
   "Log Out" )
     i3-msg exit
     ;;
   "Suspend" )
-    i3lock -c 243443 && systemctl suspend
+    ~/.i3/lock/lock.sh --suspend
     ;;
   "Reboot" )
     systemctl reboot
