@@ -191,7 +191,6 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         status_command i3blocks -c ~/.i3/i3blocks.conf
-        tray_output primary
         separator_symbol 
         strip_workspace_numbers yes
         font pango:$text-font, $icon-font $font-size
