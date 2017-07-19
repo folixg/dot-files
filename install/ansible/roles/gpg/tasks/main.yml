@@ -2,6 +2,7 @@
   apt:
     name: gnupg2
     state: present
+  become: true
 
 - name: Create and set permissions for ~/.gnupg
   file:
