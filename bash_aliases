@@ -16,7 +16,7 @@ alias unlock-gpg-key=$DOTFILES/scripts/unlock-gpg-key.sh
 alias gpg-focus=$DOTFILES/scripts/gpg-focus.sh
 
 # alias for ubuntu docker
-alias ubuntu='docker run --rm -it -v `pwd`:/data folixg/ubuntu /usr/bin/zsh' 
+alias ubuntu='docker run --rm -it -v `pwd`:/data folixg/ubuntu' 
 
 # (dis-)connect eduroam (needs config from https://cat.eduroam.de)
 alias eduroam-connect='nmcli connection up eduroam ifname wlp3s0'
