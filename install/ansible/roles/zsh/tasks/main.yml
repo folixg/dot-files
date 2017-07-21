@@ -14,10 +14,15 @@
     repo: https://github.com/folixg/gimme-ohmyzsh-plugin
     dest: ~/.oh-my-zsh/custom/plugins/gimme
 
+- name: Create custom themes dir
+  file:
+    path: ~/.oh-my-zsh/custom/themes
+    state: directory
+
 - name: Download custom theme
   get_url:
     url:  https://raw.githubusercontent.com/folixg/kinda-fishy-theme/master/kinda-fishy.zsh-theme
-    dest: ~/.oh-my-zsh/themes/kinda-fishy.zsh-theme 
+    dest: ~/.oh-my-zsh/custom/themes/kinda-fishy.zsh-theme 
 
 - name: Link fasd into ~/bin
   file:
