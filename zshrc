@@ -56,7 +56,7 @@ HYPHEN_INSENSITIVE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git sudo golang gimme fasd)
+plugins=(git sudo golang fasd)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -105,4 +105,4 @@ fi
 
 # Go
 export GOPATH="$HOME/go"
-export PATH="$PATH:$GOPATH/bin"
+export PATH="/usr/local/go/bin:$PATH:$GOPATH/bin"

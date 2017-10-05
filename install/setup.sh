@@ -26,13 +26,6 @@ if ! [ -d ~/bin ] ; then
   echo "### created ~/bin directory ###"
 fi
 
-# use gimme to install latest stable version of golang
-echo "### installing gimme ###"
-curl -sL -o ~/bin/gimme https://raw.githubusercontent.com/travis-ci/gimme/master/gimme || exit 1
-chmod +x ~/bin/gimme || exit 1
-echo "### installing go ###"
-eval "$(gimme stable)" || exit 1
-
 # link ~/.bash_aliases
 echo "### linking bash_aliases ###"
 __link_dotfile "bash_aliases"
