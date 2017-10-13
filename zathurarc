@@ -13,6 +13,10 @@ set completion-highlight-bg "#e6db74"
 set completion-highlight-fg "#19242f"
 set highlight-color "#5c98cd"
 set highlight-active-color "#e6db74"
+set notification-error-bg "#e6db74"
+set notification-error-fg "#19242f"
+set notification-warning-bg "#5c98cd"
+set notification-warning-fg "#19242f"
 set font "Source Code Pro 11"
 set window-title-home-tilde true
 set statusbar-basename true
