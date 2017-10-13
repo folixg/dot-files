@@ -1,0 +1,20 @@
+set default-bg "#2b3e50"
+set default-fg "#f8f8f2"
+set inputbar-bg "#2b3e50"
+set inputbar-fg "#f8f8f2"
+set statusbar-bg "#243443"
+set statusbar-fg "#f8f8f2"
+set completion-bg "#405160"
+set completion-fg "#f8f8f2"
+set completion-group-bg "#243443"
+set completion-group-fg "#f8f8f2"
+set completion-highlight-bg "#e6db74"
+set completion-highlight-bg "#e6db74"
+set completion-highlight-fg "#19242f"
+set highlight-color "#5c98cd"
+set highlight-active-color "#e6db74"
+set font "Source Code Pro 11"
+set window-title-home-tilde true
+set statusbar-basename true
+set search-hadjust false
+

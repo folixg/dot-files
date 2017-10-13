@@ -44,9 +44,6 @@ if ! [ "$(which zsh)" ] ; then
   # replace oh-my-zsh .zshrc with link to this repository
   echo "### linking zshrc ###"
   __link_dotfile "zshrc"
-  # install custom gimme oh-my-zsh plugin
-  echo "### installing custom ohmyzsh plugin gimme ###"
-  git clone https://github.com/folixg/gimme-ohmyzsh-plugin.git ~/.oh-my-zsh/custom/plugins/gimme || exit 1
   # install custom oh-my-zsh theme
   echo "### installing custom ohmyzsh theme ###"
   if ! [ -d ~/.oh-my-zsh/custom/themes ] ; then
@@ -126,5 +123,16 @@ fc-cache -f "$FONT_DIR" || exit 1
 # link Xrescoures
 echo "### linking ~/.Xresources ###"
 __link_dotfile "Xresources"
+
+# link Zathura config
+ZATHURA_CONF_DIR="$HOME/.config/zathura"
+echo "### linking ~/.config/zathura/zathurarc ###"
+if [ ! -d "$ZATHURA_CONF_DIR" ] ; then
+  mkdir "$ZATHURA_CONF_DIR" || exit 1;
+fi
+if [ -e "$ZATHURA_CONF_DIR/zathurarc" ] ; then
+  mv "$ZATHURA_CONF_DIR/zathurarc" "$ZATHURA_CONF_DIR/zathurarc.old" || exit 1 
+fi
+ln -sf "$DOTFILES/zathurarc" "$ZATHURA_CONF_DIR/zathurarc" || exit 1
 
 echo "### setup done ###"

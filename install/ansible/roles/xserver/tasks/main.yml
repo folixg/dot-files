@@ -25,3 +25,21 @@
 - name: Update font cache
   shell: fc-cache -f ~/.local/share/fonts
 
+- name: Install Zathura
+  apt:
+    name: zathura
+    state: present
+  become: true
+
+- name: Create Zathura config dir
+  file:
+    path: ~/.config/zathura
+    state: directory
+    mode: 0755
+
+- name: Link Zathura config
+  file:
+    src: ~/dot-files/zathurarc
+    dest: ~/.config/zathura/zathurarc
+    state: link
+    force: yes

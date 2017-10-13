@@ -21,3 +21,6 @@ alias ubuntu='docker run --rm -it -v `pwd`:/data folixg/ubuntu'
 # (dis-)connect eduroam (needs config from https://cat.eduroam.de)
 alias eduroam-connect='nmcli connection up eduroam ifname wlp3s0'
 alias eduroam-disconnect='nmcli connection down eduroam'
+
+# start vim with servername
+alias vim='vim --servername vim'
