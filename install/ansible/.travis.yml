@@ -1,0 +1,15 @@
+sudo: required
+
+language: python
+python: "3.5"
+
+install:
+  - pip install ansible
+
+script:
+  # perform syntax checks
+  - ansible-playbook -i inventory docker.yml --syntax-check
+  - ansible-playbook -i inventory desktop.yml --syntax-check
+ 
+  # run "desktop" playbook, since everything "docker" uses is also covered here
+  - ansible-playbook -i inventory desktop.yml
