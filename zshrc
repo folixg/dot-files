@@ -106,3 +106,10 @@ fi
 # Go
 export GOPATH="$HOME/go"
 export PATH="/usr/local/go/bin:$PATH:$GOPATH/bin"
+
+# Support for LIS module system
+if [ -d /nfs/tools ] ; then
+  source /nfs/tools/environment_modules/3.2.8/init/zsh
+fi
+
+

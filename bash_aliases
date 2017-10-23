@@ -24,3 +24,6 @@ alias eduroam-disconnect='nmcli connection down eduroam'
 
 # start vim with servername
 alias vim='vim --servername vim'
+
+# lislab
+alias lislab='source /nfs/labs/scripts/lislab'
