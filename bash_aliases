@@ -22,8 +22,10 @@ alias ubuntu='docker run --rm -it -v `pwd`:/data folixg/ubuntu'
 alias eduroam-connect='nmcli connection up eduroam ifname wlp3s0'
 alias eduroam-disconnect='nmcli connection down eduroam'
 
-# start vim with servername
-alias vim='vim --servername vim'
+# start vim with servername (doesn't work on mac)
+if [ "$(uname)" != "Darwin" ] ; then
+  alias vim='vim --servername vim'
+fi
 
 # lislab
 alias lislab='source /nfs/labs/scripts/lislab'
