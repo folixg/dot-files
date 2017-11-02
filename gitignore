@@ -419,3 +419,6 @@ TSWLatexianTemp*
 
 # vim netrwhist
 .netrwhist
+
+# vim swp files
+*.swp
