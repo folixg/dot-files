@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+#
+# File Name:       nowplaying
+# Created:         16-11-2017
+# Last modified:   Thu 16 Nov 2017 02:01:59 PM CET
+# Author:          Thomas Goldbrunner <thomas.goldbrunner@tum.de>
+#
+#
+# Copyright (c) 2017 Thomas Goldbrunner
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+#
+
+if cmus-remote -Q | grep -q "playing\|paused" ; then
+  ARTIST="$(cmus-remote -Q | grep -w artist | cut -d' ' -f3-)"
+  TITLE="$(cmus-remote -Q | grep title | cut -d' ' -f3-)"
+  STATUS="$(cmus-remote -Q | grep status | cut -d' ' -f2-)"
+elif [ "$(playerctl -l)" != "No players were found" ] ; then
+  ARTIST="$(playerctl metadata artist)"
+  TITLE="$(playerctl metadata title)"
+  STATUS="$(playerctl status)"
+fi
+
+if [ "${STATUS,,}" = "playing" ] ; then
+  echo " $ARTIST - $TITLE"
+elif [ "${STATUS,,}" = "paused" ] ; then
+  echo " $ARTIST - $TITLE"
+fi
