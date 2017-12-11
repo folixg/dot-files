@@ -2,7 +2,7 @@
 #
 # File Name:       nowplaying
 # Created:         16-11-2017
-# Last modified:   Thu 16 Nov 2017 02:01:59 PM CET
+# Last modified:   Mon 11 Dec 2017 11:34:14 AM CET
 # Author:          Thomas Goldbrunner <thomas.goldbrunner@tum.de>
 #
 #
@@ -27,6 +27,31 @@
 # SOFTWARE.
 #
 
+# handle clicks
+# left click -> next song
+if [ "$BLOCK_BUTTON" == 1 ] ; then
+  if cmus-remote -Q | grep -q "playing" ; then
+    cmus-remote -n
+  else
+    playerctl next
+  fi
+# right click -> previous song
+elif [ "$BLOCK_BUTTON" == 3 ] ; then
+  if cmus-remote -Q | grep -q "playing" ; then
+    cmus-remote -p
+  else
+    playerctl previous
+  fi
+# middle click -> play/pause
+elif [ "$BLOCK_BUTTON" == 2 ] ; then
+  if cmus-remote -Q | grep -q "playing\|paused" ; then
+    cmus-remote -u
+  else
+    playerctl play-pause
+  fi
+fi
+
+# show info about current track
 if cmus-remote -Q | grep -q "playing\|paused" ; then
   ARTIST="$(cmus-remote -Q | grep -w artist | cut -d' ' -f3-)"
   TITLE="$(cmus-remote -Q | grep title | cut -d' ' -f3-)"
