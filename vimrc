@@ -1,6 +1,8 @@
 " use pathogen
 execute pathogen#infect()
 
+" hide mode, since it is shwon in lightline
+set noshowmode
 " syntax highlighting
 syntax on
 " don't select line numbers when selecting with the mouse
@@ -52,9 +54,6 @@ autocmd bufnewfile *.vhd* exe "1," . 10 . "g/File:.*/s//File Name:       " .expa
 autocmd bufnewfile *.vhd* exe "1," . 10 . "g/Created:.*/s//Created:         " .strftime("%d-%m-%Y")
 autocmd bufnewfile *.vhd* execute "normal G"
 " syntastic settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
@@ -63,3 +62,7 @@ let g:syntastic_python_checkers = ['flake8']
 " vimtex
 let g:vimtex_enabled = 1
 let g:vimtex_view_method='zathura'
+" lightline colorscheme
+let g:lightline = {
+     \ 'colorscheme': 'OldHope',
+      \ }
