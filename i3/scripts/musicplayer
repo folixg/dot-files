@@ -2,7 +2,7 @@
 #
 # File Name:       nowplaying
 # Created:         16-11-2017
-# Last modified:   Mon 11 Dec 2017 11:34:14 AM CET
+# Last modified:   Mon 08 Jan 2018 01:08:30 PM CET
 # Author:          Thomas Goldbrunner <thomas.goldbrunner@tum.de>
 #
 #
@@ -53,8 +53,8 @@ fi
 
 # show info about current track
 if cmus-remote -Q | grep -q "playing\|paused" ; then
-  ARTIST="$(cmus-remote -Q | grep -w artist | cut -d' ' -f3-)"
-  TITLE="$(cmus-remote -Q | grep title | cut -d' ' -f3-)"
+  ARTIST="$(cmus-remote -Q | grep -w 'tag artist' | cut -d' ' -f3-)"
+  TITLE="$(cmus-remote -Q | grep 'tag title' | cut -d' ' -f3-)"
   STATUS="$(cmus-remote -Q | grep status | cut -d' ' -f2-)"
 elif [ "$(playerctl -l)" != "No players were found" ] ; then
   ARTIST="$(playerctl metadata artist)"
