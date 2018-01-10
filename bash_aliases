@@ -10,11 +10,6 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # use GPG2 by default
 alias gpg=gpg2
 
-# helpers for gpg
-alias lock-gpg-key=$DOTFILES/scripts/lock-gpg-key.sh
-alias unlock-gpg-key=$DOTFILES/scripts/unlock-gpg-key.sh
-alias gpg-focus=$DOTFILES/scripts/gpg-focus.sh
-
 # alias for ubuntu docker
 alias ubuntu='docker run --rm -it -v `pwd`:/data folixg/ubuntu' 
 

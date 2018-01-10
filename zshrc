@@ -56,7 +56,7 @@ HYPHEN_INSENSITIVE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git sudo golang fasd)
+plugins=(git sudo golang fasd cargo)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -103,9 +103,33 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# helper functions for gpg
+gpg-key-lock() {
+  pid=$(pgrep gpg-agent)
+  if [ "$pid" ] ; then
+    kill -SIGHUP "$pid"
+  fi
+}
+
+gpg-key-unlock() {
+  echo "" | gpg2 -s &>/dev/null
+}
+
+gpg-focus() {
+  pid=$(pgrep pinentry-curses)
+  if [ "$pid" ] ; then
+    kill "$pid"
+  fi
+  echo "UPDATESTARTUPTTY" | gpg-connect-agent 1>/dev/null
+}
+
 # Go
 export GOPATH="$HOME/go"
 export PATH="/usr/local/go/bin:$PATH:$GOPATH/bin"
+
+# Rust
+export PATH="$HOME/.cargo/bin:$PATH"
+export RUST_SRC_PATH="$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
 
 # Support for LIS module system
 if [ -d /nfs/tools ] ; then
