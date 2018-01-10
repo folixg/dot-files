@@ -19,12 +19,16 @@
     url:  https://raw.githubusercontent.com/folixg/kinda-fishy-theme/master/kinda-fishy.zsh-theme
     dest: ~/.oh-my-zsh/custom/themes/kinda-fishy.zsh-theme 
 
-- name: Link fasd into ~/bin
-  file:
-    src: ~/dot-files/scripts/fasd
+- name: Download fasd to ~/bin
+  get_url:
+    url:  https://raw.githubusercontent.com/clvv/fasd/master/fasd
     dest: ~/bin/fasd
-    state: link
-    force: yes
+
+- name: Make fasd executable
+  file:
+    path: ~/bin/fasd
+    state: file
+    mode: 0755
   
 - name: Link ~/.zshrc
   file:

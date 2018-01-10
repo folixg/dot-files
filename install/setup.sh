@@ -51,8 +51,9 @@ if ! [ "$(which zsh)" ] ; then
   fi
   curl -sL -o ~/.oh-my-zsh/custom/themes/kinda-fishy.zsh-theme https://raw.githubusercontent.com/folixg/kinda-fishy-theme/master/kinda-fishy.zsh-theme || exit 1
   # link fasd to ~/bin
-  echo "### linking fasd to ~/bin ###"
-  ln -sf "$DOTFILES"/scripts/fasd "$HOME"/bin/fasd || exit 1
+  echo "### download fasd to ~/bin ###"
+  curl -sL -o ~/bin/fasd https://raw.githubusercontent.com/clvv/fasd/master/fasd || exit 1
+  chmod +x ~/bin/fasd || exit 1
   echo "### zsh setup done ###"
 fi
 
