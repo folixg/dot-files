@@ -11,7 +11,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias gpg=gpg2
 
 # alias for ubuntu docker
-alias ubuntu='docker run --rm -it -v `pwd`:/data folixg/ubuntu' 
+alias ubuntu='docker pull folixg/ubuntu:latest && docker run --rm -it -v `pwd`:/data folixg/ubuntu' 
 
 # (dis-)connect eduroam (needs config from https://cat.eduroam.de)
 alias eduroam-connect='nmcli connection up eduroam ifname wlp3s0'
