@@ -1,4 +1,5 @@
 " use pathogen
+runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 
 " hide mode, since it is shwon in lightline
