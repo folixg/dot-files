@@ -131,9 +131,11 @@ export PATH="/usr/local/go/bin:$PATH:$GOPATH/bin"
 export PATH="$HOME/.cargo/bin:$PATH"
 export RUST_SRC_PATH="$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
 
+# Load LIS environment settings
+if [ -r /etc/bash.bashrc.d/10-lis ] ; then
+  source /etc/bash.bashrc.d/10-lis
+fi
 # Support for LIS module system
 if [ -d /nfs/tools ] ; then
   source /nfs/tools/environment_modules/3.2.8/init/zsh
 fi
-
-
