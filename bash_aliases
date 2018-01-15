@@ -17,8 +17,8 @@ alias ubuntu='docker pull folixg/ubuntu:latest && docker run --rm -it -v `pwd`:/
 alias eduroam-connect='nmcli connection up eduroam ifname wlp3s0'
 alias eduroam-disconnect='nmcli connection down eduroam'
 
-# start vim with servername (doesn't work on mac)
-if [ "$(uname)" != "Darwin" ] ; then
+# start vim with servername (if the vim installation supports it)
+if [ "$(vim --version | grep +clientserver)" ] ; then
   alias vim='vim --servername vim'
 fi
 
