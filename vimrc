@@ -48,7 +48,16 @@ let g:syntastic_python_checkers = ['flake8']
 " vimtex
 let g:vimtex_enabled = 1
 let g:vimtex_view_method='zathura'
-" lightline colorscheme
-let g:lightline = { 'colorscheme': 'OldHope', }
+" lightline config
+let g:lightline = {
+  \ 'colorscheme': 'OldHope',
+  \ 'active': {
+  \   'left': [ [ 'mode', 'paste' ],
+  \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+  \ },
+  \ 'component_function': {
+  \ 'gitbranch': 'fugitive#statusline'
+  \ },
+  \}
 " faster updatetime, so gitgutter works smoother
 set updatetime=250
