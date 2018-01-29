@@ -50,3 +50,5 @@ let g:vimtex_enabled = 1
 let g:vimtex_view_method='zathura'
 " lightline colorscheme
 let g:lightline = { 'colorscheme': 'OldHope', }
+" faster updatetime, so gitgutter works smoother
+set updatetime=250
