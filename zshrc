@@ -77,7 +77,7 @@ source $ZSH/oh-my-zsh.sh
 GPG_TTY=$(tty)
 export GPG_TTY
 
-if [[ uid -ne 0 ]]; then
+if [[ $UID -ne 0 ]]; then
   # use gpg-agent instead of ssh-agent (if there is a private auth key available)
   if [[ $( gpg2 -K | grep "\[A\]" ) ]] ; then
     unset SSH_AGENT_PID
