@@ -103,6 +103,11 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# Try to launch tmux per default over ssh
+ssh() {
+  /usr/bin/ssh -t $@ "tmux new || zsh || bash";
+}
+
 # helper functions for gpg
 gpg-key-lock() {
   pid=$(pgrep gpg-agent)

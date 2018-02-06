@@ -136,4 +136,8 @@ if [ -e "$ZATHURA_CONF_DIR/zathurarc" ] ; then
 fi
 ln -sf "$DOTFILES/zathurarc" "$ZATHURA_CONF_DIR/zathurarc" || exit 1
 
+# link tmux config 
+echo "### linking ~/.tmux.conf ###"
+__link_dotfile "tmux.conf"
+
 echo "### setup done ###"

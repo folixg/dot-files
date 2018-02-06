@@ -40,4 +40,5 @@
     - bash_aliases
     - profile
     - gitignore
+    - tmux.conf
 
