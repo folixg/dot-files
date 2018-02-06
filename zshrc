@@ -139,3 +139,5 @@ fi
 if [ -d /nfs/tools ] ; then
   source /nfs/tools/environment_modules/3.2.8/init/zsh
 fi
+
+source $DOTFILES/scripts/last_output_tab_list.zsh
