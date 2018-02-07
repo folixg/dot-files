@@ -37,4 +37,4 @@ USER folix
 WORKDIR /home/folix
 
 # start zsh
-ENTRYPOINT /usr/bin/zsh
+ENTRYPOINT /usr/bin/tmux
