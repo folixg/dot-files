@@ -61,3 +61,7 @@ let g:lightline = {
   \}
 " faster updatetime, so gitgutter works smoother
 set updatetime=250
+" highlight yanked region
+if !exists('##TextYankPost')
+  map y <Plug>(highlightedyank)
+endif
