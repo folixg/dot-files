@@ -149,5 +149,5 @@ source $DOTFILES/scripts/last_output_tab_list.zsh
 
 # open MS word documents in vim
 docx2vim() {
-  pandoc -f docx -t markdown "$1" | vim -
+  pandoc -f docx -t markdown "$1" | vim -c ":set filetype=markdown" -
 }
