@@ -146,3 +146,8 @@ if [ -d /nfs/tools ] ; then
 fi
 
 source $DOTFILES/scripts/last_output_tab_list.zsh
+
+# open MS word documents in vim
+docx2vim() {
+  pandoc -f docx -t markdown "$1" | vim -
+}
