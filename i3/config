@@ -102,6 +102,12 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+m move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+m scratchpad show
+
 # workspace aliases
 set $workspace1 "1 "
 set $workspace2 "2 "
@@ -153,6 +159,8 @@ workspace $workspace10 output HDMI3
 # force windows to workspaces
 assign [class="Thunderbird"] $workspace6
 assign [class="Pidgin"] $workspace7
+
+for_window [title="i3-scratchpad"] border pixel 2
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -236,3 +244,5 @@ exec --no-startup-id dunst -config ~/.i3/dunstrc
 # background tasks
 exec --no-startup-id synology-cloud-station-drive
 exec --no-startup-id xautolock -time 10 -detectsleep -locker ~/.i3/scripts/lock.sh
+# scratchpad
+exec --no-startup-id ~/.i3/scripts/scratchpad.sh
