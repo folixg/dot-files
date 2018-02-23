@@ -65,3 +65,6 @@ set updatetime=250
 if !exists('##TextYankPost')
   map y <Plug>(highlightedyank)
 endif
+autocmd FileType tex nnoremap ,, :VoomToggle latex <CR> 
+autocmd FileType markdown nnoremap ,, :VoomToggle markdown <CR> 
+autocmd FileType python nnoremap ,, :VoomToggle python <CR> 
