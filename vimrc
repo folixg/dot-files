@@ -23,8 +23,22 @@ set colorcolumn=80
 let mapleader="\<Space>"
 let maplocalleader="\<Space>"
 " use <C-P> and <C-Y> to print/yank to from clipboard
-nnoremap <C-S-P> "+P
-noremap <C-S-Y> "+y
+nnoremap <Leader>p "+P
+noremap <Leader>y "+y
+" use ü to navigate tags
+nnoremap ü <C-]>
+nnoremap Ü <C-O>
+" use ö to navigate sentences
+noremap Ö (
+noremap ö )
+" use ä to navigate paragraphps
+noremap ä }
+noremap Ä {
+" navigate sections
+noremap <Leader>ö ]]
+noremap <Leader>Ö [[
+noremap <Leader>ä ][
+noremap <Leader>Ä []
 " show search results while typing
 set incsearch
 " higlight all matches in search
@@ -40,7 +54,7 @@ set backspace=indent,eol,start
 set expandtab softtabstop=2 shiftwidth=2
 filetype plugin indent on
 " nerdtree shortcut
-nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <F1> :NERDTreeToggle<CR>
 " syntastic settings
 let syntastic_always_populate_loc_list = 1
 let syntastic_auto_loc_list = 1
@@ -69,7 +83,7 @@ if !exists('##TextYankPost')
 endif
 augroup Voom
   autocmd!
-  autocmd FileType tex nnoremap ,, :VoomToggle latex <CR> 
-  autocmd FileType markdown nnoremap ,, :VoomToggle markdown <CR> 
-  autocmd FileType python nnoremap ,, :VoomToggle python <CR> 
-augroup ENDE
+  autocmd FileType tex nnoremap <F2> :VoomToggle latex <CR> 
+  autocmd FileType markdown nnoremap <F2> :VoomToggle markdown <CR> 
+  autocmd FileType python nnoremap <F2> :VoomToggle python <CR> 
+augroup END
