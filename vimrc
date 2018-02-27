@@ -19,6 +19,9 @@ set number
 set cursorline
 " show print area
 set colorcolumn=80
+" use space as leader
+let mapleader="\<Space>"
+let maplocalleader="\<Space>"
 " use <C-P> and <C-Y> to print/yank to from clipboard
 nnoremap <C-S-P> "+P
 noremap <C-S-Y> "+y
@@ -36,21 +39,19 @@ set smarttab
 set backspace=indent,eol,start
 set expandtab softtabstop=2 shiftwidth=2
 filetype plugin indent on
-au FileType python set expandtab softtabstop=4 shiftwidth=4
-au FileType go set noexpandtab tabstop=4 shiftwidth=4
 " nerdtree shortcut
 nnoremap <C-n> :NERDTreeToggle<CR>
 " syntastic settings
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_checkers = ['flake8']
+let syntastic_always_populate_loc_list = 1
+let syntastic_auto_loc_list = 1
+let syntastic_check_on_open = 1
+let syntastic_check_on_wq = 0
+let syntastic_python_checkers = ['flake8']
 " vimtex
-let g:vimtex_enabled = 1
-let g:vimtex_view_method='zathura'
+let vimtex_enabled = 1
+let vimtex_view_method='zathura'
 " lightline config
-let g:lightline = {
+let lightline = {
   \ 'colorscheme': 'OldHope',
   \ 'active': {
   \   'left': [ [ 'mode', 'paste' ],
@@ -66,6 +67,9 @@ set updatetime=250
 if !exists('##TextYankPost')
   map y <Plug>(highlightedyank)
 endif
-autocmd FileType tex nnoremap ,, :VoomToggle latex <CR> 
-autocmd FileType markdown nnoremap ,, :VoomToggle markdown <CR> 
-autocmd FileType python nnoremap ,, :VoomToggle python <CR> 
+augroup Voom
+  autocmd!
+  autocmd FileType tex nnoremap ,, :VoomToggle latex <CR> 
+  autocmd FileType markdown nnoremap ,, :VoomToggle markdown <CR> 
+  autocmd FileType python nnoremap ,, :VoomToggle python <CR> 
+augroup ENDE
