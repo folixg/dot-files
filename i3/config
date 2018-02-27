@@ -160,7 +160,7 @@ workspace $workspace10 output HDMI3
 assign [class="Thunderbird"] $workspace6
 assign [class="Pidgin"] $workspace7
 
-for_window [title="i3-scratchpad"] border pixel 2
+for_window [class="i3-scratchpad"] border pixel 2, move window to scratchpad
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -245,4 +245,5 @@ exec --no-startup-id dunst -config ~/.i3/dunstrc
 exec --no-startup-id synology-cloud-station-drive
 exec --no-startup-id xautolock -time 10 -detectsleep -locker ~/.i3/scripts/lock.sh
 # scratchpad
-exec --no-startup-id ~/.i3/scripts/scratchpad.sh
+exec --no-startup-id xterm -class 'i3-scratchpad' -e vim -c 'set ft=markdown' \
+-c 'set noswapfile' /tmp/scratchpad
