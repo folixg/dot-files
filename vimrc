@@ -19,14 +19,15 @@ set number
 set cursorline
 " show print area
 set colorcolumn=80
+" use <C-P> and <C-Y> to print/yank to from clipboard
+nnoremap <C-S-P> "+P
+noremap <C-S-Y> "+y
 " show search results while typing
 set incsearch
 " higlight all matches in search
 set hlsearch
 " Use <C-L> to clear the highlighting of :set hlsearch.
-if maparg('<C-L>', 'n') ==# ''
-  nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
-endif
+nnoremap <C-L> :nohlsearch<CR>
 " use color scheme from https://github.com/raphamorim/lucario
 colorscheme lucario
 " indenting
@@ -38,7 +39,7 @@ filetype plugin indent on
 au FileType python set expandtab softtabstop=4 shiftwidth=4
 au FileType go set noexpandtab tabstop=4 shiftwidth=4
 " nerdtree shortcut
-map <C-n> :NERDTreeToggle<CR>
+nnoremap <C-n> :NERDTreeToggle<CR>
 " syntastic settings
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
