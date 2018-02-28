@@ -81,6 +81,9 @@ set updatetime=250
 if !exists('##TextYankPost')
   map y <Plug>(highlightedyank)
 endif
+" configure indentLine plugin
+let indentLine_char = '┊'
+let indentLine_leadingSpaceChar = '·'
 augroup Voom
   autocmd!
   autocmd FileType tex nnoremap <F2> :VoomToggle latex <CR> 

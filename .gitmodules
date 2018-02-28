@@ -34,3 +34,9 @@
 [submodule "vim/bundle/VOoM"]
 	path = vim/bundle/VOoM
 	url = https://github.com/vim-voom/VOoM.git
+[submodule "vim/bundle/auto-pairs"]
+	path = vim/bundle/auto-pairs
+	url = https://github.com/jiangmiao/auto-pairs.git
+[submodule "vim/bundle/indentLine"]
+	path = vim/bundle/indentLine
+	url = https://github.com/Yggdroot/indentLine.git
