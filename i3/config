@@ -160,6 +160,10 @@ workspace $workspace10 output HDMI3
 assign [class="Thunderbird"] $workspace6
 assign [class="Pidgin"] $workspace7
 
+# floating terminal
+bindsym $mod+Shift+Return exec xterm -class floating-xterm
+for_window [class="floating-xterm"] floating enable
+
 for_window [class="i3-scratchpad"] border pixel 2, move window to scratchpad
 
 # reload the configuration file
