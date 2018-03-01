@@ -77,6 +77,8 @@ let lightline = {
   \}
 " faster updatetime, so gitgutter works smoother
 set updatetime=250
+" alias for verbose git commit
+command -bar -bang -nargs=* Gci :Gcommit<bang> -v <args>
 " highlight yanked region
 if !exists('##TextYankPost')
   map y <Plug>(highlightedyank)
