@@ -9,7 +9,7 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod4
+set $mod Mod1
 
 # Variables to set fonts (used for i3 itself, i3bar and dmenu)
 set $text-font Source Code Pro
