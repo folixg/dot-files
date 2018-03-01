@@ -11,6 +11,7 @@
   become: true
   with_items:
     - vim
+    - exuberant-ctags
     - curl
     - wget
     - shellcheck
@@ -42,4 +43,5 @@
     - profile
     - gitignore
     - tmux.conf
+    - ctags
 

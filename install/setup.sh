@@ -71,6 +71,8 @@ __link_dotfile "vim" || exit 1
 echo "### fetching pathogen plugins ###"
 git submodule init
 git submodule update
+__link_dotfile "ctags" || exit 1
+echo "### linking ctags config ###"
 
 # gpg setup
 if [ ! -d "$HOME"/.gnupg ]; then

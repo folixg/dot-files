@@ -31,12 +31,15 @@
 [submodule "vim/bundle/vim-highlightedyank"]
 	path = vim/bundle/vim-highlightedyank
 	url = https://github.com/machakann/vim-highlightedyank
-[submodule "vim/bundle/VOoM"]
-	path = vim/bundle/VOoM
-	url = https://github.com/vim-voom/VOoM.git
 [submodule "vim/bundle/auto-pairs"]
 	path = vim/bundle/auto-pairs
 	url = https://github.com/jiangmiao/auto-pairs.git
 [submodule "vim/bundle/indentLine"]
 	path = vim/bundle/indentLine
 	url = https://github.com/Yggdroot/indentLine.git
+[submodule "vim/bundle/tagbar"]
+	path = vim/bundle/tagbar
+	url = https://github.com/majutsushi/tagbar.git
+[submodule "vim/bundle/vim-gutentags"]
+	path = vim/bundle/vim-gutentags
+	url = https://github.com/ludovicchabant/vim-gutentags.git

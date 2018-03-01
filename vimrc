@@ -27,7 +27,7 @@ nnoremap <Leader>p "+P
 noremap <Leader>y "+y
 " use ü to navigate tags
 nnoremap ü <C-]>
-nnoremap Ü <C-O>
+nnoremap Ü <C-T>
 " use ö to navigate sentences
 noremap Ö (
 noremap ö )
@@ -86,9 +86,14 @@ endif
 " configure indentLine plugin
 let indentLine_char = '┊'
 let indentLine_leadingSpaceChar = '·'
-augroup Voom
-  autocmd!
-  autocmd FileType tex nnoremap <F2> :VoomToggle latex <CR> 
-  autocmd FileType markdown nnoremap <F2> :VoomToggle markdown <CR> 
-  autocmd FileType python nnoremap <F2> :VoomToggle python <CR> 
-augroup END
+" toggle tagbar
+noremap <silent> <F2> :Tagbar<CR>
+" markdown support for tagbar
+let g:tagbar_type_markdown = {
+    \ 'ctagstype' : 'markdown',
+    \ 'kinds' : [
+        \ 'h:Heading_L1',
+        \ 'i:Heading_L2',
+        \ 'k:Heading_L3'
+    \ ]
+\ }
