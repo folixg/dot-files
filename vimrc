@@ -44,7 +44,7 @@ set incsearch
 " higlight all matches in search
 set hlsearch
 " Use <C-L> to clear the highlighting of :set hlsearch.
-nnoremap <C-L> :nohlsearch<CR>
+nnoremap <silent> <C-L> :nohlsearch<CR>
 " use color scheme from https://github.com/raphamorim/lucario
 colorscheme lucario
 " indenting
@@ -54,7 +54,7 @@ set backspace=indent,eol,start
 set expandtab softtabstop=2 shiftwidth=2
 filetype plugin indent on
 " nerdtree shortcut
-nnoremap <F1> :NERDTreeToggle<CR>
+nnoremap <silent> <F1> :NERDTreeToggle<CR>
 " syntastic settings
 let syntastic_always_populate_loc_list = 1
 let syntastic_auto_loc_list = 1
