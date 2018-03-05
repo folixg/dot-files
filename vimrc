@@ -103,3 +103,5 @@ let g:tagbar_type_markdown = {
         \ 'k:Heading_L3'
     \ ]
 \ }
+let g:tagbar_zoomwidth = 0
+let g:tagbar_autofocus = 1
