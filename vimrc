@@ -39,6 +39,8 @@ noremap <Leader>ö ]]
 noremap <Leader>Ö [[
 noremap <Leader>ä ][
 noremap <Leader>Ä []
+" shortcut for window redrawing
+noremap <silent> <F5> :redraw!<CR>
 " show search results while typing
 set incsearch
 " higlight all matches in search
