@@ -68,8 +68,8 @@ let syntastic_check_on_open = 1
 let syntastic_check_on_wq = 0
 let syntastic_python_checkers = ['flake8']
 " vimtex
-let vimtex_enabled = 1
 let vimtex_view_method='zathura'
+let vimtex_index_split_pos = 'vert belowright'
 " lightline config
 let lightline = {
   \ 'colorscheme': 'OldHope',
@@ -92,6 +92,7 @@ endif
 " configure indentLine plugin
 let indentLine_char = '┊'
 let indentLine_leadingSpaceChar = '·'
+let indentLine_setConceal = 0
 " toggle tagbar
 noremap <silent> <F2> :Tagbar<CR>
 " markdown support for tagbar
