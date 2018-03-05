@@ -53,8 +53,12 @@ set smarttab
 set backspace=indent,eol,start
 set expandtab softtabstop=2 shiftwidth=2
 filetype plugin indent on
-" nerdtree shortcut
-nnoremap <silent> <F1> :NERDTreeToggle<CR>
+" netrw setup
+noremap <silent> <F1> :Lexplore<CR>
+autocmd FileType netrw nnoremap <silent> <buffer> <F1> :q<CR>
+autocmd FileType netrw setl bufhidden=delete " delete hidden buffers
+let netrw_banner = 0          " don't show info
+let netrw_winsize = 25        " default size 25%
 " syntastic settings
 let syntastic_always_populate_loc_list = 1
 let syntastic_auto_loc_list = 1
