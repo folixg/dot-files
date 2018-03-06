@@ -1,28 +1,34 @@
-" use pathogen
+" pathogen
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
-" always show status line
-set laststatus=2
-" hide mode, since it is shwon in lightline
-set noshowmode
-" use menu for completion
-set wildmenu
-" font to use with gvim
-set guifont=Source\ Code\ Pro\ 11
-" syntax highlighting
-syntax on
-" don't select line numbers when selecting with the mouse
-set mouse=a
-" show line numbers
-set number
-" higlight current line
-set cursorline
-" show print area
-set colorcolumn=80
-" use space as leader
+
+" appearence
+set laststatus=2      " always show status line
+set noshowmode        " hide mode, since it is shwon in lightline
+syntax on             " syntax highlighting
+set mouse=a           " enable mouse support in all modes
+set number            " show line numbers
+set cursorline        " higlight current line
+set colorcolumn=80    " show marker for textwidth
+set incsearch         " show search results while typing
+set hlsearch          " higlight all matches in search
+set wildmode=list:longest   " list possible completions
+colorscheme lucario   " colorscheme from https://github.com/raphamorim/lucario
+set guifont=Source\ Code\ Pro\ 11     " gvim font 
+
+" indenting
+set autoindent
+set smarttab
+set backspace=indent,eol,start
+set expandtab softtabstop=2 shiftwidth=2
+filetype plugin indent on
+
+" mappings
 let mapleader="\<Space>"
-let maplocalleader="\<Space>"
-" use <C-P> and <C-Y> to print/yank to from clipboard
+let maplocalleader=","
+" exit insert mode
+inoremap jk <ESC>
+" put/yank from/to clipboard
 nnoremap <Leader>p "+P
 noremap <Leader>y "+y
 " use ü to navigate tags
@@ -39,38 +45,33 @@ noremap <Leader>ö ]]
 noremap <Leader>Ö [[
 noremap <Leader>ä ][
 noremap <Leader>Ä []
-" shortcut for window redrawing
+" force window redrawing
 noremap <silent> <F5> :redraw!<CR>
-" show search results while typing
-set incsearch
-" higlight all matches in search
-set hlsearch
-" Use <C-L> to clear the highlighting of :set hlsearch.
-nnoremap <silent> <C-L> :nohlsearch<CR>
-" use color scheme from https://github.com/raphamorim/lucario
-colorscheme lucario
-" indenting
-set autoindent
-set smarttab
-set backspace=indent,eol,start
-set expandtab softtabstop=2 shiftwidth=2
-filetype plugin indent on
-" netrw setup
+" clear hlsearch highlighting
+nnoremap <silent> <Leader>c :nohlsearch<CR>
+
+" netrw
 noremap <silent> <F1> :Lexplore<CR>
-autocmd FileType netrw nnoremap <silent> <buffer> <F1> :q<CR>
-autocmd FileType netrw setl bufhidden=delete " delete hidden buffers
+augroup netrw
+  autocmd!
+  autocmd FileType netrw nnoremap <silent> <buffer> <F1> :q<CR>
+  autocmd FileType netrw setl bufhidden=delete " delete hidden buffers
+augroup END
 let netrw_banner = 0          " don't show info
 let netrw_winsize = 25        " default size 25%
-" syntastic settings
+
+" syntastic
 let syntastic_always_populate_loc_list = 1
 let syntastic_auto_loc_list = 1
 let syntastic_check_on_open = 1
 let syntastic_check_on_wq = 0
 let syntastic_python_checkers = ['flake8']
+
 " vimtex
 let vimtex_view_method='zathura'
 let vimtex_index_split_pos = 'vert belowright'
-" lightline config
+
+" lightline
 let lightline = {
   \ 'colorscheme': 'OldHope',
   \ 'active': {
@@ -81,21 +82,25 @@ let lightline = {
   \ 'gitbranch': 'fugitive#statusline'
   \ },
   \}
-" faster updatetime, so gitgutter works smoother
+
+" gitgutter
 set updatetime=250
-" alias for verbose git commit
+
+" fugitive 
 command -bar -bang -nargs=* Gci :Gcommit<bang> -v <args>
-" highlight yanked region
+
+" highlightedyank
 if !exists('##TextYankPost')
   map y <Plug>(highlightedyank)
 endif
-" configure indentLine plugin
+
+" indentLine
 let indentLine_char = '┊'
 let indentLine_leadingSpaceChar = '·'
 let indentLine_setConceal = 0
-" toggle tagbar
+
+" tagbar
 noremap <silent> <F2> :Tagbar<CR>
-" markdown support for tagbar
 let g:tagbar_type_markdown = {
     \ 'ctagstype' : 'markdown',
     \ 'kinds' : [
@@ -104,5 +109,5 @@ let g:tagbar_type_markdown = {
         \ 'k:Heading_L3'
     \ ]
 \ }
-let g:tagbar_zoomwidth = 0
-let g:tagbar_autofocus = 1
+let tagbar_zoomwidth = 0
+let tagbar_autofocus = 1
