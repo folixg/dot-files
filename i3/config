@@ -173,6 +173,13 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "~/.i3/scripts/exit_dmenu.sh"
 
+# temporarily ignore keyboard events
+mode "keyboard freeze" {
+        bindsym $mod+Escape mode "default"
+}
+
+bindsym $mod+Escape mode "keyboard freeze"
+
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
