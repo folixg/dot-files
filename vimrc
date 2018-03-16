@@ -49,6 +49,11 @@ noremap <Leader>Ä []
 noremap <silent> <F5> :redraw!<CR>
 " clear hlsearch highlighting
 nnoremap <silent> <Leader>c :nohlsearch<CR>
+" spell checking
+nnoremap <silent> <F3> :set spell!<CR>
+nnoremap <Localleader>f ]s
+nnoremap <Localleader>d [s
+nnoremap <Localleader>g z=
 
 " netrw
 noremap <silent> <F1> :Lexplore<CR>
