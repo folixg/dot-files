@@ -36,11 +36,13 @@ __link_dotfile "bashrc"
 echo "### linking profile ###"
 __link_dotfile "profile"
 # configure zsh
-if ! [ "$(which zsh)" ] ; then
+if [ "$(which zsh)" ] ; then
   echo "### setting up zsh ###"
   # install oh-my-zsh
+  if ! [ -d ~/oh-my-zsh ] ; then
   echo "### cloning oh-my-zsh ###"
-  git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh || exit 1
+    git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh || exit 1
+  fi
   # replace oh-my-zsh .zshrc with link to this repository
   echo "### linking zshrc ###"
   __link_dotfile "zshrc"
