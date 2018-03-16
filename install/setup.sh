@@ -119,7 +119,9 @@ fi
 # install FontAwesome
 if [ "$(fc-list | grep -c "FontAwesome")" == "0" ] ; then
   echo "### installing Font Awesome font ###"
-  git clone https://github.com/FortAwesome/Font-Awesome.git "$FONT_DIR"/fa || exit 1
+  wget -P "$FONT_DIR" https://github.com/FortAwesome/Font-Awesome/archive/v4.7.0.tar.gz || exit 1
+  tar xvf "$FONT_DIR"/v4.7.0.tar.gz -C "$FONT_DIR" || exit 1
+  rm "$FONT_DIR"/v4.7.0.tar.gz || exit 1
 fi
 # update font cache
 echo "### updating font cache ###"

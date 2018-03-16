@@ -18,9 +18,10 @@
     remote_src: True
 
 - name: Install Font Awesome
-  git: 
-    repo: https://github.com/FortAwesome/Font-Awesome.git
-    dest: ~/.local/share/fonts/fa
+  unarchive:
+    src: https://github.com/FortAwesome/Font-Awesome/archive/v4.7.0.tar.gz
+    dest: ~/.local/share/fonts
+    remote_src: True
 
 - name: Update font cache
   shell: fc-cache -f ~/.local/share/fonts
