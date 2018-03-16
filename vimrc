@@ -2,18 +2,18 @@
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 
-" appearence
+" appearance
 set laststatus=2      " always show status line
-set noshowmode        " hide mode, since it is shwon in lightline
+set noshowmode        " hide mode, since it is shown in lightline
 syntax on             " syntax highlighting
 set mouse=a           " enable mouse support in all modes
 set number            " show line numbers
-set cursorline        " higlight current line
+set cursorline        " highlight current line
 set colorcolumn=80    " show marker for textwidth
 set incsearch         " show search results while typing
-set hlsearch          " higlight all matches in search
+set hlsearch          " highlight all matches in search
 set wildmode=list:longest   " list possible completions
-colorscheme lucario   " colorscheme from https://github.com/raphamorim/lucario
+colorscheme lucario   " color scheme from https://github.com/raphamorim/lucario
 set guifont=Source\ Code\ Pro\ 11     " gvim font 
 
 " indenting
@@ -37,7 +37,7 @@ nnoremap Ü <C-T>
 " use ö to navigate sentences
 noremap Ö (
 noremap ö )
-" use ä to navigate paragraphps
+" use ä to navigate paragraphs
 noremap ä }
 noremap Ä {
 " navigate sections
@@ -87,7 +87,7 @@ let lightline = {
 set updatetime=250
 
 " fugitive 
-command -bar -bang -nargs=* Gci :Gcommit<bang> -v <args>
+command! -bar -bang -nargs=* Gci :Gcommit<bang> -v <args>
 
 " highlightedyank
 if !exists('##TextYankPost')
