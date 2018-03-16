@@ -70,6 +70,10 @@ let syntastic_python_checkers = ['flake8']
 " vimtex
 let vimtex_view_method='zathura'
 let vimtex_index_split_pos = 'vert belowright'
+augroup vimtex
+  autocmd!
+  autocmd Filetype tex noremap <silent> <F2> :VimtexTocToggle<CR>
+augroup END
 
 " lightline
 let lightline = {
