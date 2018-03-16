@@ -15,7 +15,7 @@ set hlsearch          " highlight all matches in search
 set wildmode=list:longest   " list possible completions
 colorscheme lucario   " color scheme from https://github.com/raphamorim/lucario
 set guifont=Source\ Code\ Pro\ 11     " gvim font 
-
+packadd! matchit
 " indenting
 set autoindent
 set smarttab
