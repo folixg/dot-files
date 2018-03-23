@@ -5,15 +5,17 @@ execute pathogen#infect()
 " statusline
 set statusline=[%n]                       " buffer number
 set statusline+=%.30F                     " full path (limited to 30 chars)
-set statusline+=\   
-set statusline+=%([%H%M%R%W]%)            " flags
+set statusline+=%(\ [%H%M%R%W]%)          " flags
+set statusline+=\ 
 set statusline+=%{fugitive#statusline()}  " git status
 set statusline+=%=                        " move to right
 set statusline+=%([%{&fenc}%Y]%)          " file encoding and type
-set statusline+=\       
-set statusline+=%v                        " (virtual) column
-set statusline+=@ 
-set statusline+=%l/%L\ %3p%{'%'}          " line information
+set statusline+=\ 
+set statusline+=%3l                       " current line
+set statusline+=:
+set statusline+=%-2v                      " (virtual) column
+set statusline+=\ 
+set statusline+=%P                        " percentage through file
 set laststatus=2                          " always show status line
 
 " general appearance and behavior
