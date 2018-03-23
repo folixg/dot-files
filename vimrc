@@ -28,6 +28,7 @@ set wildmode=list:longest           " list possible completions
 colorscheme lucario                 " https://github.com/raphamorim/lucario
 set guifont=Source\ Code\ Pro\ 11   " gvim font 
 packadd! matchit                    " improve jumping with %
+set scrolloff=5                     " keep 5 lines above/below current line
 
 " indenting
 set autoindent
