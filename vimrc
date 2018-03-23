@@ -2,20 +2,33 @@
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 
-" appearance
-set laststatus=2      " always show status line
-set noshowmode        " hide mode, since it is shown in lightline
-syntax on             " syntax highlighting
-set mouse=a           " enable mouse support in all modes
-set number            " show line numbers
-set cursorline        " highlight current line
-set colorcolumn=80    " show marker for textwidth
-set incsearch         " show search results while typing
-set hlsearch          " highlight all matches in search
-set wildmode=list:longest   " list possible completions
-colorscheme lucario   " color scheme from https://github.com/raphamorim/lucario
-set guifont=Source\ Code\ Pro\ 11     " gvim font 
-packadd! matchit
+" statusline
+set statusline=[%n]                       " buffer number
+set statusline+=%.30F                     " full path (limited to 30 chars)
+set statusline+=\   
+set statusline+=%([%H%M%R%W]%)            " flags
+set statusline+=%{fugitive#statusline()}  " git status
+set statusline+=%=                        " move to right
+set statusline+=%([%{&fenc}%Y]%)          " file encoding and type
+set statusline+=\       
+set statusline+=%v                        " (virtual) column
+set statusline+=@ 
+set statusline+=%l/%L\ %3p%{'%'}          " line information
+set laststatus=2                          " always show status line
+
+" general appearance and behavior
+syntax on                           " syntax highlighting
+set mouse=a                         " enable mouse support in all modes
+set number                          " show line numbers
+set cursorline                      " highlight current line
+set colorcolumn=80                  " show marker for textwidth
+set incsearch                       " show search results while typing
+set hlsearch                        " highlight all matches in search
+set wildmode=list:longest           " list possible completions
+colorscheme lucario                 " https://github.com/raphamorim/lucario
+set guifont=Source\ Code\ Pro\ 11   " gvim font 
+packadd! matchit                    " improve jumping with %
+
 " indenting
 set autoindent
 set smarttab
@@ -79,18 +92,6 @@ augroup vimtex
   autocmd!
   autocmd Filetype tex noremap <silent> <F2> :VimtexTocToggle<CR>
 augroup END
-
-" lightline
-let lightline = {
-  \ 'colorscheme': 'OldHope',
-  \ 'active': {
-  \   'left': [ [ 'mode', 'paste' ],
-  \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-  \ },
-  \ 'component_function': {
-  \ 'gitbranch': 'fugitive#statusline'
-  \ },
-  \}
 
 " gitgutter
 set updatetime=250
