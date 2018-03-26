@@ -51,7 +51,7 @@ if [ "$(which zsh)" ] ; then
   if ! [ -d ~/.oh-my-zsh/custom/themes ] ; then
     mkdir ~/.oh-my-zsh/custom/themes || exit 1
   fi
-  curl -sL -o ~/.oh-my-zsh/custom/themes/kinda-fishy.zsh-theme https://raw.githubusercontent.com/folixg/kinda-fishy-theme/master/kinda-fishy.zsh-theme || exit 1
+  curl -sL -o ~/.oh-my-zsh/custom/themes/fromscratch.zsh-theme https://raw.githubusercontent.com/folixg/fromscratch-theme/master/fromscratch.zsh-theme || exit 1
   # link fasd to ~/bin
   echo "### download fasd to ~/bin ###"
   curl -sL -o ~/bin/fasd https://raw.githubusercontent.com/clvv/fasd/master/fasd || exit 1
