@@ -34,13 +34,13 @@ command=$(echo -e "$options" | eval dmenu "$my_dmenu")
 
 case $command in
   "Lock" )
-    ~/.i3/lock/lock.sh
+    ~/.i3/scripts/lock.sh
     ;;
   "Log Out" )
     i3-msg exit
     ;;
   "Suspend" )
-    ~/.i3/lock/lock.sh --suspend
+    ~/.i3/scripts/lock.sh --suspend
     ;;
   "Reboot" )
     systemctl reboot
