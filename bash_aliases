@@ -1,3 +1,9 @@
+# ls aliases
+alias ls='ls --color=auto'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
 # color grep
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
@@ -21,3 +27,23 @@ alias eduroam-disconnect='nmcli connection down eduroam'
 if [ "$(vim --version | grep +clientserver)" ] ; then
   alias vim='vim --servername vim'
 fi
+
+# git (from oh-my-zsh git plugin)
+alias g='git'
+alias ga='git add'
+alias gaa='git add --all'
+alias gc='git commit -v'
+alias gc!='git commit -v --amend'
+alias gcb='git checkout -b'
+alias gcl='git clone --recursive'
+alias gclean='git clean -fd'
+alias gco='git checkout'
+alias gd='git diff'
+alias gk='gitk --all --branches'
+alias gl='git pull'
+alias glo='git log --oneline --decorate'
+alias gp='git push'
+alias grh='git reset HEAD'
+alias gss='git status -sb'
+alias gst='git status'
+alias gsu='git submodule update'

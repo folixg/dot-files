@@ -4,21 +4,6 @@
     state: present
   become: true
 
-- name: Clone oh-my-zsh
-  git:
-    repo: https://github.com/robbyrussell/oh-my-zsh.git
-    dest: ~/.oh-my-zsh
-
-- name: Create custom themes dir
-  file:
-    path: ~/.oh-my-zsh/custom/themes
-    state: directory
-
-- name: Download custom theme
-  get_url:
-    url:  https://raw.githubusercontent.com/folixg/fromscratch-theme/master/fromscratch.zsh-theme
-    dest: ~/.oh-my-zsh/custom/themes/fromscratch.zsh-theme 
-
 - name: Download fasd to ~/bin
   get_url:
     url:  https://raw.githubusercontent.com/clvv/fasd/master/fasd

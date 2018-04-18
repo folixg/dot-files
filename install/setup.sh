@@ -38,21 +38,8 @@ __link_dotfile "profile"
 # configure zsh
 if [ "$(which zsh)" ] ; then
   echo "### setting up zsh ###"
-  # install oh-my-zsh
-  if ! [ -d ~/.oh-my-zsh ] ; then
-  echo "### cloning oh-my-zsh ###"
-    git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh || exit 1
-  fi
-  # replace oh-my-zsh .zshrc with link to this repository
   echo "### linking zshrc ###"
   __link_dotfile "zshrc"
-  # install custom oh-my-zsh theme
-  echo "### installing custom ohmyzsh theme ###"
-  if ! [ -d ~/.oh-my-zsh/custom/themes ] ; then
-    mkdir ~/.oh-my-zsh/custom/themes || exit 1
-  fi
-  curl -sL -o ~/.oh-my-zsh/custom/themes/fromscratch.zsh-theme https://raw.githubusercontent.com/folixg/fromscratch-theme/master/fromscratch.zsh-theme || exit 1
-  # link fasd to ~/bin
   echo "### download fasd to ~/bin ###"
   curl -sL -o ~/bin/fasd https://raw.githubusercontent.com/clvv/fasd/master/fasd || exit 1
   chmod +x ~/bin/fasd || exit 1

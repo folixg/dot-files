@@ -1,114 +1,143 @@
-#If you come from bash you might have to change your $PATH.
- export PATH=$PATH:$HOME/bin
+# Include ~/bin in PATH
+export PATH=$HOME/bin:$PATH
 
-# Path to your oh-my-zsh installation.
-  export ZSH=$HOME/.oh-my-zsh
+# Set vim as default editor
+export EDITOR=vim
 
 # Path to dot-files repository
-  export DOTFILES=$HOME/dot-files
+export DOTFILES=$HOME/dot-files
 
-# Use vim as default editor
-  export EDITOR=vim
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="fromscratch"
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory autocd extendedglob
+unsetopt beep
+bindkey -v
+# End of lines configured by zsh-newuser-install
+# Completion
+zstyle :compinstall filename '/home/no56way/.zshrc'
+# Use additional zsh-completions
+if [ -d $DOTFILES/zsh-completions/src/ ] ; then
+  fpath=($DOTFILES/zsh-completions/src $fpath)
+fi
+autoload -Uz compinit
+compinit -u
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+# Use completion menu
+zstyle ':completion:*' menu select
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-HYPHEN_INSENSITIVE="true"
+# Enable color support
+autoload -Uz colors
+colors
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+# Enable vcs_info for git
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:git*' formats "%m%u%c[%b]"
+zstyle ':vcs_info:*' unstagedstr "!"
+zstyle ':vcs_info:*' stagedstr "+"
+precmd() { vcs_info }
+setopt prompt_subst
+# git: Show marker if there are untracked files in repository
+# https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples
+zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
++vi-git-untracked(){
+    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
+        git status --porcelain | grep '??' &> /dev/null ; then
+        # This will show the marker if there are any untracked files in repo.
+        hook_com[misc]+='?'
+    fi
+}
 
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
+# Left prompt
+USER_HOST=""
+[ "$SSH_CLIENT" ] || [ "$(grep docker /proc/1/cgroup 2>/dev/null)" ] && USER_HOST='%n@%m:'
+# Color of current directory changes, when the shell is running with privileges
+PROMPT='$USER_HOST%(!.%{$fg[red]%}.%{$fg[yellow]%})%~%{$reset_color%}%(!.#.>) '
 
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+# vi-mode info for prompt
+function zle-line-init zle-keymap-select {
+    VIM_PROMPT="%{$fg[yellow]%} [% NORMAL]% %{$reset_color%}"
+    zle reset-prompt
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
 
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+# Return code for prompt
+PROMPT_RETURN_CODE="%(?..%{$fg_bold[red]%}%?%{$reset_color%})"
 
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+# Right prompt with return code, vi-mode info and git info
+RPROMPT='$PROMPT_RETURN_CODE ${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} %{$fg[yellow]%}${vcs_info_msg_0_}%{$reset_color%}'
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+# Make sure the terminal is in application mode, when zle is
+# active. Only then are the values from $terminfo valid.
+if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
+    function zle-line-init () {
+        echoti smkx
+    }
+    function zle-line-finish () {
+        echoti rmkx
+    }
+    zle -N zle-line-init
+    zle -N zle-line-finish
+fi
 
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
+# Cycle through history
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+[[ -n "$key[Up]"   ]] && bindkey -- "$key[Up]"   up-line-or-beginning-search
+[[ -n "$key[Down]" ]] && bindkey -- "$key[Down]" down-line-or-beginning-search
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+# History search
+bindkey '^r' history-incremental-search-backward
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git sudo golang fasd cargo)
+# ls aliases
+alias ls='ls --color=auto'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
 
-source $ZSH/oh-my-zsh.sh
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
 
-# User configuration
+# xterm title
+autoload -Uz add-zsh-hook
+function xterm_title_precmd () {
+	print -Pn '\e]2;%n@%m:%~\a'
+}
+function xterm_title_preexec () {
+	print -Pn '\e]2;%n@%m:%~ %# '
+	print -n "${(q)1}\a"
+}
+if [[ "$TERM" == (screen*|xterm*|rxvt*) ]]; then
+	add-zsh-hook -Uz precmd xterm_title_precmd
+	add-zsh-hook -Uz preexec xterm_title_preexec
+fi
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# safety measure for gpg-agent, as recommended by gpg-agent manual
+# Safety measure for gpg-agent, as recommended by gpg-agent manual
 GPG_TTY=$(tty)
 export GPG_TTY
 
 if [[ $UID -ne 0 ]]; then
-  # use gpg-agent instead of ssh-agent (if there is a private auth key available)
+  # Use gpg-agent instead of ssh-agent (if there is a private auth key available)
   if [[ $( gpg2 -K | grep "\[A\]" ) ]] ; then
     unset SSH_AGENT_PID
     if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
       export SSH_AUTH_SOCK="${HOME}/.gnupg/S.gpg-agent.ssh"
     fi
-  # otherwise start ssh-agent and add ssh key
+  # Otherwise start ssh-agent and add ssh key
   else
     eval $(ssh-agent) 1>/dev/null
     ssh-add 1>/dev/null
   fi
 fi
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
-# Try to launch tmux per default over ssh
-ssh() {
-  /usr/bin/ssh -t $@ "tmux new || zsh || bash";
-}
-
-# helper functions for gpg
+# Helper functions for gpg
 gpg-key-lock() {
   pid=$(pgrep gpg-agent)
   if [ "$pid" ] ; then
@@ -128,6 +157,11 @@ gpg-focus() {
   echo "UPDATESTARTUPTTY" | gpg-connect-agent 1>/dev/null
 }
 
+# Try to launch tmux per default over ssh
+ssh() {
+  /usr/bin/ssh -t $@ "tmux new || zsh || bash";
+}
+
 # Go
 export GOPATH="$HOME/go"
 export PATH="/usr/local/go/bin:$PATH:$GOPATH/bin"
@@ -141,7 +175,7 @@ if [ -r /etc/bash.bashrc.d/10-lis ] ; then
   source /etc/bash.bashrc.d/10-lis
 fi
 # Support for LIS module system
-if [ -d /nfs/tools ] ; then
+if [ -r /nfs/tools ] ; then
   source /nfs/tools/environment_modules/3.2.8/init/zsh
 fi
 
@@ -151,3 +185,8 @@ source $DOTFILES/scripts/last_output_tab_list.zsh
 docx2vim() {
   pandoc -f docx -t markdown "$1" | vim -c ":set filetype=markdown" -
 }
+
+# Use fasd
+eval "$(fasd --init auto)"
+alias v='f -e vim' # quick opening files with vim
+alias o='a -e xdg-open' # quick opening files with xdg-open
