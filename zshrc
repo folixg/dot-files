@@ -179,7 +179,20 @@ if [ -r /nfs/tools ] ; then
   source /nfs/tools/environment_modules/3.2.8/init/zsh
 fi
 
-source $DOTFILES/scripts/last_output_tab_list.zsh
+# Use alt-n or esc-n to tab-select through the output of a previous
+# command.
+# Use-case: ls or find was the previous command, and you now want to
+# edit one of them. No need for mouse copy-pasta.
+#
+# https://www.zsh.org/mla/users/2004/msg00893.html
+_jh-prev-result () {
+    hstring=$(eval `fc -l -n -1`)
+    set -A hlist ${(@s/
+/)hstring}
+    compadd - ${hlist}
+}
+zle -C jh-prev-comp menu-complete _jh-prev-result
+bindkey '\en' jh-prev-comp
 
 # open MS word documents in vim
 docx2vim() {
