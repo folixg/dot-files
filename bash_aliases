@@ -1,8 +1,15 @@
 # ls aliases
-alias ls='ls --color=auto'
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+if [ "$(uname)" = "Darwin" ] ; then
+  export LSCOLORS=ExFxBxDxCxegedabagacad
+  alias ls='ls -GFh'
+  alias ll='ls -l'
+  alias la='ls -a'
+else
+  alias ls='ls --color=auto'
+  alias ll='ls -alF'
+  alias la='ls -A'
+  alias l='ls -CF'
+fi
 
 # color grep
 alias grep='grep --color=auto'

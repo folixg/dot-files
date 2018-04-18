@@ -105,14 +105,9 @@ zle -N down-line-or-beginning-search
 # History search
 bindkey '^r' history-incremental-search-backward
 
-# ls aliases
-alias ls='ls --color=auto'
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
+# Alias file
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+    source ~/.bash_aliases
 fi
 
 # xterm title
