@@ -35,7 +35,7 @@ colors
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:git*' formats "%m%u%c[%b]"
+zstyle ':vcs_info:git*' formats "[%b%c%u%m]"
 zstyle ':vcs_info:*' unstagedstr "!"
 zstyle ':vcs_info:*' stagedstr "+"
 precmd() { vcs_info }
@@ -60,7 +60,7 @@ PROMPT='$USER_HOST%(!.%{$fg[red]%}.%{$fg[yellow]%})%~%{$reset_color%}%(!.#.>) '
 
 # vi-mode info for prompt
 function zle-line-init zle-keymap-select {
-    VIM_PROMPT="%{$fg[yellow]%} [% NORMAL]% %{$reset_color%}"
+    VIM_PROMPT="%{$fg[yellow]%}[% NORMAL]% %{$reset_color%}"
     zle reset-prompt
 }
 zle -N zle-line-init
@@ -69,8 +69,18 @@ zle -N zle-keymap-select
 # Return code for prompt
 PROMPT_RETURN_CODE="%(?..%{$fg_bold[red]%}%?%{$reset_color%})"
 
+# Change color for dirty working directory
+function git_prompt_color() {
+  STATUS=$(git status --porcelain 2>/dev/null)
+  if [ "$STATUS" ]; then
+    echo "%{$fg[magenta]%}"
+  else
+    echo "%{$fg[yellow]%}"
+  fi
+}
+
 # Right prompt with return code, vi-mode info and git info
-RPROMPT='$PROMPT_RETURN_CODE ${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} %{$fg[yellow]%}${vcs_info_msg_0_}%{$reset_color%}'
+RPROMPT='$PROMPT_RETURN_CODE ${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/}$(git_prompt_color)${vcs_info_msg_0_}%{$reset_color%}'
 
 # Make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
