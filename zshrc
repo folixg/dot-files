@@ -27,6 +27,18 @@ compinit -u
 # Use completion menu
 zstyle ':completion:*' menu select
 
+# Completion for pip(3)
+function _pip_completion {
+  local words cword
+  read -Ac words
+  read -cn cword
+  reply=( $( COMP_WORDS="$words[*]" \
+             COMP_CWORD=$(( cword-1 )) \
+             PIP_AUTO_COMPLETE=1 $words[1] ) )
+}
+compctl -K _pip_completion pip
+compctl -K _pip_completion pip3
+
 # Enable color support
 autoload -Uz colors
 colors
