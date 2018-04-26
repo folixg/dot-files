@@ -227,6 +227,11 @@ bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN
 # Media player controls
 bindsym XF86AudioPlay exec ~/.i3/scripts/playpause.sh
 
+# Screenshots
+bindsym --release Print exec --no-startup-id scrot -m '/tmp/%Y%m%d-%H%M%S_scrot.png'
+bindsym --release Shift+Print exec --no-startup-id scrot -s '/tmp/%Y%m%d-%H%M%S_scrot.png'
+bindsym --release Ctrl+Print exec --no-startup-id scrot -u '/tmp/%Y%m%d-%H%M%S_scrot.png'
+
 # Autostart
 # load ~/.Xresources
 exec_always --no-startup-id xrdb ~/.Xresources
