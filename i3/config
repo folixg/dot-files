@@ -8,7 +8,7 @@ set $bg-color 	         #243443
 set $inactive-bg-color   #243443
 set $text-color          #f8f8f2
 set $inactive-text-color #888882
-set $urgent-bg-color     #e6db74
+set $urgent-bg-color     #5c98cd
 
 # Variables to set fonts (used for i3 itself, i3bar and dmenu)
 set $text-font Source Code Pro
@@ -36,11 +36,11 @@ bindsym $mod+Shift+q kill
 
 # start i3-dmenu-desktop
 bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -b -i -nb \
-'$bg-color' -nf '$text-color' -sb '$inactive-text-color' -fn '$text-font-$font-size'"
+'$bg-color' -nf '$text-color' -sb '$urgent-bg-color' -fn '$text-font-$font-size'"
 
 # start dmenu_run
 bindsym $mod+Shift+d exec --no-startup-id dmenu_run -b -i -nb '$bg-color' -nf \
-'$text-color' -sb '$inactive-text-color' -fn '$text-font-$font-size'
+'$text-color' -sb '$urgent-bg-color' -fn '$text-font-$font-size'
 
 # change focus
 bindsym $mod+h focus left

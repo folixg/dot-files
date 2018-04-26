@@ -28,7 +28,7 @@
 #
 
 options="Lock\nLog Out\nSuspend\nReboot\nShutdown"
-my_dmenu="-b -i -nb '#243443' -nf '#f8f8f2' -sb '#888882' -fn 'Source Code Pro-11'"
+my_dmenu="-b -i -nb '#243443' -nf '#f8f8f2' -sb '#5c98cd' -fn 'Source Code Pro-11'"
 
 command=$(echo -e "$options" | eval dmenu "$my_dmenu")
 
