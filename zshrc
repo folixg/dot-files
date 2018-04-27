@@ -138,10 +138,10 @@ fi
 # xterm title
 autoload -Uz add-zsh-hook
 function xterm_title_precmd () {
-	print -Pn '\e]2;%n@%m:%~\a'
+	print -Pn '\e]2;%~\a'
 }
 function xterm_title_preexec () {
-	print -Pn '\e]2;%n@%m:%~ %# '
+	print -Pn '\e]2;%~ %# '
 	print -n "${(q)1}\a"
 }
 if [[ "$TERM" == (screen*|xterm*|rxvt*) ]]; then

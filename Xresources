@@ -42,7 +42,7 @@ xterm*faceSize: 11
 !TXT Normal, Normal, Cursor
 #define _foreground    #f8f8f2
 #define _background    #2b3e50
-#define _cursorColor   #e3bf21
+#define _cursorColor   #f8f8f2
 xterm*color0         : _color0
 xterm*color1         : _color1
 xterm*color2         : _color2
