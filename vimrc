@@ -16,6 +16,7 @@ set statusline+=%-2v                      " (virtual) column
 set statusline+=\ 
 set statusline+=%P                        " percentage through file
 set laststatus=2                          " always show status line
+set nofoldenable                          " don't fold by default
 
 " general appearance and behavior
 syntax on                           " syntax highlighting
@@ -93,6 +94,9 @@ let vimtex_index_split_pos = 'vert belowright'
 augroup vimtex
   autocmd!
   autocmd Filetype tex noremap <silent> <F2> :VimtexTocToggle<CR>
+  autocmd Filetype tex set foldmethod=expr
+  autocmd Filetype tex set foldexpr=vimtex#fold#level(v:lnum)
+  autocmd Filetype tex set foldtext=vimtex#fold#text()
 augroup END
 
 " gitgutter
@@ -123,3 +127,9 @@ let g:tagbar_type_markdown = {
 \ }
 let tagbar_zoomwidth = 0
 let tagbar_autofocus = 1
+
+" folding for python
+augroup python
+  autocmd!
+  autocmd FileType python set foldmethod=indent
+augroup END
