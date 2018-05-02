@@ -80,6 +80,8 @@ augroup netrw
 augroup END
 let netrw_banner = 0          " don't show info
 let netrw_winsize = 25        " default size 25%
+let netrw_hide = 1
+let netrw_list_hide= '^\..*'
 
 " syntastic
 let syntastic_always_populate_loc_list = 1
