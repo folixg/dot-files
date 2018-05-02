@@ -1,5 +1,5 @@
 # Ubuntu with personalized setup
-FROM ubuntu:latest
+FROM ubuntu:16.04
 MAINTAINER Thomas Goldbrunner <thomas.goldbrunner@posteo.de>
 
 ARG BUILD_DATE
