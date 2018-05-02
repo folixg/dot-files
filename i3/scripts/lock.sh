@@ -12,27 +12,20 @@ if [ "$(pgrep xautolock)" ] ; then
   xautolock -disable
 fi
 
-# pause music player if it is playing
+# pause spotify if it is playing
 #
-# variable to store which player was paused
-paused_player="none"
-# first check if cmus is playing
-if cmus-remote -Q | grep -q "playing" ; then
-  cmus-remote --pause
-  paused_player="cmus"
-# if playerctl is installed, check for other players
-elif [ "$(which playerctl)" ] ; then
-  # get list of running music players
-  read -a players <<< $(playerctl --list-all)
-  # check whether a player is playing
-  for player in "${players[@]}"
-  do
-  if [ "$(playerctl --player="$player" status)" = "Playing" ] ; then
-    # and pause it
-    playerctl --player="$player" pause
-    paused_player=$player
+spotify_paused=0
+spotify_status=$(dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify \
+  /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get \
+  string:org.mpris.MediaPlayer2.Player string:'PlaybackStatus' 2> /dev/null)
+if [ "$spotify_status" != "" ] ; then
+  spotify_status=${spotify_status#*\"}
+  spotify_status=${spotify_status::-1}
+  if [ "$spotify_status" == "Playing" ] ; then
+    dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify \
+    /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+    spotify_paused=1
   fi
-  done
 fi
 
 # pause dunst notifications
@@ -76,10 +69,9 @@ else
 fi
 # resume music player if it was paused on lock (unless system was suspended)
 if [ $suspend -eq 0 ] ; then
-  if [ "$paused_player" == "cmus" ] ; then
-    cmus-remote --play
-  elif [ "$paused_player" != "none" ] ; then
-   playerctl --player="$paused_player" play
+  if [ $spotify_paused -eq 1 ] ; then
+    dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify \
+    /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
   fi
 fi
 
