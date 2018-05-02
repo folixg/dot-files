@@ -36,7 +36,8 @@ do
     STATUS=$(dbus-send --print-reply --dest="$SPOTIFY" "$MEDIAPLAYER" \
       "$GET_PROPERTIES" string:"$PLAYER" string:'PlaybackStatus' 2> /dev/null)
     if [ "$STATUS" == "" ] ; then
-      exit 1
+      echo "$line" || exit 1    
+      continue
     fi
     STATUS=${STATUS#*\"}
     STATUS=${STATUS::-1}
@@ -51,9 +52,7 @@ do
       ARTIST=${ARTIST#*|}
       TITLE=$(echo "$METADATA" | grep --color=never "title")
       TITLE=${TITLE#*|}
-      echo "[{\"name\":\"spotify\",\"full_text\":\"$ICON $ARTIST - $TITLE\"},${line#*[}," || exit 1
-    else
-      echo "$line" || exit 1    
+      echo ",[{\"name\":\"spotify\",\"full_text\":\"$ICON $ARTIST - $TITLE\"},${line#*[}" || exit 1
     fi
   fi
 done
