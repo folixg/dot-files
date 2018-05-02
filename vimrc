@@ -3,8 +3,7 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 
 " statusline
-set statusline=[%n]                       " buffer number
-set statusline+=%.30F                     " full path (limited to 30 chars)
+set statusline=%.30F                     " full path (limited to 30 chars)
 set statusline+=%(\ [%H%M%R%W]%)          " flags
 set statusline+=\ 
 set statusline+=%{fugitive#statusline()}  " git status
