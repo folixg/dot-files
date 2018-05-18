@@ -92,14 +92,16 @@ let syntastic_check_on_wq = 0
 let syntastic_python_checkers = ['flake8']
 
 " vimtex
+let tex_flavor='latex'  " force TEX filetype for empty .tex files
 let vimtex_view_method='zathura'
 let vimtex_index_split_pos = 'vert belowright'
 augroup vimtex
   autocmd!
-  autocmd Filetype tex noremap <silent> <F2> :VimtexTocToggle<CR>
   autocmd Filetype tex set foldmethod=expr
   autocmd Filetype tex set foldexpr=vimtex#fold#level(v:lnum)
   autocmd Filetype tex set foldtext=vimtex#fold#text()
+  autocmd Filetype tex nmap <silent><buffer> <localleader>lz <plug>(vimtex-labels-open)
+  autocmd Filetype tex nmap <silent><buffer> <localleader>lZ <plug>(vimtex-labels-toggle)
 augroup END
 
 " gitgutter
