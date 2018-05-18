@@ -3,7 +3,7 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 
 " statusline
-set statusline=%.30F                     " full path (limited to 30 chars)
+set statusline=%.30F                      " full path (limited to 30 chars)
 set statusline+=%(\ [%H%M%R%W]%)          " flags
 set statusline+=\ 
 set statusline+=%{fugitive#statusline()}  " git status
@@ -16,7 +16,6 @@ set statusline+=%-2v                      " (virtual) column
 set statusline+=\ 
 set statusline+=%P                        " percentage through file
 set laststatus=2                          " always show status line
-set nofoldenable                          " don't fold by default
 
 " general appearance and behavior
 syntax on                           " syntax highlighting
@@ -31,6 +30,8 @@ colorscheme lucario                 " https://github.com/raphamorim/lucario
 set guifont=Source\ Code\ Pro\ 11   " gvim font 
 packadd! matchit                    " improve jumping with %
 set scrolloff=5                     " keep 5 lines above/below current line
+set nofoldenable                    " don't fold by default
+set modeline                        " read modeline options from files
 
 " indenting
 set autoindent
