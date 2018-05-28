@@ -24,7 +24,8 @@ function sp-metadata {
   | sed -E 's/^"//'                              `# Strip leading...`         \
   | sed -E 's/"$//'                              `# ...and trailing quotes.`  \
   | sed -E 's/"+/|/'                             `# Regard "" as seperator.`  \
-  | sed -E 's/ +/ /g'                            `# Merge consecutive spaces.`
+  | sed -E 's/ +/ /g'                            `# Merge consecutive spaces.`\
+  | sed -E 's/\"/\\\"/g'                         `# Escape quotes for JSON.`
 }
 
 i3status -c ~/.i3/i3status.conf | while :
