@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-# This script customizes an installation  as far as it is possible without root
-# If you have root privileges, use ansible for the installation.
-
 
 __link_dotfile() {
   if [ -e ~/."$1" ] ; then             
@@ -10,15 +7,8 @@ __link_dotfile() {
   ln -sf "$DOTFILES/$1" "$HOME/.$1" || exit 1
 }
 
-# check if dot-files location is set
-if [ "$DOTFILES" == "" ] ; then
-  echo "Location of dot-files respository not set.
-  Either export it e.g. 'export DOTFILES=~/dot-files'
-  Or set it when calling this script e.g. 'DOTFILES=~/dot-files ./setup.sh'"
-  exit 1
-else
-  echo "### Installing using the dotfiles located in $DOTFILES ###"
-fi
+# get base directory
+DOTFILES=$(cd "${0%/*}" && pwd)
 
 # create bin directory in user home
 if ! [ -d ~/bin ] ; then
@@ -86,11 +76,7 @@ __link_dotfile "gnupg/sshcontrol"
 echo "### fetching public key from keyserver ###"
 gpg2 --recv-key 0x1782EA931CF39ED8
 
-# i3 setup
-echo "### linking i3 config folder ###"
-__link_dotfile "i3"
-
-# font installation
+# install Source Code Pro
 FONT_DIR="$HOME"/.local/share/fonts
 # create user font dir, if it does not exist
 if [ ! -d "$FONT_DIR" ] ; then
@@ -103,13 +89,6 @@ if [ "$(fc-list | grep -c "Source Code Pro")" == "0" ] ; then
   tar xvf "$FONT_DIR"/1.050R-it.tar.gz -C "$FONT_DIR" || exit 1
     rm "$FONT_DIR"/1.050R-it.tar.gz || exit 1
 fi
-# install FontAwesome
-if [ "$(fc-list | grep -c "FontAwesome")" == "0" ] ; then
-  echo "### installing Font Awesome font ###"
-  wget -P "$FONT_DIR" https://github.com/FortAwesome/Font-Awesome/archive/v4.7.0.tar.gz || exit 1
-  tar xvf "$FONT_DIR"/v4.7.0.tar.gz -C "$FONT_DIR" || exit 1
-  rm "$FONT_DIR"/v4.7.0.tar.gz || exit 1
-fi
 # update font cache
 echo "### updating font cache ###"
 fc-cache -f "$FONT_DIR" || exit 1
@@ -117,17 +96,6 @@ fc-cache -f "$FONT_DIR" || exit 1
 # link Xrescoures
 echo "### linking ~/.Xresources ###"
 __link_dotfile "Xresources"
-
-# link Zathura config
-ZATHURA_CONF_DIR="$HOME/.config/zathura"
-echo "### linking ~/.config/zathura/zathurarc ###"
-if [ ! -d "$ZATHURA_CONF_DIR" ] ; then
-  mkdir "$ZATHURA_CONF_DIR" || exit 1;
-fi
-if [ -e "$ZATHURA_CONF_DIR/zathurarc" ] ; then
-  mv "$ZATHURA_CONF_DIR/zathurarc" "$ZATHURA_CONF_DIR/zathurarc.old" || exit 1 
-fi
-ln -sf "$DOTFILES/zathurarc" "$ZATHURA_CONF_DIR/zathurarc" || exit 1
 
 # link tmux config 
 echo "### linking ~/.tmux.conf ###"

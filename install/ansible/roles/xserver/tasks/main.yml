@@ -17,12 +17,6 @@
     dest: ~/.local/share/fonts
     remote_src: True
 
-- name: Install Font Awesome
-  unarchive:
-    src: https://github.com/FortAwesome/Font-Awesome/archive/v4.7.0.tar.gz
-    dest: ~/.local/share/fonts
-    remote_src: True
-
 - name: Update font cache
   shell: fc-cache -f ~/.local/share/fonts
 
@@ -32,15 +26,3 @@
     state: present
   become: true
 
-- name: Create Zathura config dir
-  file:
-    path: ~/.config/zathura
-    state: directory
-    mode: 0755
-
-- name: Link Zathura config
-  file:
-    src: ~/dot-files/zathurarc
-    dest: ~/.config/zathura/zathurarc
-    state: link
-    force: yes
