@@ -21,7 +21,9 @@ alias egrep='egrep --color=auto'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # use GPG2 by default
-alias gpg=gpg2
+if [ $(which gpg2) ]; then
+  alias gpg=gpg2
+fi
 
 # alias for ubuntu docker
 alias ubuntu='docker pull folixg/ubuntu:latest && docker run --rm -it -v `pwd`:/data folixg/ubuntu' 
