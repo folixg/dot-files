@@ -188,7 +188,7 @@ gpg-focus() {
 
 # Try to launch tmux per default over ssh
 ssh() {
-  /usr/bin/ssh -t $@ "tmux new || zsh || bash";
+  /usr/bin/ssh -t $@ "tmux new 2>/dev/null || zsh 2>/dev/null || bash";
 }
 
 # Go
