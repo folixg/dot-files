@@ -9,6 +9,8 @@ __link_dotfile() {
 
 # get base directory
 DOTFILES=$(cd "${0%/*}" && pwd)
+DOTFILES="${DOTFILES%/install}"
+cd "$DOTFILES"
 
 # create bin directory in user home
 if ! [ -d ~/bin ] ; then
@@ -74,7 +76,11 @@ __link_dotfile "gnupg/gpg-agent.conf"
 echo "### linking ~/.gnupg/sshcontrol ###"
 __link_dotfile "gnupg/sshcontrol"
 echo "### fetching public key from keyserver ###"
-gpg2 --recv-key 0x1782EA931CF39ED8
+if [ "$(which gpg2)" ]; then
+  gpg2 --recv-key 0x1782EA931CF39ED8
+else
+  gpg --recv-key 0x1782EA931CF39ED8
+fi
 
 # install Source Code Pro
 FONT_DIR="$HOME"/.local/share/fonts
