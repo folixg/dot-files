@@ -1,3 +1,5 @@
+set nocompatible  " as advised by ':help E10'
+
 " pathogen
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
@@ -121,17 +123,17 @@ let indentLine_leadingSpaceChar = '·'
 let indentLine_setConceal = 0
 
 " tagbar
-noremap <silent> <F2> :Tagbar<CR>
-let g:tagbar_type_markdown = {
-    \ 'ctagstype' : 'markdown',
-    \ 'kinds' : [
-        \ 'h:Heading_L1',
-        \ 'i:Heading_L2',
-        \ 'k:Heading_L3'
-    \ ]
-\ }
-let tagbar_zoomwidth = 0
-let tagbar_autofocus = 1
+"noremap <silent> <F2> :Tagbar<CR>
+"let g:tagbar_type_markdown = {
+"    \ 'ctagstype' : 'markdown',
+"    \ 'kinds' : [
+"        \ 'h:Heading_L1',
+"        \ 'i:Heading_L2',
+"        \ 'k:Heading_L3'
+"    \ ]
+"\ }
+"let tagbar_zoomwidth = 0
+"let tagbar_autofocus = 1
 
 " folding for python
 augroup python
