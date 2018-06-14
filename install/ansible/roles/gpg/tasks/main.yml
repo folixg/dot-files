@@ -31,7 +31,3 @@
     - gpg.conf
     - gpg-agent.conf
     - sshcontrol
-
-- name: Fetch public gpg key
-  command: gpg2 --recv-key 0x1782EA931CF39ED8
-
