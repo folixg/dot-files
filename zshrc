@@ -156,7 +156,7 @@ export GPG_TTY
 # GPG for authentication
 if [[ $UID -ne 0 ]]; then
   # Use gpg-agent instead of ssh-agent (if there is a private auth key available)
-  if [[ $( gpg2 -K | grep "\[A\]" ) ]] ; then
+  if [[ $( gpg -K | grep "\[A\]" ) ]] ; then
     unset SSH_AGENT_PID
     if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
       export SSH_AUTH_SOCK="${HOME}/.gnupg/S.gpg-agent.ssh"
@@ -176,7 +176,7 @@ gpg-key-lock() {
   fi
 }
 gpg-key-unlock() {
-  echo "" | gpg2 -s &>/dev/null
+  echo "" | gpg -s &>/dev/null
 }
 gpg-focus() {
   pid=$(pgrep pinentry-curses)
