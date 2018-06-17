@@ -33,7 +33,10 @@ alias eduroam-connect='nmcli connection up eduroam ifname wlp3s0'
 alias eduroam-disconnect='nmcli connection down eduroam'
 
 # start vim with servername (if the vim installation supports it)
-if [ "$(vim --version | grep +clientserver)" ] ; then
+# use macvim on mac
+if [ "$(uname)" = "Darwin" ] ; then
+  alias vim='mvim -v --servername vim'
+elif [ "$(vim --version | grep +clientserver)" ] ; then
   alias vim='vim --servername vim'
 fi
 
