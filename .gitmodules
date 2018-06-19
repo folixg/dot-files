@@ -37,3 +37,6 @@
 [submodule "zsh-completions"]
 	path = zsh-completions
 	url = https://github.com/zsh-users/zsh-completions.git
+[submodule "vim/bundle/papercolor-theme"]
+	path = vim/bundle/papercolor-theme
+	url = https://github.com/NLKNguyen/papercolor-theme.git

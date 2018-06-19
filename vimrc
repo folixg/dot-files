@@ -123,20 +123,31 @@ let indentLine_leadingSpaceChar = '·'
 let indentLine_setConceal = 0
 
 " tagbar
-"noremap <silent> <F2> :Tagbar<CR>
-"let g:tagbar_type_markdown = {
-"    \ 'ctagstype' : 'markdown',
-"    \ 'kinds' : [
-"        \ 'h:Heading_L1',
-"        \ 'i:Heading_L2',
-"        \ 'k:Heading_L3'
-"    \ ]
-"\ }
-"let tagbar_zoomwidth = 0
-"let tagbar_autofocus = 1
+noremap <silent> <F2> :Tagbar<CR>
+let g:tagbar_type_markdown = {
+    \ 'ctagstype' : 'markdown',
+    \ 'kinds' : [
+        \ 'h:Heading_L1',
+        \ 'i:Heading_L2',
+        \ 'k:Heading_L3'
+    \ ]
+\ }
+let tagbar_zoomwidth = 0
+let tagbar_autofocus = 1
 
 " folding for python
 augroup python
   autocmd!
   autocmd FileType python set foldmethod=indent
 augroup END
+
+" quickly switch between dark and light colorscheme
+function! LightSwitch()
+  if g:colors_name == 'lucario'
+    colorscheme PaperColor
+    set background=light
+  else
+    colorscheme lucario
+  endif
+endfunction
+noremap <silent> <F4> :call LightSwitch()<CR>
