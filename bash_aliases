@@ -40,6 +40,9 @@ elif [ "$(vim --version | grep +clientserver)" ] ; then
   alias vim='vim --servername vim'
 fi
 
+# use only one gvim instance
+alias gvim='gvim --remote-silent'
+
 # git (from oh-my-zsh git plugin)
 alias g='git'
 alias ga='git add'
