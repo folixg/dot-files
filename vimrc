@@ -150,4 +150,4 @@ function! LightSwitch()
     colorscheme lucario
   endif
 endfunction
-noremap <silent> <F4> :call LightSwitch()<CR>
+noremap <silent> <F4> :call LightSwitch()<CR> :e %<CR>
