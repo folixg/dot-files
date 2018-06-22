@@ -94,7 +94,11 @@ let syntastic_python_checkers = ['flake8']
 
 " vimtex
 let tex_flavor='latex'  " force TEX filetype for empty .tex files
-let vimtex_view_method='zathura'
+if has('mac')
+  let vimtex_view_method='skim'
+else
+  let vimtex_view_method='zathura'
+endif
 let vimtex_index_split_pos = 'vert belowright'
 augroup vimtex
   autocmd!
