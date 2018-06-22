@@ -29,7 +29,6 @@ set incsearch                       " show search results while typing
 set hlsearch                        " highlight all matches in search
 set wildmode=list:longest           " list possible completions
 colorscheme lucario                 " https://github.com/raphamorim/lucario
-set guifont=Source\ Code\ Pro\ 11   " gvim font 
 packadd! matchit                    " improve jumping with %
 set scrolloff=5                     " keep 5 lines above/below current line
 set nofoldenable                    " don't fold by default
