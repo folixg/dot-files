@@ -47,6 +47,8 @@ __link_dotfile "gitconfig" || exit 1
 # vim setup
 echo "### linking vimrc ###"
 __link_dotfile "vimrc" || exit 1
+echo "### linking gvimrc ###"
+__link_dotfile "gvimrc" || exit 1
 echo "### linking vim config folder ###"
 __link_dotfile "vim" || exit 1
 echo "### fetching pathogen plugins ###"
