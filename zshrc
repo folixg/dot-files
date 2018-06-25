@@ -205,7 +205,7 @@ if [ -r /etc/bash.bashrc.d/10-lis ] ; then
 fi
 
 # Support for LIS module system
-if [ -r /nfs/tools ] ; then
+if [ -r /nfs/tools/environment_modules/ ] ; then
   source /nfs/tools/environment_modules/3.2.8/init/zsh
 fi
 
