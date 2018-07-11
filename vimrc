@@ -85,13 +85,6 @@ let netrw_winsize = 25        " default size 25%
 let netrw_hide = 1
 let netrw_list_hide= '^\..*'
 
-" syntastic
-let syntastic_always_populate_loc_list = 1
-let syntastic_auto_loc_list = 1
-let syntastic_check_on_open = 1
-let syntastic_check_on_wq = 0
-let syntastic_python_checkers = ['flake8']
-
 " vimtex
 let tex_flavor='latex'  " force TEX filetype for empty .tex files
 if has('mac')
