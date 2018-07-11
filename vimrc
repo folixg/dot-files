@@ -75,32 +75,18 @@ nnoremap <Localleader>g z=
 
 " netrw
 noremap <silent> <F1> :Lexplore<CR>
-augroup netrw
-  autocmd!
-  autocmd FileType netrw nnoremap <silent> <buffer> <F1> :q<CR>
-  autocmd FileType netrw setl bufhidden=delete " delete hidden buffers
-augroup END
 let netrw_banner = 0          " don't show info
 let netrw_winsize = 25        " default size 25%
 let netrw_hide = 1
 let netrw_list_hide= '^\..*'
 
 " vimtex
-let tex_flavor='latex'  " force TEX filetype for empty .tex files
 if has('mac')
   let vimtex_view_method='skim'
 else
   let vimtex_view_method='zathura'
 endif
 let vimtex_index_split_pos = 'vert belowright'
-augroup vimtex
-  autocmd!
-  autocmd Filetype tex set foldmethod=expr
-  autocmd Filetype tex set foldexpr=vimtex#fold#level(v:lnum)
-  autocmd Filetype tex set foldtext=vimtex#fold#text()
-  autocmd Filetype tex nmap <silent><buffer> <localleader>lz <plug>(vimtex-labels-open)
-  autocmd Filetype tex nmap <silent><buffer> <localleader>lZ <plug>(vimtex-labels-toggle)
-augroup END
 
 " gitgutter
 set updatetime=250
@@ -130,12 +116,6 @@ let g:tagbar_type_markdown = {
 \ }
 let tagbar_zoomwidth = 0
 let tagbar_autofocus = 1
-
-" folding for python
-augroup python
-  autocmd!
-  autocmd FileType python set foldmethod=indent
-augroup END
 
 " quickly switch between dark and light colorscheme
 function! LightSwitch()
