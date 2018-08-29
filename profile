@@ -24,3 +24,10 @@ if [ -e "/usr/bin/zsh" ] ; then
     exec zsh -l
   fi
 fi
+
+# set keyboard options
+# - available layouts: de, us
+# - switch between layouts with left win key
+# - indicate us layout with caps lock led
+# - use caps lock as additional ctrl key
+setxkbmap -layout de,us -option grp:lwin_toggle,grp_led:caps,ctrl:nocaps 
