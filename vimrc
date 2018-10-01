@@ -120,10 +120,9 @@ let tagbar_autofocus = 1
 " quickly switch between dark and light colorscheme
 function! LightSwitch()
   if g:colors_name == 'lucario'
-    colorscheme PaperColor
-    set background=light
+    colorscheme pyte
   else
     colorscheme lucario
   endif
 endfunction
-noremap <silent> <F4> :call LightSwitch()<CR> :e %<CR>
+noremap <silent> <F4> :call LightSwitch()<CR>
