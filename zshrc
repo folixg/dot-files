@@ -233,3 +233,8 @@ docx2vim() {
 eval "$(fasd --init auto)"
 alias v='f -e vim' # quick opening files with vim
 alias o='a -e xdg-open' # quick opening files with xdg-open
+
+# Install Ruby gems to ~/gems
+export GEM_HOME=$HOME/gems
+export PATH=$HOME/gems/bin:$PATH
+
