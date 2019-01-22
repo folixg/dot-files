@@ -37,6 +37,10 @@ fi
 # Complete case and hyphen insensitive
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
+# Load completion system
+autoload -Uz compinit
+compinit
+
 # Completion for pip(3)
 function _pip_completion {
   local words cword
@@ -49,9 +53,8 @@ function _pip_completion {
 compctl -K _pip_completion pip
 compctl -K _pip_completion pip3
 
-# Load completion system
-autoload -Uz compinit
-compinit
+# Completion for pipenv
+eval "$(pipenv --completion)"
 
 # Enable color support
 autoload -Uz colors
