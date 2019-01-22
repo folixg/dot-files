@@ -26,7 +26,7 @@
     "python.autoComplete.addBrackets": true,
     "python.pythonPath": "python3",
     "python.venvPath": "~/.virtualenvs",
-    "python.formatting.provider": "black",
+    "python.formatting.provider": "autopep8",
     "vim.foldfix": true,
     "vim.hlsearch": true,
     "vim.leader": " ",
