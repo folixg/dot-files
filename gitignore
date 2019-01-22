@@ -9,3 +9,5 @@
 tags
 # VS Code
 .vscode
+# python
+__pycache__
