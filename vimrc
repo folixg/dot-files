@@ -128,3 +128,6 @@ function! LightSwitch()
   endif
 endfunction
 noremap <silent> <F4> :call LightSwitch()<CR>
+
+" Mute vim-go warning for older vim versions
+let g:go_version_warning = 0
