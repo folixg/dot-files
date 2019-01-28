@@ -241,3 +241,23 @@ alias o='a -e xdg-open' # quick opening files with xdg-open
 export GEM_HOME=$HOME/gems
 export PATH=$HOME/gems/bin:$PATH
 
+# View markdown and rst in browser
+view-html () {
+  basename="${1%.*}"
+  ext="${1#*.}"
+  case "$ext" in
+    "md"|"MD")
+      format="markdown_github"
+      ;;
+    "rst"|"RST")
+      format="rst"
+      ;;
+    *)
+      echo "Unsupported filetype."
+      return 1
+      ;;
+  esac
+  pandoc -f "$format" -t html -o /var/run/user/$UID/"$ext"-preview.html "$basename"."$ext"
+  firefox /var/run/user/$UID/"$ext"-preview.html
+  return 0
+}
