@@ -18,7 +18,6 @@
     "workbench.editor.labelFormat": "medium",
     "workbench.settings.enableNaturalLanguageSearch": false,
     "window.enableMenuBarMnemonics": false,
-    "window.menuBarVisibility": "toggle",
     "search.smartCase": true,
     "debug.inlineValues": true,
     "extensions.showRecommendationsOnlyOnDemand": true,
@@ -34,4 +33,7 @@
         "<C-k>": false
     },
     "vim.useSystemClipboard": true,
+    "workbench.quickOpen.closeOnFocusLost": false,
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
 }
