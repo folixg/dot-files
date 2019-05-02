@@ -21,3 +21,10 @@
     dest: ~/.zshrc
     state: link
     force: yes
+
+- name: Link ~/.zshenv
+  file:
+    src: ~/dot-files/zshenv
+    dest: ~/.zshenv
+    state: link
+    force: yes
