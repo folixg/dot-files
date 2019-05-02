@@ -11,3 +11,5 @@ tags
 .vscode
 # python
 __pycache__
+# pre-commit.com
+.pre-commit-config.yaml
