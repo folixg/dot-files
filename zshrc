@@ -45,7 +45,9 @@ compctl -K _pip_completion pip
 compctl -K _pip_completion pip3
 
 # Completion for pipenv
-eval "$(pipenv --completion)"
+if (which pipenv &> /dev/null); then
+  eval "$(pipenv --completion)"
+fi
 
 # Enable color support
 autoload -Uz colors
