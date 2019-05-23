@@ -1,35 +1,35 @@
 [submodule "vim/bundle/vimtex"]
-	path = vim/bundle/vimtex
+	path = vim/pack/languages/start/vimtex
 	url = https://github.com/lervag/vimtex.git
 [submodule "vim/bundle/vim-go"]
-	path = vim/bundle/vim-go
+	path = vim/pack/languages/start/vim-go
 	url = https://github.com/fatih/vim-go.git
 [submodule "vim/bundle/vim-pathogen"]
-	path = vim/bundle/vim-pathogen
+	path = vim/pack/misc/start/vim-pathogen
 	url = https://github.com/tpope/vim-pathogen.git
 [submodule "vim/bundle/vim-fugitive"]
-	path = vim/bundle/vim-fugitive
+	path = vim/pack/git/start/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
 [submodule "vim/bundle/vim-gitgutter"]
-	path = vim/bundle/vim-gitgutter
+	path = vim/pack/git/start/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter.git
 [submodule "vim/bundle/vim-commentary"]
-	path = vim/bundle/vim-commentary
+	path = vim/pack/misc/start/vim-commentary
 	url = https://github.com/tpope/vim-commentary.git
 [submodule "vim/bundle/jedi-vim"]
-	path = vim/bundle/jedi-vim
+	path = vim/pack/languages/start/jedi-vim
 	url = https://github.com/davidhalter/jedi-vim.git
 [submodule "vim/bundle/vim-highlightedyank"]
-	path = vim/bundle/vim-highlightedyank
+	path = vim/pack/appearance/start/vim-highlightedyank
 	url = https://github.com/machakann/vim-highlightedyank
 [submodule "vim/bundle/indentLine"]
-	path = vim/bundle/indentLine
+	path = vim/pack/appearance/start/indentLine
 	url = https://github.com/Yggdroot/indentLine.git
 [submodule "vim/bundle/tagbar"]
-	path = vim/bundle/tagbar
+	path = vim/pack/tags/start/tagbar
 	url = https://github.com/majutsushi/tagbar.git
 [submodule "vim/bundle/vim-gutentags"]
-	path = vim/bundle/vim-gutentags
+	path = vim/pack/tags/start/vim-gutentags
 	url = https://github.com/ludovicchabant/vim-gutentags.git
 [submodule "zsh-completions"]
 	path = zsh-completions

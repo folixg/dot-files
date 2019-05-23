@@ -1,8 +1,8 @@
-set nocompatible  " as advised by ':help E10'
-
 " pathogen
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-execute pathogen#infect()
+if !has('packages')
+  runtime pack/misc/start/vim-pathogen/autoload/pathogen.vim
+  execute pathogen#infect()
+endif
 
 " statusline
 set statusline=%.30F                      " full path (limited to 30 chars)
