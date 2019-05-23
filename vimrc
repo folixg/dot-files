@@ -20,7 +20,6 @@ set statusline+=%P                        " percentage through file
 set laststatus=2                          " always show status line
 
 " general appearance and behavior
-syntax on                           " syntax highlighting
 set mouse=a                         " enable mouse support in all modes
 set number                          " show line numbers
 set cursorline                      " highlight current line
@@ -40,6 +39,10 @@ set smarttab
 set backspace=indent,eol,start
 set expandtab softtabstop=2 shiftwidth=2
 filetype plugin indent on
+
+" enable syntax higlighting
+" (after loading filetype plugin as adviced by :help vimtex_syntax_filetype)
+syntax on
 
 " mappings
 let mapleader="\<Space>"
