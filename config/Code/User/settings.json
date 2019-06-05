@@ -4,7 +4,6 @@
     "telemetry.enableTelemetry": false,
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
-    "workbench.colorTheme": "Lucario",
     "editor.multiCursorModifier": "ctrlCmd",
     "editor.fontFamily": "'Source Code Pro','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "editor.accessibilitySupport": "off",
@@ -33,7 +32,13 @@
         "<C-k>": false
     },
     "vim.useSystemClipboard": true,
-    "workbench.quickOpen.closeOnFocusLost": false,
-    "workbench.editor.enablePreview": false,
+    "workbench.editor.enablePreview": true,
     "workbench.editor.enablePreviewFromQuickOpen": false,
+    "workbench.iconTheme": "vscode-icons",
+    "C_Cpp.clang_format_fallbackStyle": "llvm",
+    "workbench.colorTheme": "Lucario",
+    "workbench.colorCustomizations": {
+        "editor.lineHighlightBorder": "#243443",
+        "editor.lineHighlightBackground": "#243443",
+    }
 }
