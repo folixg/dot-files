@@ -208,9 +208,11 @@ docx2vim() {
 }
 
 # Use fasd
-eval "$(fasd --init auto)"
-alias v='f -e vim' # quick opening files with vim
-alias o='a -e xdg-open' # quick opening files with xdg-open
+if (which fasd &> /dev/null); then
+  eval "$(fasd --init auto)"
+  alias v='f -e vim' # quick opening files with vim
+  alias o='a -e xdg-open' # quick opening files with xdg-open
+fi
 
 # View markdown and rst in browser
 view-html () {
