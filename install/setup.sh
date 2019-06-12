@@ -79,6 +79,8 @@ echo "### linking ~/.gnupg/gpg-agent.conf ###"
 __link_dotfile "gnupg/gpg-agent.conf"
 echo "### linking ~/.gnupg/sshcontrol ###"
 __link_dotfile "gnupg/sshcontrol"
+echo "### linking ~/.ssh/config ###"
+__link_dotfile "ssh/config"
 echo "### fetching public key from keyserver ###"
 if [ "$(which gpg2)" ]; then
   gpg2 --recv-key 0x1782EA931CF39ED8

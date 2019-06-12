@@ -31,3 +31,15 @@
     - gpg.conf
     - gpg-agent.conf
     - sshcontrol
+
+- name: Create ~/.ssh
+  file:
+    path: ~/.ssh
+    state: directory
+
+- name: Link ~/.ssh/config
+  file:
+    src: ~/dot-files/ssh/config
+    dest: ~/.ssh/config
+    state: link
+    force: yes

@@ -174,13 +174,6 @@ gpg-key-lock() {
 gpg-key-unlock() {
   echo "" | gpg -s &>/dev/null
 }
-gpg-focus() {
-  pid=$(pgrep pinentry-curses)
-  if [ "$pid" ] ; then
-    kill "$pid"
-  fi
-  echo "UPDATESTARTUPTTY" | gpg-connect-agent 1>/dev/null
-}
 
 # Try to launch tmux per default over ssh
 ssh() {
