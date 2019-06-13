@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+# Try to launch tmux when connecting via SSH
+ssh() {
+  /usr/bin/ssh -t $@ "tmux new 2>/dev/null || zsh 2>/dev/null || bash";
+}

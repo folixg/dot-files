@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+# open MS word documents in vim
+docx2vim() {
+  pandoc -f docx -t markdown "$1" | view -c ":set filetype=markdown" -
+}

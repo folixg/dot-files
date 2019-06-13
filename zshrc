@@ -7,8 +7,15 @@ setopt appendhistory
 # Change directory when only path is given
 setopt autocd
 
+# Use directory stack
+setopt autopushd pushdminus pushdsilent pushdtohome
+DIRSTACKSIZE=10
+
 # Additional pattern matching
 setopt extendedglob
+
+# Correct typos
+setopt correct
 
 # Don't beep
 unsetopt beep
@@ -164,22 +171,6 @@ if [[ $UID -ne 0 ]]; then
   fi
 fi
 
-# Helper functions for gpg
-gpg-key-lock() {
-  pid=$(pgrep gpg-agent)
-  if [ "$pid" ] ; then
-    kill -SIGHUP "$pid"
-  fi
-}
-gpg-key-unlock() {
-  echo "" | gpg -s &>/dev/null
-}
-
-# Try to launch tmux per default over ssh
-ssh() {
-  /usr/bin/ssh -t $@ "tmux new 2>/dev/null || zsh 2>/dev/null || bash";
-}
-
 # Use alt-n or esc-n to tab-select through the output of a previous
 # command.
 # Use-case: ls or find was the previous command, and you now want to
@@ -195,10 +186,9 @@ _jh-prev-result () {
 zle -C jh-prev-comp menu-complete _jh-prev-result
 bindkey '\en' jh-prev-comp
 
-# open MS word documents in vim
-docx2vim() {
-  pandoc -f docx -t markdown "$1" | vim -c ":set filetype=markdown" -
-}
+# Custom functions
+fpath=($DOTFILES/zsh-functions $fpath)
+autoload docx2vim gpg-key-lock gpg-key-unlock ssh view-html 
 
 # Use fasd
 if (which fasd &> /dev/null); then
@@ -207,23 +197,4 @@ if (which fasd &> /dev/null); then
   alias o='a -e xdg-open' # quick opening files with xdg-open
 fi
 
-# View markdown and rst in browser
-view-html () {
-  basename="${1%.*}"
-  ext="${1#*.}"
-  case "$ext" in
-    "md"|"MD")
-      format="markdown_github"
-      ;;
-    "rst"|"RST")
-      format="rst"
-      ;;
-    *)
-      echo "Unsupported filetype."
-      return 1
-      ;;
-  esac
-  pandoc -f "$format" -t html -o /var/run/user/$UID/"$ext"-preview.html "$basename"."$ext"
-  firefox /var/run/user/$UID/"$ext"-preview.html
-  return 0
-}
+source "$DOTFILES"/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

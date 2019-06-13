@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+gpg-key-lock() {
+  pid=$(pgrep gpg-agent)
+  if [ "$pid" ] ; then
+    kill -SIGHUP "$pid"
+  fi
+}
