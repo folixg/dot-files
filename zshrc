@@ -1,7 +1,7 @@
 # Custom functions
 fpath=($DOTFILES/zsh-functions $fpath)
 autoload docx2vim gpg-key-lock gpg-key-unlock ssh view-html
-autoload _pip_completion _pipenv_completion _jh-prev-result
+autoload _pip_completion _jh-prev-result
 
 # History
 HISTFILE=~/.zsh_history
@@ -41,7 +41,6 @@ if [ -d $DOTFILES/zsh-completions/src/ ] ; then
 fi
 compctl -K _pip_completion pip
 compctl -K _pip_completion pip3
-compdef _pipenv_completion pipenv
 
 # Load completion system
 autoload -Uz compinit
