@@ -1,0 +1,4 @@
+_xterm_title_preexec () {
+	print -Pn '\e]2;%~ %# '
+	print -n "${(q)1}\a"
+}

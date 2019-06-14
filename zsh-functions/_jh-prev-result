@@ -1,0 +1,6 @@
+_jh-prev-result () {
+    hstring=$(eval `fc -l -n -1`)
+    set -A hlist ${(@s/
+/)hstring}
+    compadd - ${hlist}
+}

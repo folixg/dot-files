@@ -1,3 +1,8 @@
+# Custom functions
+fpath=($DOTFILES/zsh-functions $fpath)
+autoload docx2vim gpg-key-lock gpg-key-unlock ssh view-html
+autoload _pip_completion _pipenv_completion _jh-prev-result
+
 # History
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
@@ -8,7 +13,7 @@ setopt appendhistory
 setopt autocd
 
 # Use directory stack
-setopt autopushd pushdminus pushdsilent pushdtohome
+setopt autopushd pushdminus pushdsilent pushdtohome pushd_ignore_dups
 DIRSTACKSIZE=10
 
 # Additional pattern matching
@@ -27,88 +32,35 @@ bindkey -v
 zstyle ':completion:*' menu select
 zstyle :compinstall filename '/home/no56way/.zshrc'
 
+# Complete case and hyphen insensitive
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
 # Use additional zsh-completions
 if [ -d $DOTFILES/zsh-completions/src/ ] ; then
   fpath=($DOTFILES/zsh-completions/src $fpath)
 fi
-
-# Complete case and hyphen insensitive
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+compctl -K _pip_completion pip
+compctl -K _pip_completion pip3
+compdef _pipenv_completion pipenv
 
 # Load completion system
 autoload -Uz compinit
 compinit
 
-# Completion for pip(3)
-function _pip_completion {
-  local words cword
-  read -Ac words
-  read -cn cword
-  reply=( $( COMP_WORDS="$words[*]" \
-             COMP_CWORD=$(( cword-1 )) \
-             PIP_AUTO_COMPLETE=1 $words[1] ) )
-}
-compctl -K _pip_completion pip
-compctl -K _pip_completion pip3
-
-# Completion for pipenv
-if (which pipenv &> /dev/null); then
-  eval "$(pipenv --completion)"
-fi
-
 # Enable color support
 autoload -Uz colors
 colors
 
-# Enable vcs_info and configure for git
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:git*' formats "[%b%c%u%m]"
-zstyle ':vcs_info:*' unstagedstr "!"
-zstyle ':vcs_info:*' stagedstr "+"
-precmd() { vcs_info }
+# Use custom prompt
+autoload -Uz promptinit
+promptinit
 setopt prompt_subst
+prompt folix
 
-# git: Show marker if there are untracked files in repository
-# https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples
-zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
-+vi-git-untracked(){
-    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
-        git status --porcelain | grep '??' &> /dev/null ; then
-        # This will show the marker if there are any untracked files in repo.
-        hook_com[misc]+='?'
-    fi
-}
-
-# Left prompt
-USER_HOST=""
-[ "$SSH_CLIENT" ] || [ "$(grep docker /proc/1/cgroup 2>/dev/null)" ] && USER_HOST='%n@%m:'
-PROMPT='$USER_HOST%(!.%{$fg[red]%}.%{$fg[yellow]%})%~%{$reset_color%}%(!.#.>) '
-
-# vi-mode info for prompt
-function zle-line-init zle-keymap-select {
-    VIM_PROMPT="%{$fg[yellow]%}[% NORMAL]% %{$reset_color%}"
-    zle reset-prompt
-}
-zle -N zle-line-init
-zle -N zle-keymap-select
-
-# Return code for prompt
-PROMPT_RETURN_CODE="%(?..%{$fg_bold[red]%}%?%{$reset_color%})"
-
-# Change color for dirty working directory
-function git_prompt_color() {
-  STATUS=$(git status --porcelain 2>/dev/null)
-  if [ "$STATUS" ]; then
-    echo "%{$fg[magenta]%}"
-  else
-    echo "%{$fg[yellow]%}"
-  fi
-}
-
-# Right prompt with return code, vi-mode info and git info
-RPROMPT='$PROMPT_RETURN_CODE ${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/}$(git_prompt_color)${vcs_info_msg_0_}%{$reset_color%}'
+# identify special keys
+typeset -A key
+key[Up]=${terminfo[kcuu1]}
+key[Down]=${terminfo[kcud1]}
 
 # Make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
@@ -133,23 +85,20 @@ zle -N down-line-or-beginning-search
 # History search
 bindkey '^r' history-incremental-search-backward
 
-# Alias file
-if [ -f ~/.bash_aliases ]; then
-    source ~/.bash_aliases
-fi
+# Use alt-n or esc-n to tab-select through the output of a previous
+# command.
+# Use-case: ls or find was the previous command, and you now want to
+# edit one of them. No need for mouse copy-pasta.
+#
+# https://www.zsh.org/mla/users/2004/msg00893.html
+zle -C jh-prev-comp menu-complete _jh-prev-result
+bindkey '\en' jh-prev-comp
 
 # xterm title
 autoload -Uz add-zsh-hook
-function xterm_title_precmd () {
-	print -Pn '\e]2;%~\a'
-}
-function xterm_title_preexec () {
-	print -Pn '\e]2;%~ %# '
-	print -n "${(q)1}\a"
-}
 if [[ "$TERM" == (screen*|xterm*|rxvt*) ]]; then
-	add-zsh-hook -Uz precmd xterm_title_precmd
-	add-zsh-hook -Uz preexec xterm_title_preexec
+	add-zsh-hook -Uz precmd _xterm_title_precmd
+	add-zsh-hook -Uz preexec _xterm_title_preexec
 fi
 
 # Safety measure for gpg-agent, as recommended by gpg-agent manual
@@ -171,30 +120,16 @@ if [[ $UID -ne 0 ]]; then
   fi
 fi
 
-# Use alt-n or esc-n to tab-select through the output of a previous
-# command.
-# Use-case: ls or find was the previous command, and you now want to
-# edit one of them. No need for mouse copy-pasta.
-#
-# https://www.zsh.org/mla/users/2004/msg00893.html
-_jh-prev-result () {
-    hstring=$(eval `fc -l -n -1`)
-    set -A hlist ${(@s/
-/)hstring}
-    compadd - ${hlist}
-}
-zle -C jh-prev-comp menu-complete _jh-prev-result
-bindkey '\en' jh-prev-comp
-
-# Custom functions
-fpath=($DOTFILES/zsh-functions $fpath)
-autoload docx2vim gpg-key-lock gpg-key-unlock ssh view-html 
-
 # Use fasd
 if (which fasd &> /dev/null); then
   eval "$(fasd --init auto)"
   alias v='f -e vim' # quick opening files with vim
   alias o='a -e xdg-open' # quick opening files with xdg-open
+fi
+
+# Alias file
+if [ -f ~/.bash_aliases ]; then
+    source ~/.bash_aliases
 fi
 
 source "$DOTFILES"/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
