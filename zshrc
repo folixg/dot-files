@@ -93,6 +93,9 @@ bindkey '^r' history-incremental-search-backward
 zle -C jh-prev-comp menu-complete _jh-prev-result
 bindkey '\en' jh-prev-comp
 
+# use ctrl+Space to expand aliases in insert mode
+bindkey -M viins '^ '        _expand_alias
+
 # xterm title
 autoload -Uz add-zsh-hook
 if [[ "$TERM" == (screen*|xterm*|rxvt*) ]]; then
