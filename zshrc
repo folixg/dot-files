@@ -131,4 +131,16 @@ if [ -f ~/.bash_aliases ]; then
     source ~/.bash_aliases
 fi
 
+# set LS_COLORS
+if [ -r "$DOTFILES/dircolors" ]; then
+  eval "$(dircolors $DOTFILES/dircolors)"
+fi
+
+# syntax highlighting
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=blue'
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument-unclosed]='fg=blue,bg=black'
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=blue'
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument-unclosed]='fg=blue,bg=black'
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 source "$DOTFILES"/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
