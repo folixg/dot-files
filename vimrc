@@ -33,13 +33,20 @@ set scrolloff=5                     " keep 5 lines above/below current line
 set nofoldenable                    " don't fold by default
 set modeline                        " read modeline options from files
 
+" change cursor based on mode
+if &term =~ '^xterm.*'
+  " blinking vertical bar for insert mode
+  let &t_SI .= "\<Esc>[5 q"
+  " solid block
+  let &t_EI .= "\<Esc>[2 q"
+endif
+
 " indenting
 set autoindent
 set smarttab
 set backspace=indent,eol,start
 set expandtab softtabstop=2 shiftwidth=2
 filetype plugin indent on
-
 " enable syntax higlighting
 " (after loading filetype plugin as adviced by :help vimtex_syntax_filetype)
 syntax on
