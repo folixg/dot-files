@@ -40,5 +40,9 @@
     "workbench.colorCustomizations": {
         "editor.lineHighlightBorder": "#243443",
         "editor.lineHighlightBackground": "#243443",
-    }
+        "editorRuler.foreground": "#243443"
+    },
+    "editor.rulers": [
+        80
+    ],
 }
