@@ -1,6 +1,6 @@
 # Custom functions
 fpath=($DOTFILES/zsh-functions $fpath)
-autoload docx2vim gpg-key-lock gpg-key-unlock ssh view-html
+autoload docx2vim gpg-key-lock gpg-key-unlock ssh view-html zbell
 autoload _pip_completion _jh-prev-result
 
 # History
@@ -55,6 +55,10 @@ autoload -Uz promptinit
 promptinit
 setopt prompt_subst
 prompt folix
+
+# ring bell when long running commands finish
+# https://gist.github.com/jpouellet/5278239
+zbell
 
 # identify special keys
 typeset -A key
