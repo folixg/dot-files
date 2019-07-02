@@ -45,4 +45,10 @@
     "editor.rulers": [
         80
     ],
+    "zenMode.hideLineNumbers": false,
+    "zenMode.hideStatusBar": false,
+    "files.eol": "\n",
+    "[markdown]": {
+        "editor.tabSize": 2
+    },
 }
