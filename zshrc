@@ -1,7 +1,7 @@
 # Custom functions
 fpath=($DOTFILES/zsh-functions $fpath)
-autoload docx2vim gpg-key-lock gpg-key-unlock ssh view-html zbell
-autoload _pip_completion _jh-prev-result
+autoload -Uz docx2vim gpg-key-lock gpg-key-unlock ssh view-html
+autoload -Uz _pip_completion _jh-prev-result
 
 # History
 HISTFILE=~/.zsh_history
@@ -42,9 +42,9 @@ fi
 compctl -K _pip_completion pip
 compctl -K _pip_completion pip3
 
-# Load completion system
+# Load completion system (-i to ignore insecure files and directories)
 autoload -Uz compinit
-compinit
+compinit -i
 
 # Enable color support
 autoload -Uz colors
@@ -58,6 +58,7 @@ prompt folix
 
 # ring bell when long running commands finish
 # https://gist.github.com/jpouellet/5278239
+autoload -Uz zbell
 zbell
 
 # identify special keys
