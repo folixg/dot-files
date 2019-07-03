@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 # View markdown and rst in browser
 view-html () {
+  # determine filetype by extension
   basename="${1%.*}"
   ext="${1#*.}"
   case "$ext" in
@@ -15,7 +16,26 @@ view-html () {
       return 1
       ;;
   esac
-  pandoc -f "$format" -t html -o /var/run/user/$UID/"$ext"-preview.html "$basename"."$ext"
-  firefox /var/run/user/$UID/"$ext"-preview.html
+  # create the preview file
+  pandoc -f "$format" -t html -o "$PWD/$ext-preview.html" "$basename.$ext"
+  # check for xdotool
+  if [ ! "$(which xdotool)" ]; then
+    # simply open with firefox
+    firefox "$PWD/$ext-preview.html"
+    return 0
+  else
+    # check for existing preview window
+    ffid=$(xdotool search --name "$PWD/$ext-preview.html - Mozilla Firefox")
+    if [ ! "$ffid" ]; then
+      firefox "$PWD/$ext-preview.html"
+    else
+      curid="$(xdotool getwindowfocus)"
+      xdotool windowactivate "$ffid"
+      xdotool key "ctrl+r"
+      xdotool windowactivate "$curid"
+    fi
+  fi
   return 0
 }
+
+view-html $1
