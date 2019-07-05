@@ -6,8 +6,6 @@ xterm*termName: xterm-256color
 xterm*eightBitInput: false
 xterm*borderWidth: 0
 xterm*bellIsUrgent: true
-xterm*cursorBlink: true
-xterm*cursorUnderLine: true
 xterm*faceName: Source Code Pro,Source Code Pro Semibold
 xterm*faceSize: 11
 xterm*allowBoldFonts: false

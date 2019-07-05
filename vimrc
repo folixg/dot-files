@@ -36,16 +36,9 @@ set modeline                        " read modeline options from files
 " change cursor based on mode
 if &term =~ '^xterm.*'
   " blinking vertical bar for insert mode
-  let &t_SI .= "\<Esc>[6 q"
+  let &t_SI .= "\<Esc>[5 q"
   " solid block
-  let &t_EI .= "\<Esc>[1 q"
-  augroup Cursor
-    autocmd!
-    " set to solid block when entering
-    autocmd VimEnter * silent !echo -ne "\e[1 q"
-    " set to blinking underline when leaving
-    autocmd VimLeave * silent !echo -ne "\e[4 q"
-  augroup END
+  let &t_EI .= "\<Esc>[2 q"
 endif
 
 " indenting
