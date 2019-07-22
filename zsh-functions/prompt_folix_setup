@@ -1,17 +1,5 @@
-prompt_folix_setup () {
-
-# Enable vcs_info and configure for git
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:git*' formats "[%b%c%u%m]"
-zstyle ':vcs_info:*' unstagedstr "!"
-zstyle ':vcs_info:*' stagedstr "+"
-precmd() { vcs_info }
-
 # git: Show marker if there are untracked files in repository
 # https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples
-zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 +vi-git-untracked(){
     if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
         git status --porcelain | grep '??' &> /dev/null ; then
@@ -20,32 +8,47 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
     fi
 }
 
-# Left prompt
-USER_HOST=""
-[ "$SSH_CLIENT" ] || [ "$(grep docker /proc/1/cgroup 2>/dev/null)" ] && USER_HOST='%n@%m:'
-PROMPT='$USER_HOST%(!.%{$fg[red]%}.%{$fg[yellow]%})%~%{$reset_color%}%(!.#.>) '
-# vi-mode info for prompt
+# vim mode
 function zle-line-init zle-keymap-select {
     VIM_PROMPT="%{$fg[yellow]%}[% NORMAL]% %{$reset_color%}"
     zle reset-prompt
 }
-zle -N zle-line-init
-zle -N zle-keymap-select
 
-# Return code for prompt
-PROMPT_RETURN_CODE="%(?..%{$fg_bold[red]%}%?%{$reset_color%})"
+prompt_folix_setup () {
+  # Enable vcs_info and configure for git
+  autoload -Uz vcs_info
+  zstyle ':vcs_info:*' enable git
+  zstyle ':vcs_info:*' check-for-changes true
+  zstyle ':vcs_info:git*' formats "[%b%c%u%m]"
+  zstyle ':vcs_info:*' unstagedstr "!"
+  zstyle ':vcs_info:*' stagedstr "+"
+  zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
+  # vi-mode info for prompt
+  zle -N zle-line-init
+  zle -N zle-keymap-select
+  # set user@host for SSH sessions 
+  USER_HOST=""
+  [ "$SSH_CLIENT" ] && USER_HOST='%n@%m:'
+  # Left prompt
+  PROMPT='$USER_HOST%(!.%{$fg[red]%}.%{$fg[yellow]%})%~%{$reset_color%}%(!.#.>) '
+  # Return code for prompt
+  PROMPT_RETURN_CODE="%(?..%{$fg_bold[red]%}%?%{$reset_color%})"
+  # Right prompt with return code, vi-mode info and git info
+  RPROMPT='$PROMPT_RETURN_CODE ${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/}$GIT_COLOR${vcs_info_msg_0_}%{$reset_color%}'
 
-# Change color for dirty working directory
-function git_prompt_color() {
-  STATUS=$(git status --porcelain 2>/dev/null)
-  if [ "$STATUS" ]; then
-    echo "%{$fg[magenta]%}"
+  add-zsh-hook precmd prompt_folix_precmd
+}
+
+prompt_folix_precmd () {
+  # set color for git info
+  GIT_DIRTY=$(git status --porcelain 2>/dev/null)
+  if [ "$GIT_DIRTY" ]; then
+    GIT_COLOR="%{$fg[magenta]%}"
   else
-    echo "%{$fg[yellow]%}"
+    GIT_COLOR="%{$fg[yellow]%}"
   fi
+  # fetch git info
+  vcs_info
 }
 
-# Right prompt with return code, vi-mode info and git info
-RPROMPT='$PROMPT_RETURN_CODE ${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/}$(git_prompt_color)${vcs_info_msg_0_}%{$reset_color%}'
-
-}
+prompt_folix_setup "$@"
