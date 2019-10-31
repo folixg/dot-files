@@ -140,7 +140,7 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 # set LS_COLORS
-if [ -r "$DOTFILES/dircolors" ]; then
+if (which dircolors &> /dev/null); then
   eval "$(dircolors $DOTFILES/dircolors)"
 fi
 
