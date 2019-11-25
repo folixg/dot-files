@@ -48,4 +48,5 @@
     "[markdown]": {
         "editor.tabSize": 2
     },
+    "git.untrackedChanges": "separate",
 }
