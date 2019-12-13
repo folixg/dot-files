@@ -33,7 +33,7 @@
     "workbench.editor.enablePreview": true,
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "C_Cpp.clang_format_fallbackStyle": "llvm",
-    "workbench.colorTheme": "Lucario",
+    "workbench.colorTheme": "Dracula",
     "workbench.colorCustomizations": {
         "editor.lineHighlightBorder": "#243443",
         "editor.lineHighlightBackground": "#243443",

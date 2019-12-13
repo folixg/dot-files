@@ -40,3 +40,6 @@
 [submodule "vim/pack/misc/start/vim-surround"]
 	path = vim/pack/misc/start/vim-surround
 	url = https://github.com/tpope/vim-surround.git
+[submodule "vim/pack/appearance/start/dracula"]
+	path = vim/pack/appearance/start/dracula
+	url = git@github.com:dracula/vim.git

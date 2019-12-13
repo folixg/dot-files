@@ -10,59 +10,24 @@ xterm*faceName: Source Code Pro,Source Code Pro Semibold
 xterm*faceSize: 11
 xterm*allowBoldFonts: false
 
-! Lucario Color Theme
-! https://github.com/raphamorim/lucario
-!BLK Cursor
-#define _color0        #4f4f4f
-#define _color8        #4f4f4f
-!RED Tag
-#define _color1        #ff6c60
-#define _color9        #fa6960
-!GRN SpecialKey
-#define _color2        #fbb036
-#define _color10       #fbb036
-!YEL Keyword
-#define _color3        #ffffb6
-#define _color11       #feffb9
-!BLU Number
-#define _color4        #5796ed
-#define _color12       #6b9fed
-!MAG Precondit
-#define _color5        #ff73fd
-#define _color13       #fc6ffa
-!CYN Float
-#define _color6        #8ee478
-#define _color14       #8ee478
-!WHT Search
-#define _color7        #eeeeee
-#define _color15       #ffffff
-!FMT Include, StatusLine, ErrorMsg
-#define _colorBD       #ffffff
-#define _colorUL       #ffffff
-#define _colorIT       #ffffff
-!TXT Normal, Normal, Cursor
-#define _foreground    #f8f8f2
-#define _background    #2b3e50
-#define _cursorColor   #f8f8f2
-xterm*color0         : _color0
-xterm*color1         : _color1
-xterm*color2         : _color2
-xterm*color3         : _color3
-xterm*color4         : _color4
-xterm*color5         : _color5
-xterm*color6         : _color6
-xterm*color7         : _color7
-xterm*color8         : _color8
-xterm*color9         : _color9
-xterm*color10        : _color10
-xterm*color11        : _color11
-xterm*color12        : _color12
-xterm*color13        : _color13
-xterm*color14        : _color14
-xterm*color15        : _color15
-xterm*colorBD        : _colorBD
-xterm*colorIT        : _colorIT
-xterm*colorUL        : _colorUL
-xterm*foreground     : _foreground
-xterm*background     : _background
-xterm*cursorColor    : _cursorColor
+
+! Dracula Xresources palette
+! https://github.com/dracula/xresources
+*.foreground: #F8F8F2
+*.background: #282A36
+*.color0:     #000000
+*.color8:     #4D4D4D
+*.color1:     #FF5555
+*.color9:     #FF6E67
+*.color2:     #50FA7B
+*.color10:    #5AF78E
+*.color3:     #F1FA8C
+*.color11:    #F4F99D
+*.color4:     #BD93F9
+*.color12:    #CAA9FA
+*.color5:     #FF79C6
+*.color13:    #FF92D0
+*.color6:     #8BE9FD
+*.color14:    #9AEDFE
+*.color7:     #BFBFBF
+*.color15:    #E6E6E6

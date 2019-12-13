@@ -27,11 +27,15 @@ set colorcolumn=80                  " show marker for textwidth
 set incsearch                       " show search results while typing
 set hlsearch                        " highlight all matches in search
 set wildmode=list:longest           " list possible completions
-colorscheme lucario                 " https://github.com/raphamorim/lucario
 packadd! matchit                    " improve jumping with %
 set scrolloff=5                     " keep 5 lines above/below current line
 set nofoldenable                    " don't fold by default
 set modeline                        " read modeline options from files
+
+" dracula color scheme https://github.com/dracula/vim
+packadd! dracula
+let g:dracula_colorterm=0
+colorscheme dracula
 
 " change cursor based on mode
 if &term =~ '^xterm.*'
@@ -129,12 +133,12 @@ let tagbar_autofocus = 1
 
 " quickly switch between dark and light colorscheme
 function! LightSwitch()
-  if g:colors_name == 'lucario'
+  if g:colors_name == 'dracula'
     set background=light
     colorscheme snow
   else
     set background=dark
-    colorscheme lucario
+    colorscheme dracula
   endif
 endfunction
 noremap <silent> <F4> :call LightSwitch()<CR>
