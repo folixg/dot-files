@@ -42,4 +42,4 @@
 	url = https://github.com/tpope/vim-surround.git
 [submodule "vim/pack/appearance/start/dracula"]
 	path = vim/pack/appearance/start/dracula
-	url = git@github.com:dracula/vim.git
+	url = https://github.com/dracula/vim.git
