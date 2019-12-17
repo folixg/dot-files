@@ -16,6 +16,7 @@
     - wget
     - shellcheck
     - tmux
+    - ripgrep
 
 - name: Update dot-files repository (including submodules)
   git:

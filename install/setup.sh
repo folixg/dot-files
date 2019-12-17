@@ -37,6 +37,11 @@ if [ "$(which zsh)" ] ; then
   echo "### zsh setup done ###"
 fi
 
+# install fzf
+echo "### installing fzf ###"
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install --no-fish --all
+
 # link gitconfig
 echo "### linking global gitignore ###"
 __link_dotfile "gitignore" || exit 1

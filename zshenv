@@ -7,6 +7,18 @@ export EDITOR=vim
 # Path to dot-files repository
 export DOTFILES=$HOME/dot-files
 
+# Use ripgrep with fzf file selection keybinding
+if (which rg &> /dev/null); then
+  export FZF_CTRL_T_COMMAND='rg --files --hidden'
+fi
+
+# Colorscheme for fzf
+export FZF_DEFAULT_OPTS='
+--color=dark
+--color=fg:-1,bg:-1,hl:#50fa7b,fg+:-1,bg+:#44475a,hl+:#50fa7b
+--color=info:#6272a4,prompt:#f8f8f2,pointer:#f8f8f2,marker:#ffb86c,spinner:#6272a4
+'
+
 # syntax highlighting with less
 if (which highlight &> /dev/null); then
   export LESSOPEN="|highlight --quiet --force --line-numbers --line-length=80 --wrap-no-numbers --out-format=xterm256 --style=xoria256 %s"
