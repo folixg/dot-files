@@ -7,6 +7,12 @@ export EDITOR=vim
 # Path to dot-files repository
 export DOTFILES=$HOME/dot-files
 
+# syntax highlighting with less
+if (which highlight &> /dev/null); then
+  export LESSOPEN="|highlight --quiet --force --line-numbers --line-length=80 --wrap-no-numbers --out-format=xterm256 --style=xoria256 %s"
+  export LESS=' -R'
+fi
+
 # Go
 export GOPATH="$HOME/go"
 export PATH="/usr/local/go/bin:$PATH:$GOPATH/bin"
