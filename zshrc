@@ -127,13 +127,6 @@ if [[ $UID -ne 0 ]]; then
   fi
 fi
 
-# Use fasd
-if (which fasd &> /dev/null); then
-  eval "$(fasd --init auto)"
-  alias v='f -e vim' # quick opening files with vim
-  alias o='a -e xdg-open' # quick opening files with xdg-open
-fi
-
 # Alias file
 if [ -f ~/.bash_aliases ]; then
     source ~/.bash_aliases

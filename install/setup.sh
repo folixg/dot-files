@@ -34,9 +34,6 @@ if [ "$(which zsh)" ] ; then
   __link_dotfile "zshrc"
   echo "### linking zshenv ###"
   __link_dotfile "zshenv"
-  echo "### download fasd to ~/bin ###"
-  curl -sL -o ~/bin/fasd https://raw.githubusercontent.com/clvv/fasd/master/fasd || exit 1
-  chmod +x ~/bin/fasd || exit 1
   echo "### zsh setup done ###"
 fi
 

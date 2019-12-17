@@ -4,17 +4,6 @@
     state: present
   become: true
 
-- name: Download fasd to ~/bin
-  get_url:
-    url:  https://raw.githubusercontent.com/clvv/fasd/master/fasd
-    dest: ~/bin/fasd
-
-- name: Make fasd executable
-  file:
-    path: ~/bin/fasd
-    state: file
-    mode: 0755
-  
 - name: Link ~/.zshrc
   file:
     src: ~/dot-files/zshrc
