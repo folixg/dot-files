@@ -3,5 +3,4 @@
   - hosts: localhost
     roles:
       - common
-      - gpg
       - python
