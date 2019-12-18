@@ -38,7 +38,9 @@ if which gpg2 &>/dev/null; then
 fi
 
 # alias for ubuntu docker
-alias ubuntu='docker pull folixg/ubuntu:latest && docker run --rm -it -v `pwd`:/data folixg/ubuntu' 
+alias ubuntu='docker pull folixg/ubuntu:latest && \
+              docker run --rm -it -e USER_UID=$UID -e USER_GID=$GID \
+              -v `pwd`:/home/folix/workspace folixg/ubuntu' 
 
 # (dis-)connect eduroam (needs config from https://cat.eduroam.de)
 alias eduroam-connect='nmcli connection up eduroam ifname wlp3s0'

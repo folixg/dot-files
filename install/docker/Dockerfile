@@ -10,15 +10,19 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.vcs-ref=$VCS_REF \
       org.label-schema.schema-version="1.0"
 
+# copy entry script
+COPY start.sh /start.sh
+
 # install ansible
 RUN apt-get update \
     && apt-get install -y software-properties-common \
     && apt-add-repository -y ppa:ansible/ansible \
     && apt-get update \
-    && apt-get install -y ansible git sudo
+    && apt-get install -y ansible git sudo gosu
 
 # create user
-RUN useradd --create-home --shell /usr/bin/zsh folix \
+RUN groupadd folix \
+    && useradd --create-home --shell /usr/bin/zsh -g folix folix \
     && adduser folix sudo \
     && echo "folix ALL=(ALL) NOPASSWD:ALL" | tee -a /etc/sudoers
 USER folix
@@ -30,7 +34,9 @@ RUN git clone https://github.com/folixg/dot-files.git /home/folix/dot-files \
     && sudo rm -rf /var/lib/apt/lists/*
 
 # cd to user home
-WORKDIR /home/folix
+WORKDIR /home/folix/workspace
+
+USER root
 
 # start zsh
-ENTRYPOINT /usr/bin/tmux
+ENTRYPOINT [ "/start.sh" ]
