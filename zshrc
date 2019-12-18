@@ -120,7 +120,7 @@ else
 fi
 if [[ $UID -ne 0 ]]; then
   # Use gpg-agent instead of ssh-agent (if there is a private auth key available)
-  if [[ $( "$GPG_BIN" -K | grep "\[A\]" ) ]] ; then
+  if [[ $( "$GPG_BIN" -K 2>/dev/null | grep "\[A\]" ) ]] ; then
     unset SSH_AGENT_PID
     if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
       export SSH_AUTH_SOCK="${HOME}/.gnupg/S.gpg-agent.ssh"
