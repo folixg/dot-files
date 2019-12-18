@@ -3,9 +3,6 @@
   - hosts: localhost
     roles:
       - common
-      - git_private
-      - go
       - gpg      
       - python
-      - zsh
       - xserver

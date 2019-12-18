@@ -1,9 +1,3 @@
-- name: Install gnupg2
-  apt:
-    name: gnupg2
-    state: present
-  become: true
-
 - name: Create and set permissions for ~/.gnupg
   file:
     path: ~/.gnupg

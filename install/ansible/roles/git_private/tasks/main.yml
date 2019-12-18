@@ -1,6 +1,0 @@
-- name: Link gitconfig
-  file:
-    src: ~/dot-files/gitconfig
-    dest: ~/.gitconfig
-    state: link
-    force: yes

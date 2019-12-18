@@ -1,10 +1,36 @@
-- name: Install python3-pip
+- name: Install pip3
   apt:
     name: python3-pip
     state: present
   become: true
 
-- name: Install flake8
-  command: pip3 install flake8
+- name: Update pip
+  pip:
+    name: pip
+    executable: pip3
+    state: latest
   become: true
 
+- name: Install flake8
+  pip:
+    name: flake8
+    executable: pip3
+  become: true
+
+- name: Install pytest
+  pip:
+    name: pytest
+    executable: pip3
+  become: true
+
+- name: Install autopep8
+  pip:
+    name: autopep8
+    executable: pip3
+  become: true
+
+- name: Install virtualenv
+  pip:
+    name: virtualenv
+    executable: pip3
+  become: true

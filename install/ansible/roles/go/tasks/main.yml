@@ -1,6 +1,0 @@
-- name: Install go 1.9.1
-  unarchive:
-    src: https://storage.googleapis.com/golang/go1.9.1.linux-amd64.tar.gz
-    dest: /usr/local
-    remote_src: yes
-  become: true

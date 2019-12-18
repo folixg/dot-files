@@ -6,7 +6,7 @@
 
 - name: Install additional packages through apt
   apt:
-    name: ['vim', 'exuberant-ctags', 'curl', 'wget', 'shellcheck', 'tmux']
+    name: ['git', 'vim', 'exuberant-ctags', 'curl', 'wget', 'shellcheck', 'tmux', 'golang', 'python3-pip', 'zsh']
     state: present
   become: true
 
@@ -34,12 +34,24 @@
     state: link
     force: yes
   with_items:
-    - vim
-    - vimrc
-    - bashrc
     - bash_aliases
+    - bashrc
     - profile
+    - zshrc
+    - zshenv
     - gitignore
-    - tmux.conf
+    - gitconfig
+    - vimrc
+    - vim
     - ctags
+    - tmux.conf
+
+- name: Clone fzf
+  git:
+    repo: 'https://github.com/junegunn/fzf.git'
+    dest: ~/.fzf
+    depth: 1
+
+- name: Setup fzf
+  shell: ~/.fzf/install --no-fish --all
 
