@@ -49,4 +49,6 @@
         "editor.tabSize": 2
     },
     "git.untrackedChanges": "separate",
+    "terminal.integrated.shell.linux": "/bin/zsh",
+    "problems.showCurrentInStatus": true,
 }
