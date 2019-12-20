@@ -28,9 +28,3 @@
     name: autopep8
     executable: pip3
   become: true
-
-- name: Install virtualenv
-  pip:
-    name: virtualenv
-    executable: pip3
-  become: true
