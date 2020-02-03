@@ -26,7 +26,7 @@ set cursorline                      " highlight current line
 set colorcolumn=80                  " show marker for textwidth
 set incsearch                       " show search results while typing
 set hlsearch                        " highlight all matches in search
-set wildmode=list:longest           " list possible completions
+set wildmode=list:longest,full      " list possible completions
 packadd! matchit                    " improve jumping with %
 set scrolloff=5                     " keep 5 lines above/below current line
 set nofoldenable                    " don't fold by default
