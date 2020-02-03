@@ -42,10 +42,6 @@ alias ubuntu='docker pull folixg/ubuntu:latest && \
               docker run --rm -it -e USER_UID=$UID -e USER_GID=$GID \
               -v `pwd`:/home/folix/workspace folixg/ubuntu' 
 
-# (dis-)connect eduroam (needs config from https://cat.eduroam.de)
-alias eduroam-connect='nmcli connection up eduroam ifname wlp3s0'
-alias eduroam-disconnect='nmcli connection down eduroam'
-
 # start vim with servername (if the vim installation supports it)
 # use macvim on mac
 if [ "$(uname)" = "Darwin" ] ; then
