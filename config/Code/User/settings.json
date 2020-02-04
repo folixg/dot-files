@@ -15,6 +15,8 @@
     "workbench.tips.enabled": false,
     "workbench.editor.labelFormat": "medium",
     "workbench.settings.enableNaturalLanguageSearch": false,
+    "window.menuBarVisibility": "hidden",
+    "window.customMenuBarAltFocus": false,
     "window.enableMenuBarMnemonics": false,
     "search.smartCase": true,
     "debug.inlineValues": true,
