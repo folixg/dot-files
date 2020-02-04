@@ -1,4 +1,4 @@
-set guioptions=acegim
+set guioptions=acegi
 if has('mac')
   set guifont=Source\ Code\ Pro:h14
 else
