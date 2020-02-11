@@ -30,7 +30,7 @@ bindkey -v
 
 # Basic completion settings
 zstyle ':completion:*' menu select
-zstyle :compinstall filename '/home/no56way/.zshrc'
+zstyle :compinstall filename ~/.zshrc
 
 # Complete case and hyphen insensitive
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'

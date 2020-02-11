@@ -1,11 +1,12 @@
 # Include user dirs in PATH
-export PATH=$HOME/bin:$HOME/.local/bin:$PATH
+typeset -U path
+path=(~/bin ~/.local/bin $path)
 
 # Set vim as default editor
 export EDITOR=vim
 
 # Path to dot-files repository
-export DOTFILES=$HOME/dot-files
+export DOTFILES=~/dot-files
 
 # Use ripgrep with fzf file selection keybinding
 if (which rg &> /dev/null); then
@@ -25,17 +26,24 @@ if (which highlight &> /dev/null); then
   export LESS=' -R'
 fi
 
+# Python virtualenvwrapper
+export WORKON_HOME=~/.virtualenvs/
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+if [ -f ~/.local/bin/virtualenvwrapper.sh ]; then
+  source ~/.local/bin/virtualenvwrapper.sh
+fi
+
 # Go
-export GOPATH="$HOME/go"
-export PATH="/usr/local/go/bin:$PATH:$GOPATH/bin"
+export GOPATH=~/go
+path=(/usr/local/go/bin ~/go/bin $path)
 
 # Rust
-export PATH="$HOME/.cargo/bin:$PATH"
-export RUST_SRC_PATH="$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
+path=(~/.cargo/bin $path)
+export RUST_SRC_PATH=~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
 
 # Install Ruby gems to ~/gems
-export GEM_HOME=$HOME/gems
-export PATH=$HOME/gems/bin:$PATH
+export GEM_HOME=~/gems
+path=(~/gems/bin $path)
 
 # # Load LIS environment settings
 # if [ -r /etc/bash.bashrc.d/10-lis ] ; then
