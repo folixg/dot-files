@@ -43,3 +43,9 @@
 [submodule "vim/pack/appearance/start/dracula"]
 	path = vim/pack/appearance/start/dracula
 	url = https://github.com/dracula/vim.git
+[submodule "vim/pack/misc/start/ultisnips"]
+	path = vim/pack/misc/start/ultisnips
+	url = https://github.com/SirVer/ultisnips.git
+[submodule "vim/pack/misc/start/vim-snippets"]
+	path = vim/pack/misc/start/vim-snippets
+	url = https://github.com/honza/vim-snippets.git
