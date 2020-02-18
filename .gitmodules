@@ -49,3 +49,6 @@
 [submodule "vim/pack/misc/start/vim-snippets"]
 	path = vim/pack/misc/start/vim-snippets
 	url = https://github.com/honza/vim-snippets.git
+[submodule "vim/pack/languages/start/vim-fish"]
+	path = vim/pack/languages/start/vim-fish
+	url = https://github.com/dag/vim-fish.git
