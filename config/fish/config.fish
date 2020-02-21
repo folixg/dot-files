@@ -33,3 +33,6 @@ else
   ssh-add
 end
 
+# use ripgrep with fzf
+set -x FZF_CTRL_T_COMMAND 'rg --files --hidden'
+
