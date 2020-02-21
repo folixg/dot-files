@@ -1,0 +1,4 @@
+# ignore universal variables file
+fish_variables
+# ignore file for machine local settings
+conf.d/local.fish
