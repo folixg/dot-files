@@ -19,5 +19,9 @@ function fish_prompt --description 'Write out the prompt'
         set user_host "$USER"(prompt_hostname)":"
     end
 
+    if set -q VIRTUAL_ENV
+        echo -n -s "(" (basename "$VIRTUAL_ENV") ") "
+    end
+
     echo -n -s $user_host (set_color $color_cwd) (prompt_pwd) $normal $suffix " "
 end
