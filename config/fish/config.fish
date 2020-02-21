@@ -5,7 +5,7 @@ set -U fish_greeting
 set -x EDITOR vim
 set -U fish_key_bindings fish_hybrid_key_bindings
 
-set -x PATH ~/bin ~/.local/bin /usr/local/go/bin ~/go/bin ~/gems/bin $PATH
+set -x PATH ~/bin ~/.local/bin /usr/local/go/bin ~/go/bin ~/gems/bin ~/.fzf/bin $PATH
 
 # syntax highlighting with less
 if type -pq highlight
