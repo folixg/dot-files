@@ -23,9 +23,10 @@ end
 
 set auth_key ($gpg_bin -K | grep "\[A\]")
 
-if test -n auth_key
-  set -e SSH_AGENT_PID
-  set -x SSH_AUTH_SOCK ~/.gnupg/S.gpg-agent.ssh
+if test -n $auth_key
+  gpgconf --launch gpg-agent
+  set -e SSH_AUTH_SOCK
+  set -U -x SSH_AUTH_SOCK ~/.gnupg/S.gpg-agent.ssh
 else
   eval (ssh-agent -c)
   ssh-add
