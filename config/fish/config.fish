@@ -36,3 +36,5 @@ end
 # use ripgrep with fzf
 set -x FZF_CTRL_T_COMMAND 'rg --files --hidden'
 
+# virtualfish vor python virtual environments
+eval (python3 -m virtualfish auto_activation)
