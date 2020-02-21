@@ -1,3 +1,8 @@
+" Vim needs a POSIX compatible shell
+if &shell =~# 'fish$'
+    set shell=zsh
+endif
+
 " pathogen
 if !has('packages')
   runtime pack/misc/start/vim-pathogen/autoload/pathogen.vim
