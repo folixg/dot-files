@@ -10,3 +10,8 @@
 	program = gpg2
 [core]
 	excludesfile = ~/.gitignore
+[difftool]
+	tool = vimdiff
+	prompt = false
+[merge]
+	tool = vimdiff
