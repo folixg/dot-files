@@ -36,6 +36,8 @@ packadd! matchit                    " improve jumping with %
 set scrolloff=5                     " keep 5 lines above/below current line
 set nofoldenable                    " don't fold by default
 set modeline                        " read modeline options from files
+set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:·
+set list                            " show whitespace
 
 " dracula color scheme https://github.com/dracula/vim
 packadd! dracula

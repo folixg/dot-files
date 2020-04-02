@@ -22,9 +22,6 @@
 [submodule "vim/bundle/vim-highlightedyank"]
 	path = vim/pack/appearance/start/vim-highlightedyank
 	url = https://github.com/machakann/vim-highlightedyank
-[submodule "vim/bundle/indentLine"]
-	path = vim/pack/appearance/start/indentLine
-	url = https://github.com/Yggdroot/indentLine.git
 [submodule "vim/bundle/tagbar"]
 	path = vim/pack/tags/start/tagbar
 	url = https://github.com/majutsushi/tagbar.git
