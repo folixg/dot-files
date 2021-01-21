@@ -50,11 +50,11 @@ compinit -i
 autoload -Uz colors
 colors
 
-# Use custom prompt
-autoload -Uz promptinit
-promptinit
-setopt prompt_subst
-prompt folix
+# # Use custom prompt
+# autoload -Uz promptinit
+# promptinit
+# setopt prompt_subst
+# prompt folix
 
 # ring bell when long running commands finish
 # https://gist.github.com/jpouellet/5278239
@@ -123,7 +123,7 @@ if [[ $UID -ne 0 ]]; then
   if [[ $( "$GPG_BIN" -K 2>/dev/null | grep "\[A\]" ) ]] ; then
     unset SSH_AGENT_PID
     if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-      export SSH_AUTH_SOCK="${HOME}/.gnupg/S.gpg-agent.ssh"
+      export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
     fi
   # Otherwise start ssh-agent and add ssh key
   else
@@ -152,3 +152,4 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 source "$DOTFILES"/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(starship init zsh)"

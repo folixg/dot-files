@@ -27,7 +27,7 @@ set auth_key ($gpg_bin -K | grep "\[A\]")
 if test -n $auth_key
   gpgconf --launch gpg-agent
   set -e SSH_AUTH_SOCK
-  set -U -x SSH_AUTH_SOCK ~/.gnupg/S.gpg-agent.ssh
+  set -U -x SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
 else
   eval (ssh-agent -c)
   ssh-add
@@ -36,5 +36,5 @@ end
 # use ripgrep with fzf
 set -x FZF_CTRL_T_COMMAND 'rg --files --hidden'
 
-# virtualfish vor python virtual environments
-eval (python3 -m virtualfish auto_activation)
+# use starship prompt
+starship init fish | source

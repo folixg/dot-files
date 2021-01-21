@@ -6,10 +6,13 @@ xterm*termName: xterm-256color
 xterm*eightBitInput: false
 xterm*borderWidth: 0
 xterm*bellIsUrgent: true
-xterm*faceName: Source Code Pro,Source Code Pro Semibold
+xterm*visualBell: true
+xterm*visualBellLine: true
+xterm*renderFont: true
+xterm*faceName: xft:SauceCodePro Nerd Font Mono
 xterm*faceSize: 11
 xterm*allowBoldFonts: false
-
+xterm*allowSendEvents: true
 
 ! Dracula Xresources palette
 ! https://github.com/dracula/xresources
