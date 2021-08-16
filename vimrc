@@ -124,7 +124,6 @@ if has('mac')
 else
   let vimtex_view_method='zathura'
 endif
-let vimtex_index_split_pos = 'vert belowright'
 
 " gitgutter
 set updatetime=250
