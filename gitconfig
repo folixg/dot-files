@@ -1,7 +1,7 @@
 [user]
 	email = thomas.goldbrunner@posteo.de
 	name = Thomas Goldbrunner
-	signingkey = 640DA4FB
+	signingkey = 0x7AD59E9DA36276B8
 [push]
 	default = simple
 [commit]
