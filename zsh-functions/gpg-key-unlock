@@ -1,8 +1,4 @@
 #!/usr/bin/env zsh
 gpg-key-unlock() {
-  GPG=/usr/bin/gpg
-  if [ -f /usr/bin/gpg2 ]; then
-    GPG=/usr/bin/gpg2
-  fi
-  echo "" | $GPG -s &> /dev/null
+  echo "" | gpg -s &> /dev/null
 }

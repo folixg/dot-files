@@ -84,11 +84,7 @@ __link_dotfile "gnupg/sshcontrol"
 echo "### linking ~/.ssh/config ###"
 __link_dotfile "ssh/config"
 echo "### fetching public key from keyserver ###"
-if [ "$(which gpg2)" ]; then
-  gpg2 --recv-key 0x1782EA931CF39ED8
-else
-  gpg --recv-key 0x1782EA931CF39ED8
-fi
+gpg --recv-key 0x1782EA931CF39ED8
 
 # install Source Code Pro
 FONT_DIR="$HOME"/.local/share/fonts

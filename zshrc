@@ -112,15 +112,9 @@ fi
 GPG_TTY=$(tty)
 export GPG_TTY
 
-# GPG for authentication
-if [ -f /usr/bin/gpg2 ]; then
-  GPG_BIN=/usr/bin/gpg2
-else
-  GPG_BIN=/usr/bin/gpg
-fi
 if [[ $UID -ne 0 ]]; then
   # Use gpg-agent instead of ssh-agent (if there is a private auth key available)
-  if [[ $( "$GPG_BIN" -K 2>/dev/null | grep "\[A\]" ) ]] ; then
+  if [[ $(gpg -K 2>/dev/null | grep "\[A\]" ) ]] ; then
     unset SSH_AGENT_PID
     if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
       export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)

@@ -16,13 +16,7 @@ end
 set -x GPG_TTY (tty)
 
 # use gpg for authentication
-if type -q gpg2
-  set gpg_bin gpg2
-else
-  set gpg_bin gpg
-end
-
-set auth_key ($gpg_bin -K | grep "\[A\]")
+set auth_key (gpg -K | grep "\[A\]")
 
 if test -n $auth_key
   gpgconf --launch gpg-agent
