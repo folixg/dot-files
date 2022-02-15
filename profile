@@ -16,12 +16,12 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-# set shell to zsh
-if [ -e "/usr/bin/zsh" ] ; then
-  export SHELL="/usr/bin/zsh"
-  # launch zsh, if interactive shell
+# set shell to fish
+if [ -e "/usr/bin/fish" ] ; then
+  export SHELL="/usr/bin/fish"
+  # launch fish, if interactive shell
   if [ -n "$PS1" ] ; then
-    exec zsh -l
+    exec /usr/bin/fish
   fi
 fi
 

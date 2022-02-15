@@ -38,3 +38,6 @@ set -x FZF_CTRL_T_COMMAND 'rg --files --hidden'
 
 # use starship prompt
 starship init fish | source
+
+# virtualfish for python virtual environments
+eval (python3 -m virtualfish auto_activation)
