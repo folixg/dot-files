@@ -5,7 +5,7 @@ set -U fish_greeting
 set -x EDITOR vim
 set -U fish_key_bindings fish_hybrid_key_bindings
 
-set -x PATH ~/bin ~/.local/bin /usr/local/go/bin ~/go/bin ~/gems/bin ~/.fzf/bin $PATH
+set -x PATH ~/bin ~/.cargo/bin ~/.local/bin /usr/local/go/bin ~/go/bin ~/gems/bin ~/.fzf/bin $PATH
 
 # syntax highlighting with less
 if type -q highlight
@@ -32,6 +32,3 @@ set -x FZF_CTRL_T_COMMAND 'rg --files --hidden'
 
 # use starship prompt
 starship init fish | source
-
-# virtualfish for python virtual environments
-eval (python3 -m virtualfish auto_activation)
